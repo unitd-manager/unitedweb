@@ -340,18 +340,12 @@ const updateContactFields = e => {
 
 <section className="bg-light py-5">
   <div className="bg-gradient-primary section bg-triangles">
-    <div className="container">
-      <div className="row">
-        <div className="col-12 text-center mb-5">
+    <div className="container-fluid">
+      <div className="row testimonial-slider px-5" data-aos="fade-up">
+         <div className="col-12 text-center mb-5">
           <p className="subtitle text-white" data-aos="fade-up">testimonial</p>
           <h2 className="section-title text-white" data-aos="fade-up" data-aos-delay="100">What Our Clients Says?</h2>
         </div>
-      </div>
-    </div>
-  </div>
-  <div className="translate-top">
-    <div className="container-fluid">
-      <div className="row testimonial-slider px-5" data-aos="fade-up">
        <div className='col-12'>
         <Slider {...settings3}>
           {testimonial.map(data=>{

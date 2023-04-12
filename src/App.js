@@ -1,9 +1,11 @@
 import React from 'react'
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom"
+import './App.css';
+import { useState,useEffect } from 'react';
 import Home from '../src/screens/pages/home/Home';
 import About from '../src/screens/pages/about/About';
 import Contact from '../src/screens/pages/contact/Contact';
@@ -14,14 +16,26 @@ import Error from './screens/pages/Error';
 import ProductDetail from './screens/pages/Products/ProductDetails';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
+import ClipLoader from "react-spinners/ClipLoader";
 // const root = ReactDOM.createRoot(
 //   document.getElementById("root")
 // );
 
-
 function App() {
+  const[loading,setLoading]=useState(false)
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(()=>{
+      setLoading(false)
+    },500)
+  },[])
   return (
-    <BrowserRouter>
+    <>
+    {
+      loading?
+      <ClipLoader color={'blue'} loading={loading}  size={50} /> : 
+      
+    <HashRouter>
      <Header />
       <Routes>
         <Route  path="/" element={<Home />} />
@@ -35,7 +49,9 @@ function App() {
         <Route path="*" element={<Error/>}/>
       </Routes>
       <Footer/>
-    </BrowserRouter>
+    </HashRouter>
+}
+</>
   );
 }
 
