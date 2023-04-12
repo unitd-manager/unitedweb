@@ -1,6 +1,7 @@
 import React from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import api from '../../../constants/api';
 
 export default function Contact() {
 
@@ -10,6 +11,29 @@ export default function Contact() {
     window.scrollTo(0,0)
    
   }, [])
+  const applyChanges = () => {};
+//Email
+const sendMail = () => {
+  if (
+    window.confirm(
+      ' Are you sure do you want to send Mail to this Client \n',
+    )
+  ) {
+  const to ="sulfiya@unitdtechnologies.com";
+  const text = "Hello";
+  const subject ="Test Mail";
+  api
+    .post('/email/sendemail',{to,text,subject})
+    .then(() => {
+    })
+    
+  }
+ else {
+  applyChanges();
+}
+};
+
+
 
   const [user, setUser] = React.useState({
     fname:'', lname:'', email:'', message:'',});
@@ -73,7 +97,13 @@ export default function Contact() {
             <textarea name="message" class="form-control mb-4" placeholder="Message" value={user.message} onChange={(event) => handleChange(event)}></textarea>
           </div>
           <div class="col-8">
-            <button type="submit" class="btn btn-primary" >Submit Now</button>
+          <button className='shadow-none'
+              color="success"
+              onClick={() => {
+                
+                  sendMail();
+                
+              }}>Submit Now</button>
           </div>
         </form>
         </div>
