@@ -18,6 +18,7 @@ export default function Home() {
   const [products, setProducts] = useState([])
   const [services, setServices] = useState([]) 
   const [choose, setWhychooseus] = useState([])
+  const[loading,setLoading]=useState(false)
   const navigate = useNavigate()
 
   const [contact, setContact] = React.useState({
@@ -69,7 +70,7 @@ const updateContactFields = e => {
   }))
 }
   const onEquirySubmit = () =>{
-
+    setLoading(false);
     api.post('/addEnquiry',{
       first_name:contact.first_name,
       email:contact.email,
@@ -78,9 +79,11 @@ const updateContactFields = e => {
       products:product.join(','),
       services:service.join(',')
     }).then(res=>{
-      console.log(res)
+            console.log(res)
+            setLoading(false)
     })
     console.log(contact)
+    setLoading(false)
     //console.log(service)
   }
 
@@ -176,7 +179,7 @@ const updateContactFields = e => {
     
   }
   const getServiceDetail = (title) =>{
-    if(title == 'Web/ E Commerce Development'){
+    if(title === 'Web/ E Commerce Development'){
       navigate('services/website-ecommerce-development')
     }else{
       var formated = title.toLowerCase().split(' ').join('-')
@@ -190,6 +193,7 @@ const updateContactFields = e => {
     {/* <div className="preloader">
       <img src="assets/images/preloader.gif" alt="preloader" className="img-fluid" />
   </div> */}
+  loading={loading}
 <section className="hero-area hero-area-lg position-relative">
   <div className="container">
     <div className="row align-items-center">
@@ -214,16 +218,18 @@ const updateContactFields = e => {
   </div>
   <img src="assets/images/homepage-3/banner-shape.png" className="img-fluid bg-shape-4" alt="shape" />
 </section>
-<section className="section pb-0 features">
+<section style={{paddingTop:30}} className="section pb-0 features">
   <div className="container">
     <div className="row">
       
       <div className="col-12 text-center">
-        <p className="subtitle aos-init aos-animate" > Features </p>
+        <div className="subtitle aos-init aos-animate" > 
+        <p className="subtitle aos-init aos-animate mt-5"  >Features </p>
         <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">exclusive features</h2>
       </div>
+      </div>
       {products.map((data,index)=>{
-        if(index%2 != 0){
+        if(index%2 !== 0){
           return ( 
            
           <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up">
@@ -315,7 +321,7 @@ const updateContactFields = e => {
   <img src="assets/images/shape/curve-shape-2.png" className="img-fluid process-bg-shape" alt="bg-shape"/>
 </section>
 
-<section className="bg-light py-5">
+<section style={{paddingTop:0}}className="bg-light py-5">
   <div className="container">
     <div className="row">
       <div className="col-md-3 col-sm-6 mb-4 mb-md-0 text-center">
@@ -400,7 +406,7 @@ const updateContactFields = e => {
 </div>
 </section>
 
-<section style={{paddingTop:40}} className="section">
+<section style={{paddingTop:10}} className="section">
   <div className="container">
     <div className="row">
       <div className="col-12 text-center">

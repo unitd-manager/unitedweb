@@ -16,28 +16,25 @@ import Error from './screens/pages/Error';
 import ProductDetail from './screens/pages/Products/ProductDetails';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
-import ClipLoader from "react-spinners/ClipLoader";
+//import ClipLoader from "react-spinners/ClipLoader";
 // const root = ReactDOM.createRoot(
 //   document.getElementById("root")
 // );
 
 function App() {
-  const[loading,setLoading]=useState(false)
-  useEffect(()=>{
-    setLoading(true)
-    setTimeout(()=>{
-      setLoading(false)
-    },500)
-  },[])
+
   return (
-    <>
-    {
-      loading?
-      <ClipLoader color={'blue'} loading={loading}  size={50} /> : 
+    // <div>
+    // {
+    //   loading?
+    //   <ClipLoader color={'blue'} loading={loading}  size={50} /> : 
       
     <HashRouter>
+      
      <Header />
+     
       <Routes>
+        
         <Route  path="/" element={<Home />} />
         <Route  path="/home" element={<Home />} />
         <Route path="/about-us" element={<About />}/>
@@ -50,9 +47,9 @@ function App() {
       </Routes>
       <Footer/>
     </HashRouter>
-}
-</>
-  );
+  )
+
+
 }
 
 export default App;
