@@ -3,10 +3,13 @@ import { useParams,useNavigate } from "react-router-dom";
 import AOS from 'aos';
 import api from '../../../constants/api';
 import ReactHtmlParser from 'react-html-parser';
+import CommonTable from '../../../CommonTable';
 
 const Screendetail = ()=> {
     const [services, setServices] = useState([]) 
     const {title} = useParams()
+    const [loading, setLoading] = useState(false)
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,9 +20,12 @@ const Screendetail = ()=> {
 
     const getBlogs = () =>{
       var formated = title.split('-').join(' ')
+      setLoading(true);
       api.post('/getServiceDetail',{title:formated}).then(res=>{
         setServices(res.data.data)
+        setLoading(false)
       }).catch(err=>{
+        setLoading(false)
 
       })
     
@@ -28,7 +34,8 @@ const Screendetail = ()=> {
    return (
 
 <>
-
+<CommonTable 
+        loading={loading}>
 <section class="page-title page-title-overlay bg-cover overflow-hidden" data-background="assets/images/background/about.jpg">
   <div class="container">
     <div class="row">
@@ -206,7 +213,7 @@ const Screendetail = ()=> {
     <Footer footerAbout={footerAbout}/>
 
     </> */}
-
+</CommonTable>
 </>
 
   )

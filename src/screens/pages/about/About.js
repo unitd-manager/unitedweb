@@ -76,6 +76,8 @@ export default function About() {
           </ol>
         </nav>
       </div>
+      
+      
     </div>
   </div>
 </section>
@@ -144,7 +146,7 @@ export default function About() {
 </section> */}
 
 
-<section class="section section-lg-bottom bg-light">
+<section style={{paddingTop:0}}class="section section-lg-bottom bg-light">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">

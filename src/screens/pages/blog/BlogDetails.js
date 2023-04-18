@@ -32,7 +32,7 @@ export default function BlogDetails( props ) {
     <div class="row">
       <div class="col-lg-7">
         <h1 class="text-white position-relative">{data.title}
-        {/* <span class="watermark-sm">Blog Details</span> */}
+       
         </h1>
         {/* <p class="text-white pt-4 pb-4">Cupidatat non proident sunt culpa qui officia deserunt mollit <br/> anim idest
           laborum sed ut perspiciatis.</p> */}

@@ -3,26 +3,40 @@ import AOS from 'aos';
 import api from '../../../constants/api';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+// import CommonTable from '../../../CommonTable';
+// import LottieComponent from '../../../LottieComponent';
 
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([])
+  // const [loading, setLoading] = useState(false)
 
     React.useEffect(() => {
         AOS.init();
         getBlogs()
         window.scrollTo(0,0)
+        setTimeout(()=>{
+        
+        },5000)
+       
       }, [])
 
     const getBlogs = () =>{
+      //setLoading(true);
       api.get('/getProjects').then(res=>{
         setBlogs(res.data.data)
+       // setLoading(false);
       })
+      .catch(() => {
+       // setLoading(false)
+      });
    
       }
  
   return (
     <>
+     
+     
     <section class="page-title page-title-overlay bg-cover overflow-hidden" data-background="assets/images/background/about.jpg">
     <div class="container">
       <div class="row">
@@ -43,12 +57,12 @@ export default function Blog() {
     </div>
   </section>
   
-  
+ 
   <section class="section mt-lg-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <div class="row">
+          <div class="row blog-slide px-4">
           {blogs && blogs.map(data=>(
             <div class="col-sm-6 mb-4">
               <div class="card border-0 rounded-lg">

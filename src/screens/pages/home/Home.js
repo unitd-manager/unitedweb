@@ -11,6 +11,7 @@ import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 
+
 export default function Home() {
 
   const [blogs, setBlogs] = useState([])
@@ -18,12 +19,12 @@ export default function Home() {
   const [products, setProducts] = useState([])
   const [services, setServices] = useState([]) 
   const [choose, setWhychooseus] = useState([])
-  const[loading,setLoading]=useState(false)
+ 
   const navigate = useNavigate()
 
   const [contact, setContact] = React.useState({
     first_name:'', email:'', phone:'', message:''});
-
+ 
 const [product, setProduct] = useState([])
 const [service, setService] = useState([])
 
@@ -70,7 +71,7 @@ const updateContactFields = e => {
   }))
 }
   const onEquirySubmit = () =>{
-    setLoading(false);
+    
     api.post('/addEnquiry',{
       first_name:contact.first_name,
       email:contact.email,
@@ -80,10 +81,10 @@ const updateContactFields = e => {
       services:service.join(',')
     }).then(res=>{
             console.log(res)
-            setLoading(false)
+            
     })
     console.log(contact)
-    setLoading(false)
+  
     //console.log(service)
   }
 
@@ -91,6 +92,9 @@ const updateContactFields = e => {
     AOS.init();
     getBlogs()
     window.scrollTo(0,0)
+    setTimeout(()=>{
+      
+    },1000)
    
   }, [])
   
@@ -158,7 +162,7 @@ const updateContactFields = e => {
     ]
   };
   const getBlogs = () =>{
-    api.get('/getProjects').then(res=>{
+  api.get('/getProjects').then(res=>{
       setBlogs(res.data.data)
     })
     api.post('/getContent',{recordType:'Testimonialpart'}).then(res=>{
@@ -190,15 +194,12 @@ const updateContactFields = e => {
   }
   return (
     <>
-    {/* <div className="preloader">
-      <img src="assets/images/preloader.gif" alt="preloader" className="img-fluid" />
-  </div> */}
-  loading={loading}
-<section className="hero-area hero-area-lg position-relative">
+  
+             <section className="hero-area hero-area-lg position-relative">
   <div className="container">
     <div className="row align-items-center">
       <div className="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
-        <h2 className="text-dark position-relative">Build Your Business Together with United Technologies<span className="watermark">Build</span></h2>
+        <h2 className="text-dark position-relative" >Build Your Business Together with United Technologies<span className="watermark">Build</span></h2>
         <p className="text-dark mb-4">Our Mission - To create set of online products for growing industries, to minimize the work load, produce efficient results, margin revenues to high pitch.</p>
         <ul className="list-inline">
           <li className="list-inline-item mx-1 my-2">
@@ -218,9 +219,10 @@ const updateContactFields = e => {
   </div>
   <img src="assets/images/homepage-3/banner-shape.png" className="img-fluid bg-shape-4" alt="shape" />
 </section>
-<section style={{paddingTop:30}} className="section pb-0 features">
+<section style={{paddingTop:10}} className="section pb-0 features">
   <div className="container">
-    <div className="row">
+    
+    <div className="row features-slider px-4" data-aos="fade-up">
       
       <div className="col-12 text-center">
         <div className="subtitle aos-init aos-animate" > 
@@ -232,9 +234,9 @@ const updateContactFields = e => {
         if(index%2 !== 0){
           return ( 
            
-          <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up">
+          <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up" style={{height:200}}>
              <Link to={data.external_link} className="link">
-          <div className="text-center position-relative px-4 py-5 rounded-lg shadow card-active">
+          <div className="text-center position-relative px-4 py-5 rounded-lg shadow card-active" >
             <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image"/>
             <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
             { ReactHtmlParser(data.description) }
@@ -252,7 +254,6 @@ const updateContactFields = e => {
             <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title} - Clinic Assist Software</h5>
           
             { ReactHtmlParser(data.description) }
-            
             <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
           </div>
           </Link>
@@ -344,20 +345,20 @@ const updateContactFields = e => {
   </div>
 </section>
 
-<section className="bg-light py-5">
+
   <div className="bg-gradient-primary section bg-triangles">
     <div className="container-fluid">
-      <div className="row testimonial-slider px-5" data-aos="fade-up">
+      <div className="row testimonial-slider px-4" data-aos="fade-up">
          <div className="col-12 text-center mb-5">
-          <p className="subtitle text-white" data-aos="fade-up">testimonial</p>
+          <p className="subtitle text-white" data-aos="fade-up" >testimonial</p>
           <h2 className="section-title text-white" data-aos="fade-up" data-aos-delay="100">What Our Clients Says?</h2>
         </div>
        <div className='col-12'>
         <Slider {...settings3}>
           {testimonial.map(data=>{
             return(
-            <div className="px-4 py-5 mb-5 border-0 rounded-lg text-center mb-5 mt-3">
-            <div className="card border-0 shadow rounded-xs py-4">
+            <div className="px-4 py-5 mb-5 border-0 rounded-lg text-center mb-5 mt-3"  >
+            <div className="card border-0 shadow rounded-xs py-5" >
               <i className="fa fa-quote-right icon-quote mb-4 mx-auto text-primary"></i>
               <div className="card-body">
                 <p className="card-date">{data.description_short}</p>
@@ -373,7 +374,7 @@ const updateContactFields = e => {
       </div>
     </div>
   </div>
-</section>
+
 
 <section style={{paddingTop:40}} className="section">
 <div className="container">
@@ -454,6 +455,7 @@ const updateContactFields = e => {
     </div>
   </div>
 </section>
+
 
     </>
   )
