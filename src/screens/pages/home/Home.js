@@ -376,7 +376,7 @@ const updateContactFields = e => {
   </div>
 
 
-<section style={{paddingTop:40}} className="section">
+{/* <section style={{paddingTop:40}} className="section">
 <div className="container">
   <div className="row">
     <div className="col-12">
@@ -405,7 +405,7 @@ const updateContactFields = e => {
     </div>
   </div>
 </div>
-</section>
+</section> */}
 
 <section style={{paddingTop:10}} className="section">
   <div className="container">

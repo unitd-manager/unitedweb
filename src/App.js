@@ -1,6 +1,5 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 //import { useState,useEffect } from 'react';
 import Home from "../src/screens/pages/home/Home";
 import About from "../src/screens/pages/about/About";
