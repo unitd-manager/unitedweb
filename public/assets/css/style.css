@@ -1714,7 +1714,7 @@ strong {
 .blog-slider .rounded-xs {
   
   height: 380px;
-  border-radius: 50px;
+  border-radius: 10px;
   flex: 1 1 21rem !important;
 }
 .testimonial-slider .rounded-xs{

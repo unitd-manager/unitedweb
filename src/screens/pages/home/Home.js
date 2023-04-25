@@ -376,7 +376,7 @@ const updateContactFields = e => {
   </div>
 
 
-{/* <section style={{paddingTop:40}} className="section">
+<section style={{paddingTop:40}} className="section">
 <div className="container">
   <div className="row">
     <div className="col-12">
@@ -392,7 +392,7 @@ const updateContactFields = e => {
           <div className="card border-0 shadow rounded-xs">
             <img src="assets/images/blog/blog-post-1.jpg" className="img-fluid card-img-top" alt="post-thumb"/>
             <div className="card-body">
-              <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>
+         {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
               <h5><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h5>
               <br></br>
             </div>
@@ -405,7 +405,7 @@ const updateContactFields = e => {
     </div>
   </div>
 </div>
-</section> */}
+</section>
 
 <section style={{paddingTop:10}} className="section">
   <div className="container">

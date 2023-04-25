@@ -10,10 +10,17 @@ import moment from 'moment';
 export default function Blog() {
   const [blogs, setBlogs] = useState([])
   // const [loading, setLoading] = useState(false)
+  //const [getFile, setGetFile] = useState(null);
+
+  // const getBlogs = () => {
+  //   api.get('/file/getFileList', { record_id: 1, room_name: "Blog" }).then((res) => {
+  //     setGetFile(res.data.data);
+  //   });
+  // };
 
     React.useEffect(() => {
         AOS.init();
-        getBlogs()
+        getBlogs();
         window.scrollTo(0,0)
         setTimeout(()=>{
         
@@ -71,7 +78,7 @@ export default function Blog() {
                   <div className="card border-0 shadow rounded-xs">
                     <img src="assets/images/blog/blog-post-1.jpg" className="img-fluid card-img-top" alt="post-thumb"/>
                     <div className="card-body">
-                      <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>
+                      {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
                       <h5>{data.title}</h5>
                       <br></br>
                   </div>
