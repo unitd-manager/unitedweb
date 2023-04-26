@@ -40,29 +40,29 @@ export default function Header({style}) {
   }
   return (
     <>
-    <div style={style} className="naviagtion naviagtion-white fixed-top transition">
+     <div style={style} className="naviagtion naviagtion-white fixed-top transition">
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light p-0">
-        <a className="navbar-brand p-0" href="index.html"><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
+      <a className="navbar-brand p-0" href="index.html"><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
   
-        <div className="collapse navbar-collapse text-center" id="navigation">
+          <div className="collapse navbar-collapse text-center" id="navigation">
           <ul className="navbar-nav mx-auto">
            {menus.map(data=>{
             if(data.value.length > 1 ){
               let submenu = data.value
               
               return ( <li className="nav-item dropdown">
-              <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">{data.title}</a>
-              <div className="dropdown-menu">
-                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
+              {/* <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">{data.title}</a> */}
+              {/* <div className="dropdown-menu">
+                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
                
                 
-              </div>
+              </div> */}
             </li>)
             }else{
               return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
@@ -102,10 +102,10 @@ export default function Header({style}) {
             </li> */}
           </ul>
           <a href="#" className="btn btn-outline-primary text-white ml-3">Enquiry now</a>
-        </div>
+          </div>
       </nav>
     </div>
-  </div>
+  </div> 
     </>
   )
 }
