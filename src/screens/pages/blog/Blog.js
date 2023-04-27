@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 import AOS from 'aos';
+import axios from 'axios';
 import api from '../../../constants/api';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 // import CommonTable from '../../../CommonTable';
 // import LottieComponent from '../../../LottieComponent';
-
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([])
@@ -13,8 +13,9 @@ export default function Blog() {
   //const [getFile, setGetFile] = useState(null);
 
   // const getBlogs = () => {
-  //   api.get('/file/getFileList', { record_id: 1, room_name: "Blog" }).then((res) => {
-  //     setGetFile(res.data.data);
+  //   axios.post('https://unitdweb.unitdtechnologies.com:3003/fileUploads/getListOfFiles', { record_id: 1, room_name: "Blog" }).then((res) => {
+  //     setBlogs(res.data);
+  //     console.log(res.data)
   //   });
   // };
 
@@ -30,8 +31,9 @@ export default function Blog() {
 
     const getBlogs = () =>{
       //setLoading(true);
-      api.get('/getProjects').then(res=>{
+      api.get('/getBlogImage').then(res=>{
         setBlogs(res.data.data)
+        console(res.data);
        // setLoading(false);
       })
       .catch(() => {
@@ -64,22 +66,22 @@ export default function Blog() {
     </div>
   </section>
   
- 
-  <section class="section mt-lg-5">
+ <section class="section mt-lg-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
           <div class="row blog-slide px-4">
-          {blogs && blogs.map(data=>(
+          {blogs && blogs.map (data=>(
             <div class="col-sm-6 mb-4">
               <div class="card border-0 rounded-lg">
                 <div className="px-3 mb-5">
                 <Link to="/blogdetail" state={{ data: data }} className="link">
                   <div className="card border-0 shadow rounded-xs">
-                    <img src="assets/images/blog/blog-post-1.jpg" className="img-fluid card-img-top" alt="post-thumb"/>
+                     <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> 
+                      {/* <img src={`http://localhost:3003/uitedwebapi/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> */}
                     <div className="card-body">
-                      {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
-                      <h5>{data.title}</h5>
+                      {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>  */}
+                       <h5>{data.title}</h5>
                       <br></br>
                   </div>
                 </div>

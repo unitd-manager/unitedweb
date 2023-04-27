@@ -345,24 +345,30 @@ const updateContactFields = e => {
   </div>
 </section>
 
-
+<section className="bg-light py-5">
   <div className="bg-gradient-primary section bg-triangles">
-    <div className="container-fluid">
-      <div className="row testimonial-slider px-4" data-aos="fade-up">
-         <div className="col-12 text-center mb-5">
-          <p className="subtitle text-white" data-aos="fade-up" >testimonial</p>
+    <div className="container">
+      <div className="row">
+        <div className="col-12 text-center mb-5">
+          <p className="subtitle text-white" data-aos="fade-up">_testimonial_</p>
           <h2 className="section-title text-white" data-aos="fade-up" data-aos-delay="100">What Our Clients Says?</h2>
         </div>
+      </div>
+    </div>
+  </div>
+  <div className="translate-top">
+    <div className="container-fluid">
+      <div className="row testimonial-slider px-5" data-aos="fade-up">
        <div className='col-12'>
         <Slider {...settings3}>
           {testimonial.map(data=>{
             return(
-            <div className="px-4 py-5 mb-5 border-0 rounded-lg text-center mb-5 mt-3"  >
-            <div className="card border-0 shadow rounded-xs py-5" >
-              <i className="fa fa-quote-right icon-quote mb-4 mx-auto text-primary"></i>
+            <div className="px-4 py-5 mb-5 border-0 rounded-lg text-center mb-5 mt-3">
+            <div className="card border-0 shadow rounded-xs py-4">
+              <i class="fa fa-quote-right icon-quote mb-4 mx-auto text-primary"></i>
               <div className="card-body">
                 <p className="card-date">{data.description_short}</p>
-                <span className="h6">Happy client</span>
+                <span class="h6">Happy client</span>
                 <br></br>
               </div>
             </div>
@@ -374,9 +380,9 @@ const updateContactFields = e => {
       </div>
     </div>
   </div>
+</section>
 
-
-<section style={{paddingTop:40}} className="section">
+<section style={{paddingTop:0}} className="section">
 <div className="container">
   <div className="row">
     <div className="col-12">

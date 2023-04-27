@@ -56,13 +56,12 @@ export default function Header({style}) {
               let submenu = data.value
               
               return ( <li className="nav-item dropdown">
-              {/* <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">{data.title}</a> */}
-              {/* <div className="dropdown-menu">
-                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
+              <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">{data.title}</a>
+              <div className="dropdown-menu">
+                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.section_title)}><p className="dropdown-item text-color text-dark" >{option.section_title}</p></Link>))}
                
-                
-              </div> */}
+              </div>
             </li>)
             }else{
               return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
