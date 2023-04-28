@@ -14,7 +14,7 @@ export default function BlogDetails( props ) {
        window.scrollTo(0,0)
       }, [])
     const getBlogs = () =>{
-          api.get('/getProjects').then(res=>{
+          api.get('/getBlogImage').then(res=>{
             setBlogs(res.data.data)
           })
       }
@@ -55,7 +55,8 @@ export default function BlogDetails( props ) {
     <div class="row">
       <div class="col-lg-8 rounded-sm pr-5">
         {/* {data ? data.title : "Go to Home"} */}
-        <img src="assets/images/men/lg-img-1.jpg" class="rounded-sm img-fluid w-100 mb-5" alt="post-thumb"/>
+        <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="irounded-sm img-fluid w-100 mb-5" alt="post-thumb" /> 
+        {/* <img src="assets/images/men/lg-img-1.jpg" class="rounded-sm img-fluid w-100 mb-5" alt="post-thumb"/> */}
         <p class="text-color card-date position-relative d-inline-block">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>
         <h3 class="mb-3 text-dark">{data.title}</h3>
         <p></p>
