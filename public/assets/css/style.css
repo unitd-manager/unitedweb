@@ -444,6 +444,7 @@ a.text-light:hover {
 }
 .section-title {
   margin-bottom: 38px;
+  
 }
 
 .subtitle {
@@ -452,6 +453,11 @@ a.text-light:hover {
   color: #8b8e93;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  
+  
+}
+.section-container{
+  margin-bottom: 1000px;
 }
 
 .mb-50 {
@@ -1713,7 +1719,7 @@ strong {
 
 .blog-slider .rounded-xs {
   
-  height: 380px;
+  height: 320px;
   border-radius: 10px;
   flex: 1 1 21rem !important;
 }
@@ -1730,7 +1736,7 @@ strong {
   width:350px;
 }
 .blog-slide .rounded-xs{
-  height: 350px;
+  height: 320px;
   border-radius: 10px;
     flex: 1 1 21rem !important;
 }

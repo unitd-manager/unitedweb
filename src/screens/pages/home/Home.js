@@ -275,13 +275,14 @@ const updateContactFields = e => {
       </div>
       {services.map(data=>(
         <div onClick={()=>{getServiceDetail(data.title)}}  className="col-lg-3 col-sm-6 mb-4 mb-lg-0" data-aos="fade-right" >
-         <Link to={data.external_link} className="link"></Link>
+         {/* <Link to={data.external_link} className="link"></Link> */}
             <div className="card border-0 shadow rounded-xs pt-5 h-100">
             
               <div className="card-body">
                 <i className="fa fa-desktop icon-lg icon-blue icon-bg-blue icon-bg-circle mb-3"></i>
                 <h4 className="mt-4 mb-3">{data.title}</h4>
                 <p>{ReactHtmlParser(data.description)}</p>
+                <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
                
               </div>
             </div>
@@ -384,11 +385,11 @@ const updateContactFields = e => {
   </div>
 </section>
 
-<section style={{paddingTop:0}} className="section">
+<section className="section" >
 <div className="container">
   <div className="row">
     <div className="col-12">
-      <p className="subtitle">latest blogs</p>
+      <p className="subtitle" >latest blogs</p>
       <h2 className="section-title">Blogs</h2>
     </div>
     <div className="col-12">

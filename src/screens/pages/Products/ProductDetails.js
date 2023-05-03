@@ -19,7 +19,7 @@ const ScreenDetail = ()=> {
   const getBlogs = () =>{
     var formated = title.split('-').join(' ')
 
-    api.post('/getProductDetail',{title:formated}).then(res=>{
+    api.post('/ProductDetails',{title:formated}).then(res=>{
       setProducts(res.data.data)
       console.log(res)
     })

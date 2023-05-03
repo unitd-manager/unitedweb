@@ -4,22 +4,11 @@ import axios from 'axios';
 import api from '../../../constants/api';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-// import CommonTable from '../../../CommonTable';
-// import LottieComponent from '../../../LottieComponent';
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([])
-  // const [loading, setLoading] = useState(false)
-  //const [getFile, setGetFile] = useState(null);
-
-  // const getBlogs = () => {
-  //   axios.post('https://unitdweb.unitdtechnologies.com:3003/fileUploads/getListOfFiles', { record_id: 1, room_name: "Blog" }).then((res) => {
-  //     setBlogs(res.data);
-  //     console.log(res.data)
-  //   });
-  // };
-
-    React.useEffect(() => {
+  
+       React.useEffect(() => {
         AOS.init();
         getBlogs();
         window.scrollTo(0,0)
@@ -30,14 +19,14 @@ export default function Blog() {
       }, [])
 
     const getBlogs = () =>{
-      //setLoading(true);
+      
       api.get('/getBlogImage').then(res=>{
         setBlogs(res.data.data)
         console(res.data);
-       // setLoading(false);
+       
       })
       .catch(() => {
-       // setLoading(false)
+       
       });
    
       }
