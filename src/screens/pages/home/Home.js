@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import api from '../../../constants/api';
-import moment from 'moment';
+//import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 

@@ -81,8 +81,7 @@ const Screendetail = () => {
                       </h3>
                       {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
                       {ReactHtmlParser(data.description)}
-                      
-                    </div>
+                      </div>
                   </div>
                 );
               })}
