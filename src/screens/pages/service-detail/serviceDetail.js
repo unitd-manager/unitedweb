@@ -79,9 +79,9 @@ const Screendetail = () => {
                       <h3 class="pt-5 pb-3 text-capitalize card-title">
                         {data.title}
                       </h3>
-                      <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />
+                      {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
                       {ReactHtmlParser(data.description)}
-                      {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />  */}
+                      
                     </div>
                   </div>
                 );

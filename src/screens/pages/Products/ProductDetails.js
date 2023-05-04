@@ -19,7 +19,7 @@ const ScreenDetail = ()=> {
   const getBlogs = () =>{
     var formated = title.split('-').join(' ')
 
-    api.post('/ProductDetails',{title:formated}).then(res=>{
+    api.post('/getProductDetail',{title:formated}).then(res=>{
       setProducts(res.data.data)
       console.log(res)
     })
@@ -70,7 +70,7 @@ const ScreenDetail = ()=> {
               
               <h3 class="pt- pb-3 text-capitalize card-title">{data.title}</h3>
               { ReactHtmlParser(data.description) }
-               <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> 
+               {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />  */}
               
             </div>
   
