@@ -19,7 +19,7 @@ const sendMail = () => {
       ' Are you sure do you want to send Mail to this Client \n',
     )
   ) {
-  const to ="sulfiya@unitdtechnologies.com";
+  const to ="meera@unitdtechnologies.com";
   const text = "Hello";
   const subject ="Test Mail";
   api
