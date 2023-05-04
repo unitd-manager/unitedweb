@@ -282,7 +282,7 @@ const updateContactFields = e => {
                 <i className="fa fa-desktop icon-lg icon-blue icon-bg-blue icon-bg-circle mb-3"></i>
                 <h4 className="mt-4 mb-3">{data.title}</h4>
                 <p>{ReactHtmlParser(data.description)}</p>
-                <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
+                
                
               </div>
             </div>
