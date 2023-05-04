@@ -72,7 +72,7 @@ const sendMail = () => {
   </div>
 </section>
 
-<section class="section section-lg bg-light">
+<section style={{paddingTop:150}} class="section section-lg bg-light">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 text-center">

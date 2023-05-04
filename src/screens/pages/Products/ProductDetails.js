@@ -45,12 +45,12 @@ const ScreenDetail = ()=> {
           laborum sed ut perspiciatis.</p> */}
       </div>
       <div class="col-lg-3 ml-auto align-self-end">
-        <nav class="position-relative zindex-1" aria-label="breadcrumb">
+        {/* <nav class="position-relative zindex-1" aria-label="breadcrumb"> */}
           <ol class="breadcrumb justify-content-lg-end bg-transparent mb-4 px-0">
             <li class="breadcrumb-item text-white" onClick={()=>{navigate('/')}}>Home</li>
             <li class="breadcrumb-item text-white fw-bold" aria-current="page">Product Details</li>
           </ol>
-        </nav>
+        {/* </nav> */}
       </div>
     </div>
   </div>
@@ -66,9 +66,11 @@ const ScreenDetail = ()=> {
           <div class="col-lg-6 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up">
           
             <div class="position-relative px-4 py-5 ">
-              {/* <img src="assets/images/feature/feature-1.png" class="img-fluid" alt="feature-image"/> */}
-              <h3 class="pt-5 pb-3 text-capitalize card-title">{data.title}</h3>
+               {/* <img src="assets/images/feature/feature-1.png" class="img-fluid" alt="feature-image"/>   */}
+              
+              <h3 class="pt- pb-3 text-capitalize card-title">{data.title}</h3>
               { ReactHtmlParser(data.description) }
+               {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />  */}
               
             </div>
   

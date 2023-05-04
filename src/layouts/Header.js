@@ -19,14 +19,14 @@ export default function Header({style}) {
      
       let loopData = res.data.data
       var result = loopData.reduce(function (r, a) {
-          r[a.title] = r[a.title] || [];
-          r[a.title].push(a);
+          r[a.section_title] = r[a.section_title] || [];
+          r[a.section_title].push(a);
           return r;
       }, Object.create(null));
      
       let menuArray = [];
       Object.keys(result).forEach(function(key, index) {
-        menuArray.push({title:key,value:result[key]})
+        menuArray.push({section_title:key,value:result[key]})
       });
       setMenus(menuArray)
       //console.log(menuArray)
@@ -34,22 +34,22 @@ export default function Header({style}) {
     })
     
   }
-  const getFormatedText = (title) =>{
-    var formatedd = title.toLowerCase()
+  const getFormatedText = (section_title) =>{
+    var formatedd = section_title.toLowerCase()
     return formatedd.split(' ').join('-')
   }
   return (
     <>
-    <div style={style} className="naviagtion naviagtion-white fixed-top transition">
+     <div style={style} className="naviagtion naviagtion-white fixed-top transition">
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light p-0">
-        <a className="navbar-brand p-0" href="index.html"><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
+      <a className="navbar-brand p-0" href="index.html"><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
   
-        <div className="collapse navbar-collapse text-center" id="navigation">
+          <div className="collapse navbar-collapse text-center" id="navigation">
           <ul className="navbar-nav mx-auto">
            {menus.map(data=>{
             if(data.value.length > 1 ){
@@ -57,16 +57,15 @@ export default function Header({style}) {
               
               return ( <li className="nav-item dropdown">
               <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">{data.title}</a>
+                aria-haspopup="true" aria-expanded="false">{data.section_title}</a>
               <div className="dropdown-menu">
                 {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
                
-                
               </div>
             </li>)
             }else{
               return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
-              <a className="nav-link text-dark" href="">{data.title}</a>
+              <a className="nav-link text-dark" href="">{data.section_title}</a>
             </li></Link>)
             }
            })}
@@ -102,10 +101,10 @@ export default function Header({style}) {
             </li> */}
           </ul>
           <a href="#" className="btn btn-outline-primary text-white ml-3">Enquiry now</a>
-        </div>
+          </div>
       </nav>
     </div>
-  </div>
+  </div> 
     </>
   )
 }

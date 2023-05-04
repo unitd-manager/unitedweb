@@ -26,14 +26,14 @@ export default function Footer() {
      
       let loopData = res.data.data
       var result = loopData.reduce(function (r, a) {
-          r[a.title] = r[a.title] || [];
-          r[a.title].push(a);
+          r[a.section_title] = r[a.section_title] || [];
+          r[a.section_title].push(a);
           return r;
       }, Object.create(null));
      
       let menuArray = [];
       Object.keys(result).forEach(function(key, index) {
-        menuArray.push({title:key,value:result[key]})
+        menuArray.push({section_title:key,value:result[key]})
       });
       setMenus(menuArray)
       //console.log(menuArray)
@@ -64,7 +64,7 @@ export default function Footer() {
                 {menus.map(data => {
                   return(
                     <Link to={'/'+data.value[0].seo_title}><li className="nav-item">
-                      <a className="nav-link text-light" href="">{data.title}</a>
+                      <a className="nav-link text-light" href="">{data.section_title}</a>
                     </li></Link>
                   )
                 })}
