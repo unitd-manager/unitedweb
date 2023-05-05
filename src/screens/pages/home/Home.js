@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import api from '../../../constants/api';
-//import moment from 'moment';
+import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 
@@ -184,11 +184,11 @@ const updateContactFields = e => {
   }
   const getServiceDetail = (title) =>{
     if(title === 'Web/ E Commerce Development'){
-      navigate('services/website-ecommerce-development')
+      navigate('services/website-development-software')
     }else{
       var formated = title.toLowerCase().split(' ').join('-')
     
-      navigate('services/'+formated)
+      navigate('/services/'+formated)
     }
     
   }
@@ -275,14 +275,13 @@ const updateContactFields = e => {
       </div>
       {services.map(data=>(
         <div onClick={()=>{getServiceDetail(data.title)}}  className="col-lg-3 col-sm-6 mb-4 mb-lg-0" data-aos="fade-right" >
-         {/* <Link to={data.external_link} className="link"></Link> */}
+         <Link to={data.internal_link} className="link"></Link>
             <div className="card border-0 shadow rounded-xs pt-5 h-100">
             
               <div className="card-body">
                 <i className="fa fa-desktop icon-lg icon-blue icon-bg-blue icon-bg-circle mb-3"></i>
                 <h4 className="mt-4 mb-3">{data.title}</h4>
                 <p>{ReactHtmlParser(data.description)}</p>
-                
                
               </div>
             </div>
@@ -385,7 +384,7 @@ const updateContactFields = e => {
   </div>
 </section>
 
-<section className="section" >
+<section  className="section" >
 <div className="container">
   <div className="row">
     <div className="col-12">
