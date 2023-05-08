@@ -7,10 +7,12 @@ import moment from 'moment';
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([])
+  const [Category, setCategory] = useState([])
   
        React.useEffect(() => {
         AOS.init();
         getBlogs();
+        getCategory();
         window.scrollTo(0,0)
         setTimeout(()=>{
         
@@ -30,6 +32,19 @@ export default function Blog() {
       });
    
       }
+
+      const getCategory = () =>{
+      
+        api.get('/getCategory').then(res=>{
+          setCategory(res.data.data)
+          console(res.data);
+         
+        })
+        .catch(() => {
+         
+        });
+     
+        }
  
   return (
     <>
@@ -96,12 +111,15 @@ export default function Blog() {
       <div class="widget">
         <h4>Category</h4>
         <ul class="list-styled list-bordered">
-          <li><a class="text-color d-block py-3" href="blog-details.html">Investment Planning</a></li>
+        {Category && Category.map (data=>(
+          <li><a class="text-color d-block py-3" href="blog-details.html">{data.category_title}</a></li>
+          ))}
+          {/* <li><a class="text-color d-block py-3" href="blog-details.html">Investment Planning</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Valuable Idea</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Market Strategy</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">development Maping</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Afiliated Marketing</a></li>
-          <li><a class="text-color d-block py-3" href="blog-details.html">Targated Marketing</a></li>
+          <li><a class="text-color d-block py-3" href="blog-details.html">Targated Marketing</a></li> */}
         </ul>
       </div>
       <div class="widget">
