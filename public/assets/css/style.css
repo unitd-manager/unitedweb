@@ -417,7 +417,7 @@ a.text-light:hover {
 }
 
 .section {
-  padding-top: 140px;
+  padding-top: 100px;
   padding-bottom: 140px;
 }
 @media (max-width: 991px) {
@@ -447,18 +447,19 @@ a.text-light:hover {
   
 }
 
+
 .subtitle {
   text-transform: capitalize;
   font-size: 18px;
   color: #8b8e93;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+ 
   
   
 }
-.section-container{
-  margin-bottom: 1000px;
-}
+
+
 
 .mb-50 {
   margin-bottom: 50px;
