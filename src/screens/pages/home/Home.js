@@ -195,7 +195,7 @@ const updateContactFields = e => {
   return (
     <>
   
-             <section className="hero-area hero-area-lg position-relative">
+  <section className="hero-area hero-area-lg position-relative">
   <div className="container">
     <div className="row align-items-center">
       <div className="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
@@ -226,8 +226,8 @@ const updateContactFields = e => {
       
       <div className="col-12 text-center">
         <div className="subtitle aos-init aos-animate" > 
-        <p className="subtitle aos-init aos-animate mt-5"  >Features </p>
-        <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">exclusive features</h2>
+        <p className="subtitle aos-init aos-animate mt-5"  >Products </p>
+        <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Exclusive Products</h2>
       </div>
       </div>
       {products.map((data,index)=>{
