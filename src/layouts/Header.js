@@ -43,7 +43,7 @@ export default function Header({style}) {
      <div style={style} className="naviagtion naviagtion-white fixed-top transition">
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light p-0">
-      <a className="navbar-brand p-0" href="index.html"><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
+      <a className="navbar-brand p-0" href=""><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
