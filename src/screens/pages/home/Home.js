@@ -251,7 +251,7 @@ const updateContactFields = e => {
           <Link to={data.external_link} className="link">
           <div className="text-center position-relative px-4 py-5 rounded-lg shadow">
             <img src="assets/images/feature/feature-2.png" className="img-fluid" alt="feature-image"/>
-            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title} - Clinic Assist Software</h5>
+            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
           
             { ReactHtmlParser(data.description) }
             <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>

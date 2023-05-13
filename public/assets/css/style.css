@@ -246,6 +246,7 @@ a.text-color:hover,
 a.text-dark:hover,
 a.text-light:hover {
   color: #007ac7 !important;
+
 }
 
 .text-color {
@@ -254,6 +255,11 @@ a.text-light:hover {
 
 .text-light {
   color: #d4dae3 !important;
+  margin-bottom: 0px;
+}
+.text-light1 {
+  color: #d4dae3 !important;
+ 
 }
 
 .text-dark {
@@ -417,7 +423,7 @@ a.text-light:hover {
 }
 
 .section {
-  padding-top: 100px;
+  padding-top: 140px;
   padding-bottom: 140px;
 }
 @media (max-width: 991px) {
@@ -444,9 +450,7 @@ a.text-light:hover {
 }
 .section-title {
   margin-bottom: 38px;
-  
 }
-
 
 .subtitle {
   text-transform: capitalize;
@@ -454,12 +458,7 @@ a.text-light:hover {
   color: #8b8e93;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
- 
-  
-  
 }
-
-
 
 .mb-50 {
   margin-bottom: 50px;
@@ -1745,3 +1744,5 @@ strong {
   
   flex-direction: column !important;
 }
+.container5
+{height: 180px;}
