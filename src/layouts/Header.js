@@ -43,7 +43,7 @@ export default function Header({style}) {
      <div style={style} className="naviagtion naviagtion-white fixed-top transition">
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light p-0">
-      <a className="navbar-brand p-0" href="index.html"><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
+      <a className="navbar-brand p-0" href=""><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -60,8 +60,16 @@ export default function Header({style}) {
                 aria-haspopup="true" aria-expanded="false">{data.section_title}</a>
               <div className="dropdown-menu">
                 {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
-               
+                
               </div>
+              {/* <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">{data.category_title}</a>
+              <div className="dropdown-menu">
+                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
+                 */}
+           
+              
+            
             </li>)
             }else{
               return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
@@ -100,7 +108,7 @@ export default function Header({style}) {
               <a className="nav-link text-dark text-capitalize" href="contact.html">Contact Us</a>
             </li> */}
           </ul>
-          <a href="#" className="btn btn-outline-primary text-white ml-3">Enquiry now</a>
+          <a href="/#/contact-us" className="btn btn-outline-primary text-white ml-3">Enquiry now</a>
           </div>
       </nav>
     </div>

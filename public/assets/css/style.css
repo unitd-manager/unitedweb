@@ -246,6 +246,7 @@ a.text-color:hover,
 a.text-dark:hover,
 a.text-light:hover {
   color: #007ac7 !important;
+
 }
 
 .text-color {
@@ -254,6 +255,11 @@ a.text-light:hover {
 
 .text-light {
   color: #d4dae3 !important;
+  margin-bottom: 0px;
+}
+.text-light1 {
+  color: #d4dae3 !important;
+ 
 }
 
 .text-dark {
@@ -444,7 +450,6 @@ a.text-light:hover {
 }
 .section-title {
   margin-bottom: 38px;
-  
 }
 
 .subtitle {
@@ -453,11 +458,6 @@ a.text-light:hover {
   color: #8b8e93;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  
-  
-}
-.section-container{
-  margin-bottom: 1000px;
 }
 
 .mb-50 {
@@ -1744,3 +1744,5 @@ strong {
   
   flex-direction: column !important;
 }
+.container5
+{height: 180px;}

@@ -159,8 +159,10 @@ export default function BlogDetails( props ) {
       <ul class="list-unstyled list-bordered">
       {blogs && blogs.slice(0, 5).map(data=>(
           <li class="media border-bottom py-3">
-          <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/>
+            <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" />
+          {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
           <div class="media-body">
+           
             <h6 class="mt-0"><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h6>
             <p class="mb-0 text-color">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>
           </div>

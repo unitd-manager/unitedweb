@@ -50,7 +50,7 @@ export default function Footer() {
         <div className="row justify-content-between">
           <div className="col-md-5 mb-4 mb-md-0">
             <img style={{width:200,height:100}} src="assets/images/logo/logo.svg" className="mb-4" alt="agico"/>
-            <p className="text-light mb-4">{footerAbout}</p>
+            <p className="text-light mb-4"></p>
             <ul className="list-inline social-icons">
               <li className="list-inline-item"><a href="#" target="_blank"><i className="fa fa-facebook"></i></a></li>
               <li className="list-inline-item"><a href="#" target="_blank"><i className="fa fa-twitter"></i></a></li>
@@ -79,13 +79,13 @@ export default function Footer() {
           </div>
           <div className="col-lg-3 col-md-4 col-sm-6">
             <h4 className="text-white mb-4">Contact Info</h4>
-            <p className="text-light">Universal Software Solutions Pte Ltd
-                10 Jalan Besar
+            <p className="text-light"> United Technologies Pte Ltd</p>
+            <p className="text-light1">10 Jalan Besar
                 #15-02A Sim Lim Tower
                 Singapore - 208787</p>
             <ul className="list-unstyled">
               <li className="mb-3"><a className="text-light" href="tel:+65 6396 7554">+65 6396 7554</a></li>
-              <li className="mb-3"><a className="text-light" href="mailto:enquiry@usoftsolutions.com">enquiry@usoftsolutions.com</a></li>
+              <li className="mb-3"><a className="text-light" href="mailto:admin@unitdtechnologies.com">admin@unitdtechnologies.com</a></li>
             </ul>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function Footer() {
                 var CurrentYear = new Date().getFullYear()
                 document.write(CurrentYear)
               </script>
-              <a href="#"> unitdtechnologies.in</a></p>
+              <a href="#">United Technologies</a></p>
           </div>
           <div className="col-md-6 text-md-right text-center">
             <ul className="list-inline">

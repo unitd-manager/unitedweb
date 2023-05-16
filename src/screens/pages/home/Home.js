@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import api from '../../../constants/api';
-//import moment from 'moment';
+import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 
@@ -184,18 +184,18 @@ const updateContactFields = e => {
   }
   const getServiceDetail = (title) =>{
     if(title === 'Web/ E Commerce Development'){
-      navigate('services/website-ecommerce-development')
+      navigate('services/website-development-software')
     }else{
       var formated = title.toLowerCase().split(' ').join('-')
     
-      navigate('services/'+formated)
+      navigate('/services/'+formated)
     }
     
   }
   return (
     <>
   
-             <section className="hero-area hero-area-lg position-relative">
+  <section className="hero-area hero-area-lg position-relative">
   <div className="container">
     <div className="row align-items-center">
       <div className="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
@@ -226,8 +226,8 @@ const updateContactFields = e => {
       
       <div className="col-12 text-center">
         <div className="subtitle aos-init aos-animate" > 
-        <p className="subtitle aos-init aos-animate mt-5"  >Features </p>
-        <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">exclusive features</h2>
+        <p className="subtitle aos-init aos-animate mt-5"  >Products </p>
+        <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Exclusive Products</h2>
       </div>
       </div>
       {products.map((data,index)=>{
@@ -251,7 +251,7 @@ const updateContactFields = e => {
           <Link to={data.external_link} className="link">
           <div className="text-center position-relative px-4 py-5 rounded-lg shadow">
             <img src="assets/images/feature/feature-2.png" className="img-fluid" alt="feature-image"/>
-            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title} - Clinic Assist Software</h5>
+            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
           
             { ReactHtmlParser(data.description) }
             <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
@@ -275,14 +275,13 @@ const updateContactFields = e => {
       </div>
       {services.map(data=>(
         <div onClick={()=>{getServiceDetail(data.title)}}  className="col-lg-3 col-sm-6 mb-4 mb-lg-0" data-aos="fade-right" >
-         {/* <Link to={data.external_link} className="link"></Link> */}
+         <Link to={data.internal_link} className="link"></Link>
             <div className="card border-0 shadow rounded-xs pt-5 h-100">
             
               <div className="card-body">
                 <i className="fa fa-desktop icon-lg icon-blue icon-bg-blue icon-bg-circle mb-3"></i>
                 <h4 className="mt-4 mb-3">{data.title}</h4>
                 <p>{ReactHtmlParser(data.description)}</p>
-                
                
               </div>
             </div>
@@ -385,7 +384,7 @@ const updateContactFields = e => {
   </div>
 </section>
 
-<section className="section" >
+<section  className="section" >
 <div className="container">
   <div className="row">
     <div className="col-12">

@@ -7,10 +7,14 @@ import moment from 'moment';
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([])
+  const [Category, setCategory] = useState([])
+
   
        React.useEffect(() => {
         AOS.init();
         getBlogs();
+        getCategory();
+     
         window.scrollTo(0,0)
         setTimeout(()=>{
         
@@ -30,6 +34,50 @@ export default function Blog() {
       });
    
       }
+      const itemList = [
+        "web developer",
+        "domain name",
+       
+      ];
+    
+      const [filteredList, setFilteredList] = new useState(itemList);
+    
+      const filterBySearch = (event) => {
+        // Access input value
+        const query = event.target.value;
+        // Create copy of item list
+        var updatedList = [...itemList];
+        // Include all elements which includes the search query
+        updatedList = updatedList.filter((item) => {
+          return item.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+        });
+        setFilteredList(updatedList);
+  };
+      // const getblogbySearch = () =>{
+      
+      //   api.get('/getBlogImage').then(res=>{
+      //     setAPIData(res.data);
+      //     console(res.data);
+         
+      //   })
+      //   .catch(() => {
+         
+      //   });
+     
+      //   }
+
+      const getCategory = () =>{
+      
+        api.get('/getCategory').then(res=>{
+          setCategory(res.data.data)
+          console(res.data);
+         
+        })
+        .catch(() => {
+         
+        });
+     
+        }
  
   return (
     <>
@@ -87,23 +135,40 @@ export default function Blog() {
       <div class="widget">
         <h4>Search</h4>
         <form action="#">
-          <div class="position-relative">
-            <input type="text" placeholder="Search here" class="border-bottom form-control rounded-0 px-0"/>
-            <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
-          </div>
+         
+          <div className="App">
+      <div className="search-header">
+       
+        <input id="search-box" onChange={filterBySearch} />
+      </div>
+      <div id="item-list">
+        <ol>
+        <Link to="/blogdetail"  className="link"></Link>
+          {filteredList.map((item, index) => (
+          
+            <li key={index}>{item}</li>
+            
+          ))}
+        </ol>
+      </div>
+    </div>
         </form>
       </div>
       <div class="widget">
         <h4>Category</h4>
         <ul class="list-styled list-bordered">
-          <li><a class="text-color d-block py-3" href="blog-details.html">Investment Planning</a></li>
+        {Category && Category.map (data=>(
+          <li><a class="text-color d-block py-3" href="/#/blog-details.html">{data.category_title}</a></li>
+          ))}
+                    {/* <li><a class="text-color d-block py-3" href="blog-details.html">Investment Planning</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Valuable Idea</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Market Strategy</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">development Maping</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Afiliated Marketing</a></li>
-          <li><a class="text-color d-block py-3" href="blog-details.html">Targated Marketing</a></li>
+          <li><a class="text-color d-block py-3" href="blog-details.html">Targated Marketing</a></li> */}
         </ul>
       </div>
+      
       <div class="widget">
         <h4>Latest Article</h4>
         <ul class="list-unstyled list-bordered">
@@ -144,6 +209,22 @@ export default function Blog() {
   </div>
       </div>
     </div>
+  </section>
+  <section>
+  <div className="App">
+      <div className="search-header">
+        <div className="search-text">Search:</div>
+        <input id="search-box" onChange={filterBySearch} />
+      </div>
+      <div id="item-list">
+        <ol>
+          {filteredList.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ol>
+      </div>
+    </div>
+
   </section>
 
   {/* <section class="subscription bg-white">
