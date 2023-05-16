@@ -2,6 +2,7 @@ import React from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../../../constants/api';
+import * as Yup from 'yup';
 
 export default function Contact() {
 
@@ -12,33 +13,13 @@ export default function Contact() {
    
   }, [])
   const applyChanges = () => {};
-//Email
-const sendMail = () => {
-  if (
-    window.confirm(
-      ' Are you sure do you want to send Mail to this Client \n',
-    )
-  ) {
-  const to ="meera@unitdtechnologies.com";
-  const text = "Hello";
-  const subject ="Test Mail";
-  api
-    .post('/email/sendemail',{to,text,subject})
-    .then(() => {
-    })
-    
-  }
- else {
-  applyChanges();
-}
-};
-
-
 
   const [user, setUser] = React.useState({
-    fname:'', lname:'', email:'', message:'',});
+    first_name:'', last_name:'', email:'', message:'',});
 
     let name, value;
+
+
     
   const handleChange = (e) => {
    
@@ -50,6 +31,48 @@ const sendMail = () => {
     // email = e.target.email
     // message = e.target.message
 }
+  const ContactSubmit = () =>{
+    
+      api.post('/addContact',{
+        first_name:user.first_name,
+        last_name:user.last_name,
+        email:user.email,
+        message:user.message
+      }).then(res=>{
+              console.log(res)
+              
+      })
+      console.log(user)
+    }
+    
+//Email
+const sendMail = () => {
+  if (
+    window.confirm(
+      ' Are you sure do you want to send Mail to this Client \n',
+    )
+  ) {
+  const to ="admin@unitdtechnologies.com";
+  const text = user.message;
+  const subject =user.email;
+  api
+    .post('/sendemail',{to,text,subject})
+    .then(() => {
+    })
+    
+  }
+ else {
+  applyChanges();
+}
+};
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Email is invalid').required('Email is required'),
+  first_name: Yup.string()
+    .required('name is required'),
+});
+
+ 
 
   return (<>
 
@@ -80,13 +103,14 @@ const sendMail = () => {
         <h2 class="section-title">Leave A Message</h2>
       </div>
       <div class="col-lg-6 text-center">
-        <form action="#" class="row">
+        <form action="#" class="row" >
+       
 
           <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" placeholder="First Name" name="fname" value={user.fname} onChange={(event) => handleChange(event)}/>
+            <input type="text" class="form-control mb-4" placeholder="First Name" name="first_name" value={user.first_name} onChange={(event) => handleChange(event)}/>
           </div>
           <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" placeholder="Last Name" name="lname" value={user.lname} onChange={(event) => handleChange(event)}/>
+            <input type="text" class="form-control mb-4" placeholder="Last Name" name="last_name" value={user.last_name} onChange={(event) => handleChange(event)}/>
           </div>
           <div class="col-12">
             <input type="text" class="form-control mb-4" placeholder="Email" name="email" 
@@ -97,13 +121,13 @@ const sendMail = () => {
             <textarea name="message" class="form-control mb-4" placeholder="Message" value={user.message} onChange={(event) => handleChange(event)}></textarea>
           </div>
           <div class="col-8">
-          <button className='shadow-none'
+          <button 
               color="success"
               onClick={() => {
                 
                   sendMail();
-                
-              }}>Submit Now</button>
+                ContactSubmit();
+              }}type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>
         </div>
