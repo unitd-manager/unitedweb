@@ -75,7 +75,7 @@ const ScreenDetail = () => {
                       {data.title}
                     </h3>
                     {ReactHtmlParser(data.description)}
-                     <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />  
+                     {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />   */}
                   </div>
                 </div>
               );
