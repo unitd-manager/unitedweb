@@ -1,233 +1,264 @@
-import React,{useState} from 'react'
-import AOS from 'aos';
-import axios from 'axios';
-import api from '../../../constants/api';
-import { Link } from 'react-router-dom';
-import moment from 'moment';
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import api from "../../../constants/api";
+import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 export default function Blog() {
-  const [blogs, setBlogs] = useState([])
-  const [Category, setCategory] = useState([])
+  const [blogs, setBlogs] = useState([]);
+  const [Category, setCategory] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortType, setSortType] = useState("");
+  const [sortValue, setSortValue] = useState("");
 
-  
-       React.useEffect(() => {
-        AOS.init();
-        getBlogs();
-        getCategory();
-     
-        window.scrollTo(0,0)
-        setTimeout(()=>{
-        
-        },5000)
-       
-      }, [])
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const getBlogs = () =>{
-      
-      api.get('/getBlogImage').then(res=>{
-        setBlogs(res.data.data)
+  console.log("search", searchQuery);
+  React.useEffect(() => {
+    AOS.init();
+    getBlogs();
+    getCategory();
+
+    window.scrollTo(0, 0);
+    setTimeout(() => {}, 5000);
+  }, []);
+
+  const getBlogs = () => {
+    api
+      .get("/getBlogImage")
+      .then((res) => {
+        setBlogs(res.data.data);
         console(res.data);
-       
       })
-      .catch(() => {
-       
-      });
-   
-      }
-      const itemList = [
-        "web developer",
-        "domain name",
-       
-      ];
-    
-      const [filteredList, setFilteredList] = new useState(itemList);
-    
-      const filterBySearch = (event) => {
-        // Access input value
-        const query = event.target.value;
-        // Create copy of item list
-        var updatedList = [...itemList];
-        // Include all elements which includes the search query
-        updatedList = updatedList.filter((item) => {
-          return item.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-        });
-        setFilteredList(updatedList);
+      .catch(() => {});
   };
-      // const getblogbySearch = () =>{
-      
-      //   api.get('/getBlogImage').then(res=>{
-      //     setAPIData(res.data);
-      //     console(res.data);
-         
-      //   })
-      //   .catch(() => {
-         
-      //   });
-     
-      //   }
 
-      const getCategory = () =>{
-      
-        api.get('/getCategory').then(res=>{
-          setCategory(res.data.data)
-          console(res.data);
-         
+  const getCategory = () => {
+    api
+      .get("/getCategory")
+      .then((res) => {
+        setCategory(res.data.data);
+        console(res.data);
+      })
+      .catch(() => {});
+  };
+  const getSortParams = (sortType, sortValue) => {
+    setSortType(sortType);
+    setSortValue(sortValue);
+  };
+
+  useEffect(() => {
+    //search filter
+    const urlSearchParams = new URLSearchParams(location.search);
+    const query = urlSearchParams.get("search");
+    if (query) {
+      setSearchQuery(query);
+      api
+        .post("/getBlogBySearch", { keyword: query })
+        .then((res) => {
+          setBlogs(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      api
+        .get("/getBlogImage")
+        .then((res) => {
+          setBlogs(res.data.data);
         })
         .catch(() => {
-         
+          console.log("error");
         });
-     
-        }
- 
+    }
+    console.log("searchquery", query);
+  }, [location]);
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    navigate(`?search=${searchQuery}`);
+  };
+  //search
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <>
-     
-     
-    <section class="page-title page-title-overlay bg-cover overflow-hidden" data-background="assets/images/background/about.jpg">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <h1 class="text-white position-relative">Blog<span class="watermark-sm">Blog</span></h1>
-          {/* <p class="text-white pt-4 pb-4">Cupidatat non proident sunt culpa qui officia deserunt mollit <br/> anim idest
+      <section
+        class="page-title page-title-overlay bg-cover overflow-hidden"
+        data-background="assets/images/background/about.jpg"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <h1 class="text-white position-relative">
+                Blog<span class="watermark-sm">Blog</span>
+              </h1>
+              {/* <p class="text-white pt-4 pb-4">Cupidatat non proident sunt culpa qui officia deserunt mollit <br/> anim idest
             laborum sed ut perspiciatis.</p> */}
-        </div>
-        <div class="col-lg-3 ml-auto align-self-end">
-          <nav class="position-relative zindex-1" aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-lg-end bg-transparent mb-4 px-0">
-              <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
-              <li class="breadcrumb-item text-white fw-bold" aria-current="page">Blog</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </section>
-  
- <section class="section mt-lg-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="row blog-slide px-4">
-          {blogs && blogs.map (data=>(
-            <div class="col-sm-6 mb-4">
-              <div class="card border-0 rounded-lg">
-                <div className="px-3 mb-5">
-                <Link to="/blogdetail" state={{ data: data }} className="link">
-                  <div className="card border-0 shadow rounded-xs">
-                     <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> 
-                      {/* <img src={`http://localhost:3003/uitedwebapi/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> */}
-                    <div className="card-body">
-                      {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>  */}
-                       <h5>{data.title}</h5>
-                      <br></br>
-                  </div>
-                </div>
-                </Link>
-              </div>
-              </div>
             </div>
-                  ))}
-           
+            <div class="col-lg-3 ml-auto align-self-end">
+              <nav class="position-relative zindex-1" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-lg-end bg-transparent mb-4 px-0">
+                  <li class="breadcrumb-item">
+                    <a href="index.html" class="text-white">
+                      Home
+                    </a>
+                  </li>
+                  <li
+                    class="breadcrumb-item text-white fw-bold"
+                    aria-current="page"
+                  >
+                    Blog
+                  </li>
+                </ol>
+              </nav>
+            </div>
           </div>
         </div>
-        <div class="col-lg-4">
+      </section>
+
+      <section class="section mt-lg-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="row blog-slide px-4">
+                {blogs &&
+                  blogs.map((data) => (
+                    <div class="col-sm-6 mb-4">
+                      <div class="card border-0 rounded-lg">
+                        <div className="px-3 mb-5">
+                          <Link
+                            to="/blogdetail"
+                            state={{ data: data }}
+                            className="link"
+                          >
+                            <div className="card border-0 shadow rounded-xs">
+                              <img
+                                src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`}
+                                className="img-fluid card-img-top"
+                                alt="post-thumb"
+                              />
+                              {/* <img src={`http://localhost:3003/uitedwebapi/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> */}
+                              <div className="card-body">
+                                {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>  */}
+                                <h5>{data.title}</h5>
+                                <br></br>
+                              </div>
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div class="col-lg-4">
     <div class="rounded-sm shadow bg-white pb-4">
-      <div class="widget">
-        <h4>Search</h4>
-        <form action="#">
-         
-          <div className="App">
-      <div className="search-header">
-       
-        <input id="search-box" onChange={filterBySearch} />
-      </div>
-      <div id="item-list">
-        <ol>
-        <Link to="/blogdetail"  className="link"></Link>
-          {filteredList.map((item, index) => (
-          
-            <li key={index}>{item}</li>
             
-          ))}
-        </ol>
-      </div>
-    </div>
-        </form>
-      </div>
-      <div class="widget">
-        <h4>Category</h4>
-        <ul class="list-styled list-bordered">
-        {Category && Category.map (data=>(
-          <li><a class="text-color d-block py-3" href="/#/blog-details.html">{data.category_title}</a></li>
-          ))}
+                  {/* Blog search */}
+                  <div class="rounded-sm shadow bg-white pb-4">
+                    <div class="widget">
+                      <h4>Search</h4>
+                      <form action="/blog">
+                        <div class="position-relative">
+                          <input
+                            type="text"
+                            placeholder="Search here..."
+                            onChange={handleSearchChange}
+                            blogs={blogs}
+                          />
+                          <button onClick={handleSearchSubmit}>
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+         
+
+                <div class="widget">
+                  <h4>Category</h4>
+                  <ul class="list-styled list-bordered">
+                    {Category &&
+                      Category.map((data) => (
+                        <li>
+                          <a
+                            class="text-color d-block py-3"
+                            href="/#/blog-details.html"
+                          >
+                            {data.category_title}
+                          </a>
+                        </li>
+                      ))}
                     {/* <li><a class="text-color d-block py-3" href="blog-details.html">Investment Planning</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Valuable Idea</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Market Strategy</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">development Maping</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Afiliated Marketing</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Targated Marketing</a></li> */}
-        </ul>
-      </div>
-      
-      <div class="widget">
-        <h4>Latest Article</h4>
-        <ul class="list-unstyled list-bordered">
-          <li class="media border-bottom py-3">
-            <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/>
-            <div class="media-body">
-              <h6 class="mt-0"><a href="blog-details.html" class="text-dark">Aiusmod tempor did labore dolory</a></h6>
-              <p class="mb-0 text-color">Aug 02, 2018</p>
-            </div>
-          </li>
-          <li class="media border-bottom py-3">
-            <img src="assets/images/men/sm-img-2.jpg" class="rounded-sm mr-3" alt="post-thumb"/>
-            <div class="media-body">
-              <h6 class="mt-0"><a href="blog-details.html" class="text-dark">Aiusmod tempor did labore dolory</a></h6>
-              <p class="mb-0 text-color">Aug 02, 2018</p>
-            </div>
-          </li>
-          <li class="media border-bottom py-3">
-            <img src="assets/images/men/sm-img-3.jpg" class="rounded-sm mr-3" alt="post-thumb"/>
-            <div class="media-body">
-              <h6 class="mt-0"><a href="blog-details.html" class="text-dark">Aiusmod tempor did labore dolory</a></h6>
-              <p class="mb-0 text-color">Aug 02, 2018</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="widget">
-        <h4>Tags</h4>
-        <ul class="list-inline tag-list mt-4">
-          <li class="list-inline-item mb-3"><a href="blog-details.html" class="text-color shadow">Business</a></li>
-          <li class="list-inline-item mb-3"><a href="blog-details.html" class="text-color shadow">Market Analysis</a></li>
-          <li class="list-inline-item mb-3"><a href="blog-details.html" class="text-color shadow">Consultancy</a></li>
-          <li class="list-inline-item mb-3"><a href="blog-details.html" class="text-color shadow">Marketing</a></li>
-          <li class="list-inline-item mb-3"><a href="blog-details.html" class="text-color shadow">Finance</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-      </div>
-    </div>
-  </section>
-  <section>
-  <div className="App">
-      <div className="search-header">
-        <div className="search-text">Search:</div>
-        <input id="search-box" onChange={filterBySearch} />
-      </div>
-      <div id="item-list">
-        <ol>
-          {filteredList.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ol>
-      </div>
-    </div>
+                  </ul>
+                </div>
 
-  </section>
+                <div class="widget">
+                  <h4>Latest Article</h4>
+                  <ul class="list-unstyled list-bordered">
+                    <li class="media border-bottom py-3">
+                      <img
+                        src="assets/images/men/sm-img-1.jpg"
+                        class="rounded-sm mr-3"
+                        alt="post-thumb"
+                      />
+                      <div class="media-body">
+                        <h6 class="mt-0">
+                          <a href="blog-details.html" class="text-dark">
+                          Learn Why To Invest In A Virtual Classroom System: The LMS
+                          </a>
+                        </h6>
+                        {/* <p class="mb-0 text-color">Aug 02, 2018</p> */}
+                      </div>
+                    </li>
+                    <li class="media border-bottom py-3">
+                      <img
+                        src="assets/images/men/sm-img-2.jpg"
+                        class="rounded-sm mr-3"
+                        alt="post-thumb"
+                      />
+                      <div class="media-body">
+                        <h6 class="mt-0">
+                          <a href="#/blogs" class="text-dark">
+                           Online Payslip V/s Manual Payslip: Are Payslip Templates Helpful In Singapore?
+                          </a>
+                        </h6>
+                        {/* <p class="mb-0 text-color">Aug 02, 2018</p> */}
+                      </div>
+                    </li>
+                    <li class="media border-bottom py-3">
+                      <img
+                        src="assets/images/men/sm-img-3.jpg"
+                        class="rounded-sm mr-3"
+                        alt="post-thumb"
+                      />
+                      <div class="media-body">
+                        <h6 class="mt-0">
+                          <a href="blog-details.html" class="text-dark">
+                          Why Waste Money to Buy Books When You Can Just Go for E-learning System
+                          </a>
+                        </h6>
+                        {/* <p class="mb-0 text-color">Aug 02, 2018</p> */}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  {/* <section class="subscription bg-white">
+      {/* <section class="subscription bg-white">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -248,6 +279,6 @@ export default function Blog() {
       </div>
     </div>
   </section> */}
-  </>
-  )
+    </>
+  );
 }

@@ -7,10 +7,12 @@ import {Link} from 'react-router-dom'
 export default function Header({style}) {
   
   const [menus, setMenus] = useState([])
+  const [submenus, setsubMenu] = useState([])
 
   React.useEffect(() => {
     AOS.init();
-    getBlogs()
+    getBlogs();
+    getBlog();
    
   }, [])
 
@@ -29,13 +31,40 @@ export default function Header({style}) {
         menuArray.push({section_title:key,value:result[key]})
       });
       setMenus(menuArray)
+     
       //console.log(menuArray)
      
     })
     
   }
+  const getBlog = () =>{
+    api.post('/getMenuServices').then(res=>{
+     
+      let loopData = res.data.data
+      var result = loopData.reduce(function (r, a) {
+          r[a.category_title] = r[a.category_title] || [];
+          r[a.category_title].push(a);
+          return r;
+      }, Object.create(null));
+     
+      let menuArray = [];
+      Object.keys(result).forEach(function(key, index) {
+        menuArray.push({category_title:key,value:result[key]})
+      });
+      setsubMenu(menuArray)
+     
+      //console.log(menuArray)
+     
+    })
+    
+  }
+ 
   const getFormatedText = (section_title) =>{
     var formatedd = section_title.toLowerCase()
+    return formatedd.split(' ').join('-')
+  }
+  const getFormatedText1 = (category_title) =>{
+    var formatedd = category_title.toLowerCase()
     return formatedd.split(' ').join('-')
   }
   return (
@@ -59,14 +88,28 @@ export default function Header({style}) {
               <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{data.section_title}</a>
               <div className="dropdown-menu">
-                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
-                
-              </div>
-              {/* <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
+              
+                 {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}          
+                <ul className="navbar-nav mx-auto">
+           {submenus.map(data=>{
+            if(data.value.length > 1 ){
+              let submen = data.value
+              
+              return ( <li className="nav-item dropdown">
+              </li>)
+            }else{
+              
+              return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
+             <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{data.category_title}</a>
-              <div className="dropdown-menu">
-                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}
-                 */}
+               <div className="dropdown-menu1">
+                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText1(option.category_title)+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.sub_category_title}</p></Link>))}          
+                </div>
+            </li></Link>)
+            }
+           })}
+           </ul>
+                           </div>
            
               
             
@@ -77,6 +120,7 @@ export default function Header({style}) {
             </li></Link>)
             }
            })}
+           
             {/* <li className="nav-item">
               <a className="nav-link text-dark text-capitalize" href="about.html">Home</a>
             </li>
@@ -108,6 +152,7 @@ export default function Header({style}) {
               <a className="nav-link text-dark text-capitalize" href="contact.html">Contact Us</a>
             </li> */}
           </ul>
+        
           <a href="/#/contact-us" className="btn btn-outline-primary text-white ml-3">Enquiry now</a>
           </div>
       </nav>
