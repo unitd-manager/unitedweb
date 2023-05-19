@@ -2,7 +2,7 @@ import React from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../../../constants/api';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 
 export default function Contact() {
 
@@ -52,11 +52,14 @@ const sendMail = () => {
       ' Are you sure do you want to send Mail to this Client \n',
     )
   ) {
-  const to ="admin@unitdtechnologies.com";
-  const text = user.message;
-  const subject =user.email;
+   
+  //    const to= "meeera@520@gmail.com";
+  //     const subject= "Email From Enquiry";
+  //     const text = user.first_name;
+  //     // const templateId="d-6a4a5194199c4185ba3c06b23329f801"
+      
   api
-    .post('/sendemail',{to,text,subject})
+    .post('/sendemail',)
     .then(() => {
     })
     
@@ -66,11 +69,11 @@ const sendMail = () => {
 }
 };
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Email is invalid').required('Email is required'),
-  first_name: Yup.string()
-    .required('name is required'),
-});
+// const validationSchema = Yup.object().shape({
+//   email: Yup.string().email('Email is invalid').required('Email is required'),
+//   first_name: Yup.string()
+//     .required('name is required'),
+// });
 
  
 

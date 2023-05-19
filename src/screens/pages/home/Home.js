@@ -44,6 +44,8 @@ const handleProductChange = (e) => {
     setProduct(product.filter((e) => e !== value));
   }
 };
+const applyChanges = () => {};
+
 
 const handleServiceChange = (e) => {
   // Destructuring
@@ -87,6 +89,28 @@ const updateContactFields = e => {
   
     //console.log(service)
   }
+  
+  //Email
+const sendMail = () => {
+  if (
+    window.confirm(
+      ' Are you sure do you want to send Mail to this Client \n',
+    )
+  ) {
+  const to ="admin@unitdtechnologies.com";
+  const text = contact.message;
+  const subject =contact.email;
+  api
+    .post('/sendemail',{to,text,subject})
+    .then(() => {
+    })
+    
+  }
+ else {
+  applyChanges();
+}
+};
+
 
   React.useEffect(() => {
     AOS.init();
@@ -455,7 +479,8 @@ const updateContactFields = e => {
           </div>
           <div className="col-12">
             <button onClick={()=>{
-              onEquirySubmit()
+              onEquirySubmit();
+              sendMail();
             }} type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>
