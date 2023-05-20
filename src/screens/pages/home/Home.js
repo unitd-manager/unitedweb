@@ -73,6 +73,11 @@ const updateContactFields = e => {
   }))
 }
   const onEquirySubmit = () =>{
+    if (
+      
+      contact.first_name  &&
+      contact.email &&
+      contact.message        ){
     
     api.post('/addEnquiry',{
       first_name:contact.first_name,
@@ -81,13 +86,17 @@ const updateContactFields = e => {
       message:contact.message,
       products:product.join(','),
       services:service.join(',')
-    }).then(res=>{
-            console.log(res)
-            
-    })
+    }).then((res)=>{
+            console.log(res)        
+   // alert('Record created successfully', 'success'); 
+      })
+      .catch(() => {
+        alert('Unable to edit record.', 'error');
+      });
     console.log(contact)
-  
-    //console.log(service)
+  } else {
+    alert('Please fill all required fields.', 'error');
+  }
   }
   
   //Email
@@ -97,11 +106,12 @@ const sendMail = () => {
       ' Are you sure do you want to send Mail to this Client \n',
     )
   ) {
-  const to ="admin@unitdtechnologies.com";
-  const text = contact.message;
-  const subject =contact.email;
+    const dynamic_template_data= 
+    {name:contact.first_name,
+    email:contact.email,
+    message:contact.message};
   api
-    .post('/sendemail',{to,text,subject})
+    .post('/sendemail',{dynamic_template_data})
     .then(() => {
     })
     
@@ -450,16 +460,16 @@ const sendMail = () => {
         <form action="#" className="row">
           <div className="col-lg-4">
             <input onChange={updateContactFields} type="text" 
-            className="bg-light form-control mb-4" placeholder="Your Name" name="first_name" />
+            className="bg-light form-control mb-4" placeholder="Your Name*" name="first_name" />
           </div>
           <div className="col-lg-4">
-            <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Email" name="email"/>
+            <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Email*" name="email"/>
           </div>
           <div className="col-lg-4">
             <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Phone" name="phone"/>
           </div>
           <div className="col-lg-12">
-            <textarea  onChange={updateContactFields} className="bg-light form-control mb-4" placeholder="Message" name="message"></textarea>
+            <textarea  onChange={updateContactFields} className="bg-light form-control mb-4" placeholder="Message*" name="message"></textarea>
           </div>
           <div className="col-lg-6 text-left">
             <h3>Products</h3>
@@ -479,8 +489,12 @@ const sendMail = () => {
           </div>
           <div className="col-12">
             <button onClick={()=>{
+             
               onEquirySubmit();
               sendMail();
+            //   setTimeout(() => {
+            //     window.location.reload()
+            // }, 1000);
             }} type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>

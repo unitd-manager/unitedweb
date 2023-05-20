@@ -32,17 +32,28 @@ export default function Contact() {
     // message = e.target.message
 }
   const ContactSubmit = () =>{
-    
+    if (
+      
+        user.first_name  &&
+        user.email &&
+        user.message        ) {
       api.post('/addContact',{
         first_name:user.first_name,
         last_name:user.last_name,
         email:user.email,
         message:user.message
-      }).then(res=>{
+      }).then((res)=>{
               console.log(res)
-              
+              // alert('Record created successfully', 'success'); 
       })
+      .catch(() => {
+        alert('Unable to edit record.', 'error');
+       
+      });
       console.log(user)
+    } else {
+      alert('Please fill all required fields.', 'error');
+    }
     }
     
 //Email
@@ -51,21 +62,24 @@ const sendMail = () => {
     window.confirm(
       ' Are you sure do you want to send Mail to this Client \n',
     )
-  ) {
+     (
+      user.first_name  &&
+      user.email &&
+      user.message        )
+      ){
    
-  //    const to= "meeera@520@gmail.com";
-  //     const subject= "Email From Enquiry";
-  //     const text = user.first_name;
-  //     // const templateId="d-6a4a5194199c4185ba3c06b23329f801"
-      
+      const dynamic_template_data= 
+      {name:user.first_name,
+      email:user.email,
+      message:user.message};
   api
-    .post('/sendemail',)
+    .post('/sendemail',{dynamic_template_data})
     .then(() => {
-    })
-    
+    })  
   }
  else {
   applyChanges();
+ alert("pls fill required fields")
 }
 };
 
@@ -110,26 +124,29 @@ const sendMail = () => {
        
 
           <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" placeholder="First Name" name="first_name" value={user.first_name} onChange={(event) => handleChange(event)}/>
+            <input type="text" class="form-control mb-4" placeholder="First Name*" name="first_name" value={user.first_name} onChange={(event) => handleChange(event)}/>
           </div>
           <div class="col-lg-6">
             <input type="text" class="form-control mb-4" placeholder="Last Name" name="last_name" value={user.last_name} onChange={(event) => handleChange(event)}/>
           </div>
           <div class="col-12">
-            <input type="text" class="form-control mb-4" placeholder="Email" name="email" 
+            <input type="text" class="form-control mb-4" placeholder="Email*" name="email" 
             value={user.email} 
             onChange={(event) => handleChange(event)}/>
           </div>
           <div class="col-12">
-            <textarea name="message" class="form-control mb-4" placeholder="Message" value={user.message} onChange={(event) => handleChange(event)}></textarea>
+            <textarea name="message" class="form-control mb-4" placeholder="Message*" value={user.message} onChange={(event) => handleChange(event)}></textarea>
           </div>
           <div class="col-8">
           <button 
               color="success"
-              onClick={() => {
+              onClick={() => { 
                 
-                  sendMail();
                 ContactSubmit();
+                sendMail();
+              //   setTimeout(() => {
+              //     window.location.reload()
+              // }, 1000);
               }}type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>

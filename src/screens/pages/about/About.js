@@ -15,6 +15,7 @@ export default function About() {
     window.scrollTo(0,0)
    
   }, [])
+  const applyChanges = () => {};
 
   const settings3 = {
     dots: true,
@@ -47,6 +48,69 @@ export default function About() {
       }
     ]
   };
+  const [aboutUs, setAboutUs] = React.useState({
+    email:'', first_name:'', last_name:'', message:'',});
+
+    let name, value;
+
+
+    
+  const handleChangeAbout = (e) => {
+   
+    name = e.target.name;
+    value = e.target.value;
+    setAboutUs({...aboutUs, [name]:value });
+    console.log({[name]:value});
+    // lname = e.target.lname
+    // email = e.target.email
+    // message = e.target.message
+}
+  const AboutUsSubmit = () =>{
+    if (
+      aboutUs.email &&
+        aboutUs.first_name  &&
+        aboutUs.message        ) {
+      api.post('/addContact',{
+        email:aboutUs.email,
+        first_name:aboutUs.first_name,
+        last_name:aboutUs.last_name,
+        message:aboutUs.message
+      }).then((res)=>{
+              console.log(res)
+              // alert('Record created successfully', 'success'); 
+      })
+      .catch(() => {
+        alert('Unable to edit record.', 'error');
+       
+      });
+      console.log(aboutUs)
+    } else {
+      alert('Please fill all required fields.', 'error');
+    }
+    }
+    
+//Email
+const Mail = () => {
+  if (
+    window.confirm(
+      ' Are you sure do you want to send Mail to this Client \n',
+    )
+      ){
+   
+      const dynamic_template_data= 
+      {name:aboutUs.first_name,
+      email:aboutUs.email,
+      message:aboutUs.message};
+  api
+    .post('/sendemail',{dynamic_template_data})
+    .then(() => {
+    })  
+  }
+ else {
+  applyChanges();
+ 
+}
+};
 
   const getAboutContent = () =>{
   api.get('/getAboutUs',{recordType:'Record'}).then(res=>{
@@ -156,19 +220,26 @@ export default function About() {
       <div class="col-12 text-center">
         <form action="#" class="row">
           <div class="col-lg-12">
-            <input type="text" class="form-control mb-4" placeholder="Your email"/>
+            <input type="text" class="form-control mb-4" placeholder="Your email*" name="email" value={aboutUs.email} onChange={(event) => handleChangeAbout(event)}/>
           </div>
           <div class="col-lg-12">
-            <input type="text" class="form-control mb-4" placeholder="Your Name"/>
+            <input type="text" class="form-control mb-4" placeholder="First Name*" name="first_name" value={aboutUs.first_name} onChange={(event) => handleChangeAbout(event)}/>
           </div>
           <div class="col-12">
-            <input type="text" class="form-control mb-4" placeholder="Subject"/>
+            <input type="text" class="form-control mb-4" placeholder="Last Name" name="last_name" value={aboutUs.last_name} onChange={(event) => handleChangeAbout(event)}/>
           </div>
           <div class="col-12">
-            <textarea name="message" class="form-control mb-4" placeholder="Message"></textarea>
+            <input type ="textarea" class="form-control mb-4"  placeholder="Message*" name="message" value={aboutUs.message} onChange={(event) => handleChangeAbout(event)}/>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit Now</button>
+            <button type="submit" onClick={() => { 
+                
+                AboutUsSubmit();
+                Mail();
+              //   setTimeout(() => {
+              //     window.location.reload()
+              // }, 1000);
+              }} class="btn btn-primary">Submit Now</button>
           </div>
         </form>
       </div>
