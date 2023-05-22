@@ -67,10 +67,9 @@ const sendMail = () => {
   api
     .post('/sendemail',{dynamic_template_data})
     .then(() => {
-      applyChanges();
     })  
   } else {
-   
+   applyChanges()
   }
 
 };

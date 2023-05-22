@@ -102,10 +102,9 @@ const updateContactFields = e => {
   //Email
 const sendMail = () => {
   if (
-    window.confirm(
-      ' Are you sure do you want to send Mail to this Client \n',
-    )
-  ) {
+    contact.name  &&
+    contact.email &&
+    contact.message        ) {
     const dynamic_template_data= 
     {name:contact.name,
     email:contact.email,

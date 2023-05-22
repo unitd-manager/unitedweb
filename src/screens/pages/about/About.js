@@ -91,10 +91,9 @@ export default function About() {
 //Email
 const Mail = () => {
   if (
-    window.confirm(
-      ' Are you sure do you want to send Mail to this Client \n',
-    )
-      ){
+    aboutUs.name  &&
+    aboutUs.email &&
+    aboutUs.message        ) {
    
       const dynamic_template_data= 
       {name:aboutUs.name,
@@ -104,11 +103,11 @@ const Mail = () => {
     .post('/sendemail',{dynamic_template_data})
     .then(() => {
     })  
-  }
- else {
-  applyChanges();
+  } else {
+    applyChanges()
+   }
+  
  
-}
 };
 
   const getAboutContent = () =>{
