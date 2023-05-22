@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import api from '../../../constants/api';
-import moment from 'moment';
+// import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ export default function Home() {
   const navigate = useNavigate()
 
   const [contact, setContact] = React.useState({
-    first_name:'', email:'', phone:'', message:''});
+    name:'', email:'', phone:'', message:''});
  
 const [product, setProduct] = useState([])
 const [service, setService] = useState([])
@@ -75,12 +75,12 @@ const updateContactFields = e => {
   const onEquirySubmit = () =>{
     if (
       
-      contact.first_name  &&
+      contact.name  &&
       contact.email &&
       contact.message        ){
     
     api.post('/addEnquiry',{
-      first_name:contact.first_name,
+      name:contact.name,
       email:contact.email,
       phone:contact.phone,
       message:contact.message,
@@ -107,7 +107,7 @@ const sendMail = () => {
     )
   ) {
     const dynamic_template_data= 
-    {name:contact.first_name,
+    {name:contact.name,
     email:contact.email,
     message:contact.message};
   api
@@ -460,7 +460,7 @@ const sendMail = () => {
         <form action="#" className="row">
           <div className="col-lg-4">
             <input onChange={updateContactFields} type="text" 
-            className="bg-light form-control mb-4" placeholder="Your Name*" name="first_name" />
+            className="bg-light form-control mb-4" placeholder="Your Name*" name="name" />
           </div>
           <div className="col-lg-4">
             <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Email*" name="email"/>

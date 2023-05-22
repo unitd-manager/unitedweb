@@ -15,7 +15,7 @@ export default function Contact() {
   const applyChanges = () => {};
 
   const [user, setUser] = React.useState({
-    first_name:'', last_name:'', email:'', message:'',});
+    name:'',  email:'', message:'',});
 
     let name, value;
 
@@ -33,13 +33,11 @@ export default function Contact() {
 }
   const ContactSubmit = () =>{
     if (
-      
-        user.first_name  &&
+        user.name  &&
         user.email &&
         user.message        ) {
       api.post('/addContact',{
-        first_name:user.first_name,
-        last_name:user.last_name,
+        name:user.name,
         email:user.email,
         message:user.message
       }).then((res)=>{
@@ -59,33 +57,27 @@ export default function Contact() {
 //Email
 const sendMail = () => {
   if (
-    window.confirm(
-      ' Are you sure do you want to send Mail to this Client \n',
-    )
-     (
-      user.first_name  &&
-      user.email &&
-      user.message        )
-      ){
-   
+    user.name  &&
+    user.email &&
+    user.message        ) {
       const dynamic_template_data= 
-      {name:user.first_name,
+      {name:user.name,
       email:user.email,
       message:user.message};
   api
     .post('/sendemail',{dynamic_template_data})
     .then(() => {
+      applyChanges();
     })  
+  } else {
+   
   }
- else {
-  applyChanges();
- alert("pls fill required fields")
-}
+
 };
 
 // const validationSchema = Yup.object().shape({
 //   email: Yup.string().email('Email is invalid').required('Email is required'),
-//   first_name: Yup.string()
+//   name: Yup.string()
 //     .required('name is required'),
 // });
 
@@ -124,11 +116,9 @@ const sendMail = () => {
        
 
           <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" placeholder="First Name*" name="first_name" value={user.first_name} onChange={(event) => handleChange(event)}/>
+            <input type="text" class="form-control mb-4" placeholder="Name*" name="name" value={user.name} onChange={(event) => handleChange(event)}/>
           </div>
-          <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" placeholder="Last Name" name="last_name" value={user.last_name} onChange={(event) => handleChange(event)}/>
-          </div>
+         
           <div class="col-12">
             <input type="text" class="form-control mb-4" placeholder="Email*" name="email" 
             value={user.email} 

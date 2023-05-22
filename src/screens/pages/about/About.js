@@ -49,7 +49,7 @@ export default function About() {
     ]
   };
   const [aboutUs, setAboutUs] = React.useState({
-    email:'', first_name:'', last_name:'', message:'',});
+    email:'', name:'',  message:'',});
 
     let name, value;
 
@@ -68,12 +68,11 @@ export default function About() {
   const AboutUsSubmit = () =>{
     if (
       aboutUs.email &&
-        aboutUs.first_name  &&
+        aboutUs.name  &&
         aboutUs.message        ) {
       api.post('/addContact',{
         email:aboutUs.email,
-        first_name:aboutUs.first_name,
-        last_name:aboutUs.last_name,
+        name:aboutUs.name,
         message:aboutUs.message
       }).then((res)=>{
               console.log(res)
@@ -98,7 +97,7 @@ const Mail = () => {
       ){
    
       const dynamic_template_data= 
-      {name:aboutUs.first_name,
+      {name:aboutUs.name,
       email:aboutUs.email,
       message:aboutUs.message};
   api
@@ -223,17 +222,14 @@ const Mail = () => {
             <input type="text" class="form-control mb-4" placeholder="Your email*" name="email" value={aboutUs.email} onChange={(event) => handleChangeAbout(event)}/>
           </div>
           <div class="col-lg-12">
-            <input type="text" class="form-control mb-4" placeholder="First Name*" name="first_name" value={aboutUs.first_name} onChange={(event) => handleChangeAbout(event)}/>
+            <input type="text" class="form-control mb-4" placeholder="Name*" name="name" value={aboutUs.name} onChange={(event) => handleChangeAbout(event)}/>
           </div>
-          <div class="col-12">
-            <input type="text" class="form-control mb-4" placeholder="Last Name" name="last_name" value={aboutUs.last_name} onChange={(event) => handleChangeAbout(event)}/>
-          </div>
+          
           <div class="col-12">
             <input type ="textarea" class="form-control mb-4"  placeholder="Message*" name="message" value={aboutUs.message} onChange={(event) => handleChangeAbout(event)}/>
           </div>
           <div class="col-12">
             <button type="submit" onClick={() => { 
-                
                 AboutUsSubmit();
                 Mail();
               //   setTimeout(() => {
