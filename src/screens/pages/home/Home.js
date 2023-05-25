@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import api from '../../../constants/api';
-import moment from 'moment';
+//import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 
@@ -418,7 +418,7 @@ const sendMail = () => {
     <div className="col-12">
       <div className="blog-slider">
       <Slider {...settings2}>
-        {blogs && blogs.map(data=>(
+        {blogs && blogs.slice(0, 5).map(data=>(
           <div className="px-3 mb-5">
           <Link to="/blogdetail" state={{ data: data }} className="link">
           <div className="card border-0 shadow rounded-xs">
