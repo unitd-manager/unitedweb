@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { Checkbox } from 'pretty-checkbox-react';
 import '@djthoms/pretty-checkbox';
 import api from '../../../constants/api';
-//import moment from 'moment';
+// //import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ export default function Home() {
   const navigate = useNavigate()
 
   const [contact, setContact] = React.useState({
-    first_name:'', email:'', phone:'', message:''});
+    name:'', email:'', phone:'', message:''});
  
 const [product, setProduct] = useState([])
 const [service, setService] = useState([])
@@ -73,35 +73,44 @@ const updateContactFields = e => {
   }))
 }
   const onEquirySubmit = () =>{
+    if (
+      
+      contact.name  &&
+      contact.email &&
+      contact.message        ){
     
     api.post('/addEnquiry',{
-      first_name:contact.first_name,
+      name:contact.name,
       email:contact.email,
       phone:contact.phone,
       message:contact.message,
       products:product.join(','),
       services:service.join(',')
-    }).then(res=>{
-            console.log(res)
-            
-    })
+    }).then((res)=>{
+            console.log(res)        
+   // alert('Record created successfully', 'success'); 
+      })
+      .catch(() => {
+        alert('Unable to edit record.', 'error');
+      });
     console.log(contact)
-  
-    //console.log(service)
+  } else {
+    alert('Please fill all required fields.', 'error');
+  }
   }
   
   //Email
 const sendMail = () => {
   if (
-    window.confirm(
-      ' Are you sure do you want to send Mail to this Client \n',
-    )
-  ) {
-  const to ="admin@unitdtechnologies.com";
-  const text = contact.message;
-  const subject =contact.email;
+    contact.name  &&
+    contact.email &&
+    contact.message        ) {
+    const dynamic_template_data= 
+    {name:contact.name,
+    email:contact.email,
+    message:contact.message};
   api
-    .post('/sendemail',{to,text,subject})
+    .post('/sendemail',{dynamic_template_data})
     .then(() => {
     })
     
@@ -450,16 +459,16 @@ const sendMail = () => {
         <form action="#" className="row">
           <div className="col-lg-4">
             <input onChange={updateContactFields} type="text" 
-            className="bg-light form-control mb-4" placeholder="Your Name" name="first_name" />
+            className="bg-light form-control mb-4" placeholder="Your Name*" name="name" />
           </div>
           <div className="col-lg-4">
-            <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Email" name="email"/>
+            <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Email*" name="email"/>
           </div>
           <div className="col-lg-4">
             <input  onChange={updateContactFields} type="text" className="bg-light form-control mb-4" placeholder="Your Phone" name="phone"/>
           </div>
           <div className="col-lg-12">
-            <textarea  onChange={updateContactFields} className="bg-light form-control mb-4" placeholder="Message" name="message"></textarea>
+            <textarea  onChange={updateContactFields} className="bg-light form-control mb-4" placeholder="Message*" name="message"></textarea>
           </div>
           <div className="col-lg-6 text-left">
             <h3>Products</h3>
@@ -479,8 +488,12 @@ const sendMail = () => {
           </div>
           <div className="col-12">
             <button onClick={()=>{
+             
               onEquirySubmit();
               sendMail();
+            //   setTimeout(() => {
+            //     window.location.reload()
+            // }, 1000);
             }} type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>
