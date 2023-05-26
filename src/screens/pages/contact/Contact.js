@@ -148,7 +148,7 @@ const sendMail = () => {
               <div class="pl-3">
                 <h6 class="text-dark">Address</h6>
                 <ul class="list-unstyled">
-                  <li>Universal Software Solutions Pte Ltd 10 Jalan Besar #15-02A Sim Lim Tower Singapore - 208787</li>
+                  <li>United Technologies Pte Ltd 10 Jalan Besar #15-02A Sim Lim Tower Singapore - 208787</li>
                 </ul>
               </div>
             </li>
@@ -158,7 +158,7 @@ const sendMail = () => {
                 <h6 class="text-dark">Email</h6>
                 <ul class="list-unstyled">
 
-                  <li><a class="text-dark" href="mailto:enquiry@usoftsolutions.com">enquiry@usoftsolutions.com</a></li>
+                  <li><a class="text-dark" href="mailto:enquiry@usoftsolutions.com">admin@unitdtechnologies.com</a></li>
                 </ul>
               </div>
             </li>

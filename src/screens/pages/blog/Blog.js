@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
+
 import api from "../../../constants/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import imageBase from "../../../constants/image.js"
+
 
 
 export default function Blog() {
@@ -11,6 +14,7 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState("");
   const [sortValue, setSortValue] = useState("");
+  const [categories, setCategories] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -44,11 +48,10 @@ export default function Blog() {
       })
       .catch(() => {});
   };
-  const getSortParams = (sortType, sortValue) => {
-    setSortType(sortType);
-    setSortValue(sortValue);
-  };
 
+
+  
+ 
   useEffect(() => {
     //search filter
     const urlSearchParams = new URLSearchParams(location.search);
@@ -83,6 +86,22 @@ export default function Blog() {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+  
+  //Category filter
+
+  const getSortParams = (sortType, sortValue) => {
+    setSortType(sortType);
+    setSortValue(sortValue);
+}
+
+useEffect(()=>{
+
+  api.get('/getCategory').then((res)=>{
+   setCategories(res.data.data)
+    // return message.error("Registered Successfully ");
+        }).catch(err=>{console.log(err)});
+        //getblogs();
+},[])
 
   return (
     <>
@@ -137,7 +156,7 @@ export default function Blog() {
                           >
                             <div className="card border-0 shadow rounded-xs">
                               <img
-                                src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`}
+                                src={`${imageBase}${data.file_name}`}
                                 className="img-fluid card-img-top"
                                 alt="post-thumb"
                               />
@@ -177,9 +196,47 @@ export default function Blog() {
                       </form>
                     </div>
                   </div>
-         
+          {/* filter by categories */}
+      {/* <BlogCategory
+        categories={categories}
+        getSortParams={getSortParams}
+      /> */}
+      
+      <div class="widget">
+                  <h4>Category</h4>
+                  <ul class="list-styled list-bordered">
+        {categories ? (
+          <ul>
+           
+            {categories.map((category, key) => {
+              return (
+                <li key={key}>
+                  <div className="list-styled list-bordered">
+                    <button
+                      onClick={e => {
+                        getSortParams("category", category.category_id);
+                        setActiveSorts(e);
+                       
+                      }}
+                    >
+                  
+                      <a
+                            class="text-color d-block py-3"
+                            href="/#/blogs"
+                          > {category.category_title}{" "}</a>
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          "No categories found"
+        )}
+        </ul>
+      </div>
 
-                <div class="widget">
+                {/* <div class="widget">
                   <h4>Category</h4>
                   <ul class="list-styled list-bordered">
                     {Category &&
@@ -192,66 +249,35 @@ export default function Blog() {
                             {data.category_title}
                           </a>
                         </li>
-                      ))}
+                      ))} */}
                     {/* <li><a class="text-color d-block py-3" href="blog-details.html">Investment Planning</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Valuable Idea</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Market Strategy</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">development Maping</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Afiliated Marketing</a></li>
           <li><a class="text-color d-block py-3" href="blog-details.html">Targated Marketing</a></li> */}
-                  </ul>
-                </div>
+                  {/* </ul>
+                </div> */}
 
-                <div class="widget">
-                  <h4>Latest Article</h4>
-                  <ul class="list-unstyled list-bordered">
-                    <li class="media border-bottom py-3">
-                      <img
-                        src="assets/images/men/sm-img-1.jpg"
-                        class="rounded-sm mr-3"
-                        alt="post-thumb"
-                      />
-                      <div class="media-body">
-                        <h6 class="mt-0">
-                          <a href="blog-details.html" class="text-dark">
-                          Learn Why To Invest In A Virtual Classroom System: The LMS
-                          </a>
-                        </h6>
-                        {/* <p class="mb-0 text-color">Aug 02, 2018</p> */}
-                      </div>
-                    </li>
-                    <li class="media border-bottom py-3">
-                      <img
-                        src="assets/images/men/sm-img-2.jpg"
-                        class="rounded-sm mr-3"
-                        alt="post-thumb"
-                      />
-                      <div class="media-body">
-                        <h6 class="mt-0">
-                          <a href="#/blogs" class="text-dark">
-                           Online Payslip V/s Manual Payslip: Are Payslip Templates Helpful In Singapore?
-                          </a>
-                        </h6>
-                        {/* <p class="mb-0 text-color">Aug 02, 2018</p> */}
-                      </div>
-                    </li>
-                    <li class="media border-bottom py-3">
-                      <img
-                        src="assets/images/men/sm-img-3.jpg"
-                        class="rounded-sm mr-3"
-                        alt="post-thumb"
-                      />
-                      <div class="media-body">
-                        <h6 class="mt-0">
-                          <a href="blog-details.html" class="text-dark">
-                          Why Waste Money to Buy Books When You Can Just Go for E-learning System
-                          </a>
-                        </h6>
-                        {/* <p class="mb-0 text-color">Aug 02, 2018</p> */}
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+<div class="widget">
+      <h4>Latest Article</h4>
+      <ul class="list-unstyled list-bordered">
+      {blogs && blogs.slice(0, 3).map(data=>(
+          <li class="media border-bottom py-3">
+            <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" />
+          {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
+          <div class="media-body">
+           
+            <h6 class="mt-0"><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h6>
+            
+          </div>
+          </li>
+
+      ))}
+      </ul>
+      </div>
+
+               
               </div>
             </div>
           </div>
@@ -279,6 +305,17 @@ export default function Blog() {
       </div>
     </div>
   </section> */}
+  
     </>
+    
   );
 }
+export const setActiveSorts = e => {
+  const filterButtons = document.querySelectorAll(
+    ".sidebar-widget-list-left button, .sidebar-widget-tag button, .product-filter button"
+  );
+  filterButtons.forEach(item => {
+    item.classList.remove("active");
+  });
+  e.currentTarget.classList.add("active");
+};
