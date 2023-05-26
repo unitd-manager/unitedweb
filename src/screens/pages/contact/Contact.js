@@ -67,6 +67,7 @@ const sendMail = () => {
   api
     .post('/sendemail',{dynamic_template_data})
     .then(() => {
+      alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
     })  
   } else {
    applyChanges()
@@ -74,13 +75,7 @@ const sendMail = () => {
 
 };
 
-// const validationSchema = Yup.object().shape({
-//   email: Yup.string().email('Email is invalid').required('Email is required'),
-//   name: Yup.string()
-//     .required('name is required'),
-// });
 
- 
 
   return (<>
 
@@ -133,9 +128,9 @@ const sendMail = () => {
                 
                 ContactSubmit();
                 sendMail();
-              //   setTimeout(() => {
-              //     window.location.reload()
-              // }, 1000);
+                setTimeout(() => {
+                  window.location.reload()
+              }, 1000);
               }}type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>
