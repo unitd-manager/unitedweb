@@ -102,6 +102,7 @@ const Mail = () => {
   api
     .post('/sendemail',{dynamic_template_data})
     .then(() => {
+      alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
     })  
   } else {
     applyChanges()
