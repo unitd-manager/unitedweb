@@ -6,14 +6,12 @@ import ReactHtmlParser from "react-html-parser";
 
 const Screendetail = () => {
   const [services, setServices] = useState([]);
+  const [servicemenu, setServicemenu] = useState([]);
   const { title } = useParams();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    AOS.init();
-    getBlogs();
-  }, [title]);
+
 
   const getBlogs = () => {
     var formated = title.split("-").join(" ");
@@ -24,6 +22,20 @@ const Screendetail = () => {
       })
       .catch((err) => {});
   };
+  const getService = () => {
+    var formated = title.split("-").join(" ");
+    api
+      .post("/getServiceDetailPage", { title: formated })
+      .then((res) => {
+        setServicemenu(res.data.data);
+      })
+      .catch((err) => {});
+  };
+  useEffect(() => {
+    AOS.init();
+    getBlogs();
+    getService();
+  }, [title]);
  
   return (
     <>
@@ -76,10 +88,38 @@ const Screendetail = () => {
                     {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
                     {ReactHtmlParser(data.description)}
                   </div>
+                  
                 </div>
               );
             })}
           </div>
+          
+          
+        </div>
+      </section>
+      <section class="section py-0 features">
+        <div class="container">
+          <div class="row">
+            {servicemenu.map((data, index) => {
+              return (
+                <div
+                  class="col-lg-12 col-sm-12 mb-4 aos-init aos-animate"
+                  data-aos="fade-up"
+                >
+                  <div class="position-relative px-4 py-5 ">
+                    <h3 class="pt-5 pb-3 text-capitalize card-title">
+                      {data.title.title}
+                    </h3>
+                    {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
+                    {ReactHtmlParser(data.description)}
+                  </div>
+                  
+                </div>
+              );
+            })}
+          </div>
+          
+          
         </div>
       </section>
     </>

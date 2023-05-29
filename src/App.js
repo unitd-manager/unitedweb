@@ -7,10 +7,12 @@ import Contact from "../src/screens/pages/contact/Contact";
 import Blog from "../src/screens/pages/blog/Blog";
 import BlogDetails from "../src/screens/pages/blog/BlogDetails";
 import ServiceDetail from "./screens/pages/service-detail/serviceDetail";
+
 import Error from "./screens/pages/Error";
 import ProductDetail from "./screens/pages/Products/ProductDetails";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/blogs" element={<Blog />} />
           <Route path="/blogdetail" element={<BlogDetails />} />
           <Route path="/services/:title" element={<ServiceDetail />} />
+          <Route path="/services/:title/:title" element={<ServiceDetail />} />
           <Route path="/products/:title" element={<ProductDetail />} />
           <Route path="*" element={<Error />} />
         </Routes>
