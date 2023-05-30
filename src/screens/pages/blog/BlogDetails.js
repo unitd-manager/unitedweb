@@ -61,14 +61,7 @@ export default function BlogDetails( props ) {
         <p class="text-color card-date position-relative d-inline-block">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>
         <h3 class="mb-3 text-dark">{data.title}</h3>
         <p></p>
-        {/* <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed eiusmod tempor incididunt labore
-            dolore magna aliqua. enim minim veniam quis nostrud exercitation ullamco.
-            laboris nisi ut aliquip ex ea commodo.</p>
-          <h6>by Michelle Fischer</h6>
-        </blockquote> */}
-        <p>{ReactHtmlParser(data.description)}</p>
+               <p>{ReactHtmlParser(data.description)}</p>
         <div class="my-5">
           <h5 class="d-inline-block mr-3">Share:</h5>
           <ul class="list-inline d-inline-block">

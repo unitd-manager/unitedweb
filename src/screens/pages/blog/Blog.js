@@ -29,12 +29,21 @@ export default function Blog() {
     setTimeout(() => {}, 5000);
   }, []);
 
+  // const getBlogs = () => {
+  //   api
+  //     .get("/getBlogImage")
+  //     .then((res) => {
+  //       setBlogs(res.data.data);
+  //       console(res.data);
+  //     })
+  //     .catch(() => {});
+  // };
   const getBlogs = () => {
+   // var formated = title.split("-").join(" ");
     api
-      .get("/getBlogImage")
+      .post("/getBlogImage", )
       .then((res) => {
         setBlogs(res.data.data);
-        console(res.data);
       })
       .catch(() => {});
   };
@@ -102,7 +111,10 @@ useEffect(()=>{
         }).catch(err=>{console.log(err)});
         //getblogs();
 },[])
-
+const getFormatedText = (title) =>{
+  var formatedd = title.toLowerCase()
+  return formatedd.split(' ').join('-')
+}
   return (
     <>
       <section
@@ -150,10 +162,11 @@ useEffect(()=>{
                       <div class="card border-0 rounded-lg">
                         <div className="px-3 mb-5">
                           <Link
-                            to="/blogdetail"
+                            to={getFormatedText(data.title)}
                             state={{ data: data }}
                             className="link"
                           >
+                            
                             <div className="card border-0 shadow rounded-xs">
                               <img
                                 src={`${imageBase}${data.file_name}`}
