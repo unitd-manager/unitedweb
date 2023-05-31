@@ -4,37 +4,29 @@ import AOS from "aos";
 import api from "../../../constants/api";
 import ReactHtmlParser from "react-html-parser";
 
-const Screendetail = () => {
-  const [services, setServices] = useState([]);
-  //const [servicemenu, setServicemenu] = useState([]);
+const ServiceSubMenu = () => {
+  //const [services, setServices] = useState([]);
+  const [servicemenu, setServicemenu] = useState([]);
   const { title } = useParams();
 
   const navigate = useNavigate();
 
 
 
-  const getBlogs = () => {
+ 
+  const getService = () => {
     var formated = title.split("-").join(" ");
     api
-      .post("/getServiceDetail", { title: formated })
+      .post("/getServiceMenu", { title: formated })
       .then((res) => {
-        setServices(res.data.data);
+        setServicemenu(res.data.data);
       })
       .catch((err) => {});
   };
-  // const getService = () => {
-  //   var formated = title.split("-").join(" ");
-  //   api
-  //     .post("/getServiceMenu", { title: formated })
-  //     .then((res) => {
-  //       setServicemenu(res.data.data);
-  //     })
-  //     .catch((err) => {});
-  // };
   useEffect(() => {
     AOS.init();
-    getBlogs();
-    //getService();
+   // getBlogs();
+    getService();
   }, [title]);
  
   return (
@@ -72,10 +64,13 @@ const Screendetail = () => {
         </div>
       </section>
 
+     
+                    {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
+                
       <section class="section py-0 features">
         <div class="container">
           <div class="row">
-            {services.map((data, index) => {
+            {servicemenu.map((data, index) => {
               return (
                 <div
                   class="col-lg-12 col-sm-12 mb-4 aos-init aos-animate"
@@ -83,8 +78,8 @@ const Screendetail = () => {
                 >
                   <div class="position-relative px-4 py-5 ">
                     <h3 class="pt-5 pb-3 text-capitalize card-title">
-                      {data.title}
-                    </h3>
+                      {data.title.title} 
+              </h3>
                     {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
                     {ReactHtmlParser(data.description)}
                   </div>
@@ -97,33 +92,8 @@ const Screendetail = () => {
           
         </div>
       </section>
-      {/* <section class="section py-0 features">
-        <div class="container">
-          <div class="row">
-            {servicemenu.map((data, index) => {
-              return (
-                <div
-                  class="col-lg-12 col-sm-12 mb-4 aos-init aos-animate"
-                  data-aos="fade-up"
-                >
-                  <div class="position-relative px-4 py-5 ">
-                    <h3 class="pt-5 pb-3 text-capitalize card-title">
-                      {data.title.title} 
-              </h3> */}
-                    {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" /> */}
-                    {/* {ReactHtmlParser(data.description)}
-                  </div>
-                  
-                </div>
-              );
-            })}
-          </div>
-          
-          
-        </div>
-      </section> */}
     </>
   );
 };
 
-export default Screendetail;
+export default ServiceSubMenu;

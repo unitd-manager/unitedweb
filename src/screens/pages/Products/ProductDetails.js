@@ -4,6 +4,7 @@ import api from "../../../constants/api";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ReactHtmlParser from "react-html-parser";
+import { Helmet } from "react-helmet";
 
 const ScreenDetail = () => {
   const [products, setProducts] = useState([]);
@@ -36,6 +37,7 @@ const ScreenDetail = () => {
         <div class="container">
           <div class="row">
             <div class="col-lg-7">
+             
               <h1 class="text-white position-relative">{title}</h1>
             </div>
             <div class="col-lg-3 ml-auto align-self-end">
@@ -72,9 +74,13 @@ const ScreenDetail = () => {
                 >
                   <div class="position-relative px-4 py-5 ">
                     <h3 class="pt- pb-3 text-capitalize card-title">
+                    <Helmet>
+                <title>{data.title}</title>
+                <meta name="description" content={data.title}></meta>
+              </Helmet>
                       {data.title}
                     </h3>
-                    {ReactHtmlParser(data.description)}
+                    {ReactHtmlParser(data.description)}  
                      {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />   */}
                   </div>
                 </div>

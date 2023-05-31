@@ -226,6 +226,10 @@ const sendMail = () => {
     }
     
   }
+  const getFormatedText = (title) =>{
+    var formatedd = title.toLowerCase()
+    return formatedd.split(' ').join('-')
+  }
   return (
     <>
   
@@ -403,7 +407,7 @@ const sendMail = () => {
             <div className="card border-0 shadow rounded-xs py-4">
               <i class="fa fa-quote-right icon-quote mb-4 mx-auto text-primary"></i>
               <div className="card-body">
-                <p className="card-date">{data.description_short}</p>
+                <p className="card-date">{ ReactHtmlParser(data.description)}</p>
                 <span class="h6">Happy client</span>
                 <br></br>
               </div>
@@ -430,12 +434,16 @@ const sendMail = () => {
       <Slider {...settings2}>
         {blogs && blogs.slice(0, 5).map(data=>(
           <div className="px-3 mb-5">
-          <Link to="/blogdetail" state={{ data: data }} className="link">
+         <Link
+                            to={'/'+'blogs'+'/'+getFormatedText(data.title)}
+                            state={{ data: data }}
+                            className="link"
+                          >
           <div className="card border-0 shadow rounded-xs">
              <img src={`${imageBase}${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> 
             <div className="card-body">
          {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
-              <h5><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h5>
+              <h5><Link to={getFormatedText(data.title)} state={{ data: data }} className="text-dark">{data.title}</Link></h5>
               <br></br>
             </div>
           </div>

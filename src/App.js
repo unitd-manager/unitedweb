@@ -7,25 +7,29 @@ import Contact from "../src/screens/pages/contact/Contact";
 import Blog from "../src/screens/pages/blog/Blog";
 import BlogDetails from "../src/screens/pages/blog/BlogDetails";
 import ServiceDetail from "./screens/pages/service-detail/serviceDetail";
+import ServiceSubMenu from "./screens/pages/service-detail/serviceSubMenu";
 import Error from "./screens/pages/Error";
 import ProductDetail from "./screens/pages/Products/ProductDetails";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
+import {Helmet} from "react-helmet";
+
 
 function App() {
   return (
     <>
       <HashRouter>
         <Header />
-
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/blogdetail" element={<BlogDetails />} />
+          <Route path="/blogs/:title" element={<BlogDetails />} />
           <Route path="/services/:title" element={<ServiceDetail />} />
+          <Route path="/services/:title/:title" element={<ServiceSubMenu />} />
           <Route path="/products/:title" element={<ProductDetail />} />
           <Route path="*" element={<Error />} />
         </Routes>

@@ -7,12 +7,10 @@ import {Link} from 'react-router-dom'
 export default function Header({style}) {
   
   const [menus, setMenus] = useState([])
-  const [submenus, setsubMenu] = useState([])
 
   React.useEffect(() => {
     AOS.init();
-    getBlogs();
-    getBlog();
+    getBlogs()
    
   }, [])
 
@@ -31,96 +29,94 @@ export default function Header({style}) {
         menuArray.push({section_title:key,value:result[key]})
       });
       setMenus(menuArray)
-     
       //console.log(menuArray)
      
     })
     
   }
-  const getBlog = () =>{
-    api.post('/getMenuServices').then(res=>{
-     
-      let loopData = res.data.data
-      var result = loopData.reduce(function (r, a) {
-          r[a.category_title] = r[a.category_title] || [];
-          r[a.category_title].push(a);
-          return r;
-      }, Object.create(null));
-     
-      let menuArray = [];
-      Object.keys(result).forEach(function(key, index) {
-        menuArray.push({category_title:key,value:result[key]})
-      });
-      setsubMenu(menuArray)
-     
-      //console.log(menuArray)
-     
-    })
-    
-  }
- 
   const getFormatedText = (section_title) =>{
     var formatedd = section_title.toLowerCase()
     return formatedd.split(' ').join('-')
   }
-  const getFormatedText1 = (category_title) =>{
-    var formatedd = category_title.toLowerCase()
-    return formatedd.split(' ').join('-')
-  }
+ console.log('menu values', menus)
   return (
     <>
      <div style={style} className="naviagtion naviagtion-white fixed-top transition">
     <div className="container">
-      <nav className="navbar navbar-expand-lg navbar-light p-0">
+     <nav className="navbar navbar-expand-lg navbar-light p-0">
       <a className="navbar-brand p-0" href=""><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" 
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
   
           <div className="collapse navbar-collapse text-center" id="navigation">
           <ul className="navbar-nav mx-auto">
+            
            {menus.map(data=>{
             if(data.value.length > 1 ){
               let submenu = data.value
-              
+              let subcatmenu =data.value
+              let x = ' '
+              let dup = 0 
               return ( <li className="nav-item dropdown">
               <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{data.section_title}</a>
               <div className="dropdown-menu">
-              
-                 {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.category_title}</p></Link>))}          
-                <ul className="navbar-nav mx-auto">
-           {submenus.map(data=>{
-            if(data.value.length > 1 ){
-              let submen = data.value
-              
-              return ( <li className="nav-item dropdown">
+                {submenu.map(option=>{ 
+                  if(option.sub_category_id > 0){                    
+                    if(x == option.category_title){
+                      dup = 1
+                    }else{
+                      dup = 0
+                      x = option.category_title
+                    }
+                    if(dup ==0){
+                    return (   
+                      <li className="nav-item dropdown">
+                     <a className="subnav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">{option.category_title}</a>
+                {/*  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}> */}
+                  {/* <p className="dropdown-item text-color text-dark" >{option.category_title}</p> */}
+                  <div className="dropdown-submenu">
+                    <li>
+                  {/* {subcatmenu.map(option1=>{
+                    if(option1.category_title == option.category_title){ */}
+                  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)+'/'+getFormatedText(option.sub_category_title)}>
+                  <p className="dropdown-subitem text-color text-dark" >{option.sub_category_title}</p> </Link>
+                    </li>
+                    {/* }})} */}
+                  </div>  
+                      </li>
+                   )
+                  }else{
+                    return (   
+                      <li>                     
+                  <div className="dropdown-submenu1">
+                    <li>
+                  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)+'/'+getFormatedText(option.sub_category_title)}>
+                  <p className="dropdown-subitem1 text-color text-dark" >{option.sub_category_title}</p> </Link>
+                    </li>
+                  </div>  
+                      </li>
+                   )
+                  }
+                }
+                    else{
+                      return(<Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}>
+                       <p className="dropdown-item text-color text-dark" >{option.category_title}</p>
+                        
+                          </Link> )}
+                 
+                                 })}
+              </div>
               </li>)
-            }else{
-              
-              return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
-             <a className="nav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">{data.category_title}</a>
-               <div className="dropdown-menu1">
-                {submenu.map(option=>( <Link to={'/'+option.seo_title+'/'+getFormatedText1(option.category_title)+'/'+getFormatedText(option.category_title)}><p className="dropdown-item text-color text-dark" >{option.sub_category_title}</p></Link>))}          
-                </div>
-            </li></Link>)
-            }
-           })}
-           </ul>
-                           </div>
-           
-              
-            
-            </li>)
             }else{
               return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
               <a className="nav-link text-dark" href="">{data.section_title}</a>
             </li></Link>)
             }
            })}
-           
             {/* <li className="nav-item">
               <a className="nav-link text-dark text-capitalize" href="about.html">Home</a>
             </li>
@@ -152,7 +148,6 @@ export default function Header({style}) {
               <a className="nav-link text-dark text-capitalize" href="contact.html">Contact Us</a>
             </li> */}
           </ul>
-        
           <a href="/#/contact-us" className="btn btn-outline-primary text-white ml-3">Enquiry now</a>
           </div>
       </nav>
