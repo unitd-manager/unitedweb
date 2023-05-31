@@ -166,7 +166,6 @@ const getFormatedText = (title) =>{
                             state={{ data: data }}
                             className="link"
                           >
-                            
                             <div className="card border-0 shadow rounded-xs">
                               <img
                                 src={`${imageBase}${data.file_name}`}
@@ -281,7 +280,10 @@ const getFormatedText = (title) =>{
           {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
           <div class="media-body">
            
-            <h6 class="mt-0"><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h6>
+            <h6 class="mt-0"> <Link
+                            to={getFormatedText(data.title)}
+                            state={{ data: data }}
+                            className="text-dark">{data.title}</Link></h6>
             
           </div>
           </li>

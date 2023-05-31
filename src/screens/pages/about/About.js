@@ -232,9 +232,7 @@ const Mail = () => {
             <button type="submit" onClick={() => { 
                 AboutUsSubmit();
                 Mail();
-              //   setTimeout(() => {
-              //     window.location.reload()
-              // }, 1000);
+             
               }} class="btn btn-primary">Submit Now</button>
           </div>
         </form>

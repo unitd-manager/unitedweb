@@ -12,6 +12,7 @@ import Error from "./screens/pages/Error";
 import ProductDetail from "./screens/pages/Products/ProductDetails";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
+import {Helmet} from "react-helmet";
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
     <>
       <HashRouter>
         <Header />
-
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

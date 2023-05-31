@@ -43,9 +43,9 @@ export default function Header({style}) {
     <>
      <div style={style} className="naviagtion naviagtion-white fixed-top transition">
     <div className="container">
-      <nav className="navbar navbar-expand-lg navbar-light p-0">
+     <nav className="navbar navbar-expand-lg navbar-light p-0">
       <a className="navbar-brand p-0" href=""><img style={{width:200,height:100}} src="logo-dark.svg" alt="Agico" /></a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" 
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -73,7 +73,7 @@ export default function Header({style}) {
                     }
                     if(dup ==0){
                     return (   
-                      <li>
+                      <li className="nav-item dropdown">
                      <a className="subnav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{option.category_title}</a>
                 {/*  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}> */}
