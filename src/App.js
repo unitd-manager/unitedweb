@@ -15,12 +15,13 @@ import Footer from "./layouts/Footer";
 import {Helmet} from "react-helmet";
 
 
+
 function App() {
   return (
     <>
       <HashRouter>
         <Header />
-        
+     
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

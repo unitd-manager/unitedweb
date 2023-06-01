@@ -56,7 +56,7 @@ export default function Header({style}) {
            {menus.map(data=>{
             if(data.value.length > 1 ){
               let submenu = data.value
-              let subcatmenu =data.value
+              let subcatmenu = data.value
               let x = ' '
               let dup = 0 
               return ( <li className="nav-item dropdown">
@@ -72,36 +72,36 @@ export default function Header({style}) {
                       x = option.category_title
                     }
                     if(dup ==0){
-                    return (   
-                      <li className="nav-item dropdown">
+                    return (
+                      <li className="subnav-item dropdown">
                      <a className="subnav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{option.category_title}</a>
-                {/*  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}> */}
-                  {/* <p className="dropdown-item text-color text-dark" >{option.category_title}</p> */}
-                  <div className="dropdown-submenu">
-                    <li>
+                    <div className="dropdown-submenu">
+                    {subcatmenu.map(option1=>{
+                    if(option1.category_title == x){
+                      return(
+                      <Link to={'/'+option.seo_title+'/'+getFormatedText(option1.category_title)+'/'+getFormatedText(option1.sub_category_title)}>
+                       <p className="dropdown-subitem text-color text-dark" >{option1.sub_category_title}</p> </Link>
+                      )
+                    }})}
+                    </div>
+                    </li>
+                    )
+                    }
+                    
+                  //   else{
+                  //     return(
+                  // <div className="dropdown-submenu">
+                  //   <li>
                   {/* {subcatmenu.map(option1=>{
                     if(option1.category_title == option.category_title){ */}
-                  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)+'/'+getFormatedText(option.sub_category_title)}>
-                  <p className="dropdown-subitem text-color text-dark" >{option.sub_category_title}</p> </Link>
-                    </li>
+                  // <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)+'/'+getFormatedText(option.sub_category_title)}>
+                  // <p className="dropdown-subitem text-color text-dark" >{option.sub_category_title}</p> </Link>
+                  //   </li>
                     {/* }})} */}
-                  </div>  
-                      </li>
-                   )
-                  }else{
-                    return (   
-                      <li>                     
-                  <div className="dropdown-submenu1">
-                    <li>
-                  <Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)+'/'+getFormatedText(option.sub_category_title)}>
-                  <p className="dropdown-subitem1 text-color text-dark" >{option.sub_category_title}</p> </Link>
-                    </li>
-                  </div>  
-                      </li>
-                   )
-                  }
-                }
+                  // </div>  )}
+                      // </li>
+             }
                     else{
                       return(<Link to={'/'+option.seo_title+'/'+getFormatedText(option.category_title)}>
                        <p className="dropdown-item text-color text-dark" >{option.category_title}</p>
