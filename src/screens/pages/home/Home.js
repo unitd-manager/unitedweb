@@ -11,6 +11,7 @@ import api from '../../../constants/api';
 import ReactHtmlParser from 'react-html-parser';
 import { Link,useNavigate } from 'react-router-dom';
 import imageBase from "../../../constants/image.js"
+import {Helmet} from "react-helmet";
 
 
 export default function Home() {
@@ -232,7 +233,7 @@ const sendMail = () => {
   }
   return (
     <>
-  
+        
   <section className="hero-area hero-area-lg position-relative">
   <div className="container">
     <div className="row align-items-center">
@@ -271,8 +272,10 @@ const sendMail = () => {
       {products.map((data,index)=>{
         if(index%2 !== 0){
           return ( 
+            
            
           <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up" style={{height:200}}>
+            
              <Link to={data.external_link} className="link">
           <div className="text-center position-relative px-4 py-5 rounded-lg shadow card-active" >
             <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image"/>

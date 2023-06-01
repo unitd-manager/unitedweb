@@ -4,7 +4,7 @@ import api from "../../../constants/api";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ReactHtmlParser from "react-html-parser";
-import { Helmet } from "react-helmet";
+
 
 const ScreenDetail = () => {
   const [products, setProducts] = useState([]);
@@ -74,10 +74,10 @@ const ScreenDetail = () => {
                 >
                   <div class="position-relative px-4 py-5 ">
                     <h3 class="pt- pb-3 text-capitalize card-title">
-                    <Helmet>
+                    {/* <Helmet>
                 <title>{data.title}</title>
                 <meta name="description" content={data.title}></meta>
-              </Helmet>
+              </Helmet> */}
                       {data.title}
                     </h3>
                     {ReactHtmlParser(data.description)}  

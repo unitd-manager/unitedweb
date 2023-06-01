@@ -912,16 +912,16 @@ textarea.form-control {
   opacity: 1;
   transform: scaleX(1);
 }
-/* .dropdown-submenu{
+.dropdown-submenu{
   display:none;
 }
 .dropdown-menu:hover .dropdown-submenu{
   display: block;
   position: absolute;
-  left: 0;
-  top:100%;
+  left: 102%;
+  top:10%;
   background-color: rgb(252, 252, 252);
-} */
+}
 /* .dropdown-submenu1{
   display:none;
 }
@@ -969,14 +969,14 @@ textarea.form-control {
   opacity: 1;
   transform: scaleX(1);
 }
-.navbar .dropdown-submenu:hover .dropdown-submenu1 {
+/* .navbar .dropdown-submenu:hover .dropdown-submenu1 {
   visibility: visible;
   opacity: 1;
   transform: scaleX(1);
-}
+} */
 .navbar .dropdown-menu {
   box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
-  padding: 15px;
+  padding: 5px;
   border: 0;
   top: 50px;
   left: -20px;
@@ -986,8 +986,9 @@ textarea.form-control {
   transition: 0.3s ease;
   opacity: 0;
   transform: scale(0.8);
-  background: linear-gradient(80deg, rgb(248, 249, 255) 0%, rgb(255, 255, 255) 100%);
+ background: linear-gradient(80deg, rgb(252, 252, 255) 0%, rgb(255, 255, 255) 100%);
 }
+
 @media (max-width: 991px) {
   .navbar .dropdown-menu {
     display: none;
@@ -1006,6 +1007,7 @@ textarea.form-control {
     display: block;
   }
 }
+
 .navbar .dropdown-item {
   position: relative;
   color: #fff;
@@ -1018,17 +1020,10 @@ textarea.form-control {
   color: #fff;
   transition: 0.2s ease;
   font-family: "Poppins", sans-serif;
-  padding: 0px 38px;
+  padding: 0px 68px;
   padding: auto;
 }
-.navbar .dropdown-subitem1 {
-  position: relative;
-  color: #fff;
-  transition: 0.2s ease;
-  font-family: "Poppins", sans-serif;
-  padding: 0px 38px;
-  padding: auto;
-}
+
 @media (max-width: 991px) {
   .navbar .dropdown-item {
     text-align: center;
@@ -1038,6 +1033,10 @@ textarea.form-control {
   margin-bottom: 10px;
 }
 .navbar .dropdown-item:hover {
+  color: rgb(196, 196, 196) !important;
+  background: transparent;
+}
+.navbar .dropdown-subitem:hover {
   color: rgb(196, 196, 196) !important;
   background: transparent;
 }
