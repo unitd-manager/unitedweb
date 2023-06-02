@@ -74,14 +74,14 @@ export default function Header({style}) {
                     if(dup ==0){
                     return (
                       <li className="subnav-item dropdown">
-                     <a className="subnav-link text-dark dropdown-toggle" href="#" data-toggle="dropdown"
+                     <a className="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{option.category_title}</a>
                     <div className="dropdown-submenu">
                     {subcatmenu.map(option1=>{
                     if(option1.category_title == x){
                       return(
                       <Link to={'/'+option.seo_title+'/'+getFormatedText(option1.category_title)+'/'+getFormatedText(option1.sub_category_title)}>
-                       <p className="dropdown-subitem text-color text-dark" >{option1.sub_category_title}</p> </Link>
+                       <p className="dropdown-item text-color text-dark" >{option1.sub_category_title}</p> </Link>
                       )
                     }})}
                     </div>

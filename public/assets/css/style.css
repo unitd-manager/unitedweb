@@ -892,13 +892,13 @@ textarea.form-control {
   font-size: 15px;
   font-weight: 500;
   padding: 4px 24px;
-  font-family: "Poppins", sans-serif;
+
   transition: all ease 0.3s;
   
 }
 @media (max-width: 1200px) {
   .navbar .nav-item .subnav-link {
-    padding: 50px 25px;
+    padding: 50px 35px;
   }
 }
 .navbar .nav-item .nav-link.active {
