@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
+    "basic-ftp": "^5.0.3",
     "buffer": "^6.0.3",
     "deploy": "^1.0.3",
     "emailjs-com": "^3.2.0",
