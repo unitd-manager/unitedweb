@@ -106,14 +106,19 @@ const sendMail = () => {
   if (
     contact.name  &&
     contact.email &&
-    contact.message        ) {
+    contact.message     ) {
     const dynamic_template_data= 
     {name:contact.name,
     email:contact.email,
-    message:contact.message};
+    message:contact.message,
+    phone:contact.phone,
+    products:product.join(','),
+    services:service.join(',')
+    };
   api
-    .post('/sendemail',{dynamic_template_data})
+    .post('/sendenquiryemail',{dynamic_template_data})
     .then(() => {
+      alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
     })
     
   }
@@ -231,10 +236,18 @@ const sendMail = () => {
     var formatedd = title.toLowerCase()
     return formatedd.split(' ').join('-')
   }
+  
+  
+ 
   return (
     <>
-        
-  <section className="hero-area hero-area-lg position-relative">
+    
+          <section className="hero-area hero-area-lg position-relative">
+            <Helmet>
+              <meta charSet='utf-8' />
+              <title>Cubosale</title>
+              <meta name="description" content="Digital Marketing"></meta>
+            </Helmet>
   <div className="container">
     <div className="row align-items-center">
       <div className="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
@@ -316,14 +329,12 @@ const sendMail = () => {
       </div>
       {services.map(data=>(
         <div onClick={()=>{getServiceDetail(data.title)}}  className="col-lg-3 col-sm-6 mb-4 mb-lg-0" data-aos="fade-right" >
-         <Link to={data.internal_link} className="link"></Link>
+         
             <div className="card border-0 shadow rounded-xs pt-5 h-100">
-            
               <div className="card-body">
                 <i className="fa fa-desktop icon-lg icon-blue icon-bg-blue icon-bg-circle mb-3"></i>
                 <h4 className="mt-4 mb-3">{data.title}</h4>
                 <p>{ReactHtmlParser(data.description)}</p>
-               
               </div>
             </div>
         
@@ -437,8 +448,7 @@ const sendMail = () => {
       <Slider {...settings2}>
         {blogs && blogs.slice(0, 5).map(data=>(
           <div className="px-3 mb-5">
-         <Link
-                            to={'/'+'blogs'+'/'+getFormatedText(data.title)}
+         <Link to={'/'+'blogs'+'/'+getFormatedText(data.title)}
                             state={{ data: data }}
                             className="link"
                           >
