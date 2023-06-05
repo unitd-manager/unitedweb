@@ -265,7 +265,9 @@ a.text-light:hover {
 .text-dark {
   color: #242f3e !important;
 }
-
+.text-dark1 {
+  color: #242f3e !important;
+}
 .text-secondary {
   color: rgba(33,90,174,1) !important;
 }
@@ -423,9 +425,10 @@ a.text-light:hover {
 }
 
 .section {
-  padding-top: 140px;
+  padding-top: 120px;
   padding-bottom: 140px;
 }
+
 @media (max-width: 991px) {
   .section {
     padding-top: 100px;
@@ -450,6 +453,8 @@ a.text-light:hover {
 }
 .section-title {
   margin-bottom: 38px;
+  padding-top: 10px;
+  padding-bottom: 100px;
 }
 
 .subtitle {
@@ -489,11 +494,12 @@ a.text-light:hover {
 }
 
 .translate-top {
-  transform: translateY(-200px);
+  transform: translateY(-250px);
 }
-@media (max-width: 767px) {
+@media (max-width: 764px) {
   .translate-top {
     transform: translateY(-150px);
+    
   }
 }
 
@@ -892,19 +898,26 @@ textarea.form-control {
   font-size: 15px;
   font-weight: 500;
   padding: 4px 24px;
-  font-family: "Poppins", sans-serif;
+  font-family: "", sans-serif;
+  color: light grey;
   transition: all ease 0.3s;
   
 }
 @media (max-width: 1200px) {
   .navbar .nav-item .subnav-link {
-    padding: 50px 25px;
+    padding: 50px 35px;
   }
 }
 .navbar .nav-item .nav-link.active {
   color: rgb(252, 252, 252);
 }
 .navbar .nav-item .nav-link:hover {
+  color: rgb(255, 255, 255) !important;
+}
+.navbar .nav-subitem .subnav-link.active {
+  color: rgb(252, 252, 252);
+}
+.navbar .nav-subitem .subnav-link:hover {
   color: rgb(255, 255, 255) !important;
 }
 .navbar .dropdown:hover .dropdown-menu {
@@ -951,19 +964,7 @@ textarea.form-control {
   background-color: rgb(252, 252, 252);
 
 } */
-/* .dropdown-menus1{
-  color: rgb(252, 252, 252);
-  display: block;
-  position: absolute;
-  left: 0;
-  top:100%;
-  background-color: rgb(252, 252, 252);
-}
-.dropdown-menus1 li{
-  color: rgb(252, 252, 252);
-  display: block;
-  margin: 10px;
-} */
+
 .navbar .dropdown:hover .dropdown-submenu {
   visibility: visible;
   opacity: 1;
