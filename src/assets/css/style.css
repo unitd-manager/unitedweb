@@ -863,6 +863,9 @@ textarea.form-control {
 .naviagtion.naviagtion-white .dropdown-item {
   color: #ffffff;
 }
+.naviagtion.naviagtion-white .dropdown-submenu {
+  color: #ffffff;
+}
 
 .navbar .nav-item .nav-link {
   font-size: 16px;
@@ -935,6 +938,24 @@ textarea.form-control {
   margin-bottom: 10px;
 }
 .navbar .dropdown-item:hover {
+  color: rgb(196, 196, 196) !important;
+  background: transparent;
+}
+.navbar .dropdown-submenu {
+  position: relative;
+  color: #fff;
+  transition: 0.2s ease;
+  font-family: "Poppins", sans-serif;
+}
+@media (max-width: 991px) {
+  .navbar .dropdown-submenu {
+    text-align: center;
+  }
+}
+.navbar .dropdown-submenu:not(:last-child) {
+  margin-bottom: 10px;
+}
+.navbar .dropdown-submenu:hover {
   color: rgb(196, 196, 196) !important;
   background: transparent;
 }
