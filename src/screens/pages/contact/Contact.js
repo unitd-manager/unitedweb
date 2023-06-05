@@ -1,13 +1,21 @@
-import React from 'react'
+import React,{useState} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../../../constants/api';
 // import * as Yup from 'yup';
 
 export default function Contact() {
+  const [email, setEmail] = useState();
+  const [companyname, setCompanyName] = useState();
+  const [address, setAddress] = useState();
+  const [contact, setContact] = useState();
 
   React.useEffect(() => {
     AOS.init();
+    getEmail();
+    getCompanyName();
+    getAddress();
+    getMobile();
     //getBlogs()
     window.scrollTo(0,0)
    
@@ -19,8 +27,6 @@ export default function Contact() {
 
     let name, value;
 
-
-    
   const handleChange = (e) => {
    
     name = e.target.name;
@@ -75,7 +81,29 @@ const sendMail = () => {
 
 };
 
+const getEmail = () =>{
+  api.get('/getEmail').then(res=>{
+    setEmail(res.data.data[0])
+   })
+}
 
+const getCompanyName= () =>{
+  api.get('/getCompanyName').then(res=>{
+    setCompanyName(res.data.data[0])
+   })
+}
+
+const getAddress = () =>{
+  api.get('/getAddress').then(res=>{
+    setAddress(res.data.data[0])
+   })
+}
+
+const getMobile = () =>{
+  api.get('/getContacts').then(res=>{
+    setContact(res.data.data[0])
+   })
+}
 
   return (<>
 
@@ -148,7 +176,7 @@ const sendMail = () => {
               <div class="pl-3">
                 <h6 class="text-dark">Address</h6>
                 <ul class="list-unstyled">
-                  <li>United Technologies Pte Ltd 10 Jalan Besar #15-02A Sim Lim Tower Singapore - 208787</li>
+               <li>{companyname&&companyname.companyname}{address&&address.address}</li>
                 </ul>
               </div>
             </li>
@@ -158,7 +186,7 @@ const sendMail = () => {
                 <h6 class="text-dark">Email</h6>
                 <ul class="list-unstyled">
 
-                  <li><a class="text-dark" href="mailto:enquiry@usoftsolutions.com">admin@unitdtechnologies.com</a></li>
+                  <li><a class="text-dark" href="mailto:enquiry@usoftsolutions.com"> {email&&email.mailId}</a></li>
                 </ul>
               </div>
             </li>
@@ -167,7 +195,7 @@ const sendMail = () => {
               <div class="pl-3">
                 <h6 class="text-dark">Phone</h6>
                 <ul class="list-unstyled">
-                  <li><a className="text-dark" href="tel:+65 6396 7554">+65 6396 7554</a></li>
+                  <li><a className="text-dark" href="tel:+65 6396 7554">{contact&&contact.phone}</a></li>
                 </ul>
               </div>
             </li>

@@ -24,7 +24,7 @@ function App() {
   const getAboutContent = () => {
     api.get("/getAboutUs", { recordType: "Record" }).then((res) => {
       setAbout(res.data.data);
-      console.log("About us", res.data.data);
+      
       api
       .post("/getBlogImage", {recordType:"picture"})
       .then((res) => {
@@ -51,9 +51,9 @@ function App() {
                 <div class="col-md-12 align-self-center pl-lg-4">
                    <Helmet>
               <meta charSet='utf-8' />
-              <title>{data.title}</title>
+              <title>{data.meta_title}</title>
               <meta name="description" content="Digital Marketing"></meta>
-              <meta name="keyword" content=""></meta>
+              <meta name="keyword" content="test"></meta>
             </Helmet>
             </div>
               )})}

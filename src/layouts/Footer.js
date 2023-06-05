@@ -4,22 +4,24 @@ import AOS from 'aos';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
-  const [footerAbout, setFooterAbout] = useState('')
   const [menus, setMenus] = useState([])
+  const [email, setEmail] = useState();
+  const [companyname, setCompanyName] = useState();
+  const [address, setAddress] = useState();
+  const [contact, setContact] = useState();
 
   React.useEffect(() => {
     AOS.init();
-  getAboutContent()
-  getBlogs()
+    getBlogs();
+    getAddress();
+    getCompanyName();
+    getMobile();
+    getEmail();
     window.scrollTo(0,0)
    
   }, [])
 
-  const getAboutContent = () =>{
-    api.post('/getContent',{recordType:'About Us Footer'}).then(res=>{
-      setFooterAbout(res.data.data[0].description)
-    })
-  }
+
 
   const getBlogs = () =>{
     api.post('/getMenu').then(res=>{
@@ -42,6 +44,29 @@ export default function Footer() {
     
   }
 
+  const getEmail = () =>{
+    api.get('/getEmail').then(res=>{
+      setEmail(res.data.data[0])
+     })
+  }
+  
+  const getCompanyName= () =>{
+    api.get('/getCompanyName').then(res=>{
+      setCompanyName(res.data.data[0])
+     })
+  }
+  
+  const getAddress = () =>{
+    api.get('/getAddress').then(res=>{
+      setAddress(res.data.data[0])
+     })
+  }
+  
+  const getMobile = () =>{
+    api.get('/getContacts').then(res=>{
+      setContact(res.data.data[0])
+     })
+  }
   return (
     <>
     <footer className="bg-secondary">
@@ -61,31 +86,26 @@ export default function Footer() {
           <div className="col-md-3 col-sm-6">
             <h4 className="text-white mb-4">Services</h4>
             <ul className="list-styled list-hover-underline">
-                {menus.map(data => {
-                  return(
-                    <Link to={'/'+data.value[0].seo_title}><li className="nav-item">
-                      <a className="nav-link text-light" href="">{data.section_title}</a>
-                    </li></Link>
-                  )
-                })}
-
-
-              {/* <li className="mb-3 text-light"><a href="about.html" className="text-light">Company History</a></li>
-              <li className="mb-3 text-light"><a href="about.html" className="text-light">About us</a></li>
-              <li className="mb-3 text-light"><a href="contact.html" className="text-light">Contact us</a></li>
-              <li className="mb-3 text-light"><a href="services.html" className="text-light">Services</a></li>
-              <li className="mb-3 text-light"><a href="#" className="text-light">Privacy Policy</a></li> */}
+            
+           {menus.map(data=>{
+            if(data.value.length > 1 ){
+              let submenu = data.value
+             
+            }else{
+              return (<Link to={'/'+data.value[0].seo_title}><li className="nav-item">
+              <a className="nav-link text-light" href="">{data.section_title}</a>
+            </li></Link>)
+            }
+           })}
             </ul>
           </div>
           <div className="col-lg-3 col-md-4 col-sm-6">
             <h4 className="text-white mb-4">Contact Info</h4>
-            <p className="text-light"> United Technologies Pte Ltd</p>
-            <p className="text-light1">10 Jalan Besar
-                #15-02A Sim Lim Tower
-                Singapore - 208787</p>
+            <p className="text-light"> {companyname&&companyname.companyname}</p>
+            <p className="text-light1">{address&&address.address}</p>
             <ul className="list-unstyled">
-              <li className="mb-3"><a className="text-light" href="tel:+65 6396 7554">+65 6396 7554</a></li>
-              <li className="mb-3"><a className="text-light" href="mailto:admin@unitdtechnologies.com">admin@unitdtechnologies.com</a></li>
+              <li className="mb-3"><a className="text-light" href="tel:+65 6396 7554">{contact&&contact.phone}</a></li>
+              <li className="mb-3"><a className="text-light" href="mailto:admin@unitdtechnologies.com">{email&&email.mailId}</a></li>
             </ul>
           </div>
         </div>

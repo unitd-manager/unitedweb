@@ -399,7 +399,7 @@ const sendMail = () => {
   </div>
 </section>
 
-<section className="bg-light py-5">
+
   <div className="bg-gradient-primary section bg-triangles">
     <div className="container">
       <div className="row">
@@ -434,9 +434,9 @@ const sendMail = () => {
       </div>
     </div>
   </div>
-</section>
 
-<section  className="section" >
+
+<section  className="section" style={{paddingTop:0}}>
 <div className="container">
   <div className="row">
     <div className="col-12">
@@ -470,7 +470,7 @@ const sendMail = () => {
 </div>
 </section>
 
-<section style={{paddingTop:10}} className="section">
+<section className="section">
   <div className="container">
     <div className="row">
       <div className="col-12 text-center">

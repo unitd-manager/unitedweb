@@ -73,8 +73,8 @@ export default function Header({style}) {
                     }
                     if(dup ==0){
                     return (
-                      <li className="subnav-item dropdown">
-                     <a className="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown"
+                      <li className="nav-item dropdown">
+                     <a className="dropdown-item text-color text-dark1 dropdown-toggle" href="#" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{option.category_title}</a>
                     <div className="dropdown-submenu">
                     {subcatmenu.map(option1=>{
