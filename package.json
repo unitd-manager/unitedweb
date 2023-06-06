@@ -13,6 +13,7 @@
     "buffer": "^6.0.3",
     "deploy": "^1.0.3",
     "emailjs-com": "^3.2.0",
+    "formik": "^2.4.1",
     "moment": "^2.29.4",
     "pretty-checkbox": "^3.0.3",
     "pretty-checkbox-react": "^3.2.0",

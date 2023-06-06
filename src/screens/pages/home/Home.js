@@ -120,7 +120,7 @@ const sendMail = () => {
     .then(() => {
       alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
     })
-    
+    alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
   }
  else {
   applyChanges();
@@ -513,9 +513,9 @@ const sendMail = () => {
              
               onEquirySubmit();
               sendMail();
-            //   setTimeout(() => {
-            //     window.location.reload()
-            // }, 1000);
+              setTimeout(() => {
+                window.location.reload()
+            }, 1000);
             }} type="button" className="btn btn-primary">Submit Now</button>
           </div>
         </form>
