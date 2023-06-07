@@ -197,6 +197,11 @@ const getMobile = () =>{
         placeholder="message"
         rules={[
           {
+            type: 'textarea',
+        max:100
+          },
+          {
+            
             required: true,
             message: 'Please input your message!',
           },
