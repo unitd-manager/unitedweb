@@ -112,7 +112,7 @@ const sendMail = () => {
     email:contact.email,
     message:contact.message,
     phone:contact.phone,
-    products:product.join(','),
+    products:contact.product,
     services:service.join(',')
     };
   api
@@ -436,7 +436,7 @@ const sendMail = () => {
   </div>
 
 
-<section  className="section" style={{paddingTop:0}}>
+<section  className="section1" >
 <div className="container">
   <div className="row">
     <div className="col-12">
@@ -470,7 +470,7 @@ const sendMail = () => {
 </div>
 </section>
 
-<section className="section">
+<section style={{paddingTop:10}} className="section">
   <div className="container">
     <div className="row">
       <div className="col-12 text-center">

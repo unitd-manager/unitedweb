@@ -265,9 +265,7 @@ a.text-light:hover {
 .text-dark {
   color: #242f3e !important;
 }
-.text-dark1 {
-  color: #242f3e !important;
-}
+
 .text-secondary {
   color: rgba(33,90,174,1) !important;
 }
@@ -425,10 +423,9 @@ a.text-light:hover {
 }
 
 .section {
-  padding-top: 120px;
+  padding-top: 140px;
   padding-bottom: 140px;
 }
-
 @media (max-width: 991px) {
   .section {
     padding-top: 100px;
@@ -454,9 +451,18 @@ a.text-light:hover {
 .section-title {
   margin-bottom: 38px;
   padding-top: 10px;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
 }
-
+.section-title1 {
+  margin-bottom: 38px;
+  padding-top: 10px;
+ 
+}
+.section1 {
+  margin-bottom: 35px;
+  padding-top: 0px;
+  padding-bottom: 60px;
+}
 .subtitle {
   text-transform: capitalize;
   font-size: 18px;
@@ -494,9 +500,9 @@ a.text-light:hover {
 }
 
 .translate-top {
-  transform: translateY(-250px);
+  transform: translateY(-180px);
 }
-@media (max-width: 764px) {
+@media (max-width: 7px) {
   .translate-top {
     transform: translateY(-150px);
     

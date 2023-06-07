@@ -169,7 +169,7 @@ export default function About() {
                 <div class="col-md-12 align-self-center pl-lg-4">
                   
                   <h2
-                    class="section-title"
+                    class="section-title1"
                     data-aos="fade-up"
                     data-aos-delay="200"
                   >
