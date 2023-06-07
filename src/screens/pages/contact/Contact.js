@@ -2,6 +2,8 @@ import React,{useState} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../../../constants/api';
+import { Button, Form, Input,Card, Col,Row,message } from 'antd';
+
 // import * as Yup from 'yup';
 
 export default function Contact() {
@@ -56,7 +58,7 @@ export default function Contact() {
       });
       console.log(user)
     } else {
-      alert('Please fill all required fields.', 'error');
+      // alert('Please fill all required fields.', 'error');
     }
     }
     
@@ -134,34 +136,89 @@ const getMobile = () =>{
         <h2 class="section-title">Leave A Message</h2>
       </div>
       <div class="col-lg-6 text-center">
-        <form action="#" class="row" >
+      <div className='container center'>
+      <Row >
+        <Col md="3"></Col>
+        <Col md="6">
+    <Card title="Contact-Us" >
+    <Form
+      name="normal_login"
+      className="login-form"
+      initialValues={{
+        remember: true,
+      }}
+    >
+       <Form.Item
+        name="name"
+                rules={[
+          {
+            required: true,
+            message: 'Please input your name!',
+          },
+        ]}
+      >
+         <Input 
+          type="text"
+          name='name'
+          value={user.name} 
+          onChange={(event) => handleChange(event)}
+          placeholder="name"
+        />
+      </Form.Item>
+      <Form.Item
+        name="email"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Email!',
+          },
+        ]}
+      >
+         <Input 
+          type="email"
+          name='email'
+          value={user.email} 
+          onChange={(event) => handleChange(event)}
+          placeholder="email"
+        />
        
+      </Form.Item>
+      <Form.Item
+        name="message"
+        placeholder="message"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your message!',
+          },
+        ]}
+      >
+         <Input 
+          type="textarea"
+          name='message'
+          value={user.message} 
+          onChange={(event) => handleChange(event)}
+          placeholder="message"
+        />
+      </Form.Item>
+     
 
-          <div class="col-lg-6">
-            <input type="text" class="form-control mb-4" placeholder="Name*" name="name" value={user.name} onChange={(event) => handleChange(event)}/>
-          </div>
-         
-          <div class="col-12">
-            <input type="text" class="form-control mb-4" placeholder="Email*" name="email" 
-            value={user.email} 
-            onChange={(event) => handleChange(event)}/>
-          </div>
-          <div class="col-12">
-            <textarea name="message" class="form-control mb-4" placeholder="Message*" value={user.message} onChange={(event) => handleChange(event)}></textarea>
-          </div>
-          <div class="col-8">
-          <button 
-              color="success"
-              onClick={() => { 
-                
-                ContactSubmit();
-                sendMail();
-                setTimeout(() => {
-                  window.location.reload()
-              }, 1000);
-              }}type="button" className="btn btn-primary">Submit Now</button>
-          </div>
-        </form>
+      <Form>
+        <Button type="primary"  onClick={() => {
+                      ContactSubmit();
+                      sendMail();
+                    }} htmlType="submit"  class="btn btn-primary"
+                    >
+          Submit
+        </Button>
+      </Form>
+    </Form>
+    </Card>
+    </Col>
+    <Col md="3"></Col>
+    </Row>
+    </div>
+  
         </div>
     
 
