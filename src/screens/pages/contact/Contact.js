@@ -76,6 +76,9 @@ const sendMail = () => {
     .post('/sendemail',{dynamic_template_data})
     .then(() => {
       alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
+      setTimeout(() => {
+        window.location.reload()
+    }, 1000);
     })  
   } else {
    applyChanges()
@@ -151,6 +154,7 @@ const getMobile = () =>{
        <Form.Item
         name="name"
                 rules={[
+                  
           {
             required: true,
             message: 'Please input your name!',
@@ -167,7 +171,12 @@ const getMobile = () =>{
       </Form.Item>
       <Form.Item
         name="email"
+        
         rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
           {
             required: true,
             message: 'Please input your Email!',
@@ -220,9 +229,6 @@ const getMobile = () =>{
     </div>
   
         </div>
-    
-
-
       <div class="col-lg-6">
         <div class="p-5 rounded-xs shadow">
           <h3 class="text-dark">Keep in Touch</h3>
