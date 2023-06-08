@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import api from '../../../constants/api';
-import { Button, Form, Input,Card, Col,Row,message } from 'antd';
+import { Button, Form, Input,message } from 'antd';
 
 // import * as Yup from 'yup';
 
@@ -39,28 +39,16 @@ export default function Contact() {
     // email = e.target.email
     // message = e.target.message
 }
-  const ContactSubmit = () =>{
-    if (
-        user.name  &&
-        user.email &&
-        user.message        ) {
-      api.post('/addContact',{
-        name:user.name,
-        email:user.email,
-        message:user.message
-      }).then((res)=>{
-              console.log(res)
-              // alert('Record created successfully', 'success'); 
-      })
-      .catch(() => {
-        alert('Unable to edit record.', 'error');
-       
-      });
-      console.log(user)
-    } else {
-      // alert('Please fill all required fields.', 'error');
-    }
-    }
+    const onFinish = (values) => {
+      console.log('Received values of form: ', values); 
+      api.post('/addContact',values).then((res)=>{
+        console.log(res.data.data)
+        return message.error("Registered Successfully ");
+            }).catch(err=>{console.log(err)})
+          };
+   const onFinishFailed = (errorInfo) => {
+            console.log('Failed:', errorInfo);
+          };
     
 //Email
 const sendMail = () => {
@@ -140,21 +128,20 @@ const getMobile = () =>{
       </div>
       <div class="col-lg-6 text-center">
       <div className='container center'>
-      <Row >
-        <Col md="3"></Col>
-        <Col md="6">
-    <Card title="Contact-Us" >
     <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
+      name="basic"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      style={{ maxWidth: 600 }}
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete="off"
+
     >
        <Form.Item
         name="name"
-                rules={[
-                  
+                rules={[     
           {
             required: true,
             message: 'Please input your name!',
@@ -207,32 +194,23 @@ const getMobile = () =>{
           },
         ]}
       >
-         <Input 
-          type="textarea"
+         <Input.TextArea showCount maxLength={100} 
           name='message'
           value={user.message} 
           onChange={(event) => handleChange(event)}
           placeholder="message"
         />
       </Form.Item>
-     
-
-      <Form>
-        <Button type="primary"  onClick={() => {
-                      ContactSubmit();
-                      sendMail();
-                    }} htmlType="submit"  class="btn btn-primary"
-                    >
+    <Form.Item>
+        <Button type="primary" onClick={()=>{
+             sendMail();
+           }} shape="round" size={'large'} htmlType="submit"  className="login-form-button" >
           Submit
         </Button>
-      </Form>
+      </Form.Item>
     </Form>
-    </Card>
-    </Col>
-    <Col md="3"></Col>
-    </Row>
+    
     </div>
-  
         </div>
       <div class="col-lg-6">
         <div class="p-5 rounded-xs shadow">
