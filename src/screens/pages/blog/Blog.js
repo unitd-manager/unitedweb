@@ -40,7 +40,7 @@ export default function Blog() {
   const getBlogs = () => {
    // var formated = title.split("-").join(" ");
     api
-      .get("/getBlogImage", )
+      .get("/getBlogImage" )
       .then((res) => {
         setBlogs(res.data.data);
         //setCurrentData(res.data.data);

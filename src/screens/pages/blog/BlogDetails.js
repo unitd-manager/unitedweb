@@ -76,11 +76,11 @@ export default function BlogDetails(props) {
                 alt="post-thumb"
               />
               {/* <img src="assets/images/men/lg-img-1.jpg" class="rounded-sm img-fluid w-100 mb-5" alt="post-thumb"/> */}
-              <p class="text-color card-date position-relative d-inline-block">
+              {/* <p class="text-color card-date position-relative d-inline-block">
                 {moment(data.date.substring(0, 10), "YYYY-MM-DD").format(
                   "MMMM Do YYYY"
                 )}
-              </p>
+              </p> */}
               <h3 class="mb-3 text-dark">{data.title}</h3>
               <p></p>
               <p>{ReactHtmlParser(data.description)}</p>
