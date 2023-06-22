@@ -26,7 +26,7 @@ function App() {
       setAbout(res.data.data);
       
       api
-      .post("/getBlogImage", {recordType:"picture"})
+      .get("/getBlogImage", {recordType:"picture"})
       .then((res) => {
         setBlogs(res.data.data);
       })
@@ -68,7 +68,8 @@ function App() {
           <Route path="/about-us" element={<About />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/blogs/:blog_id/:title" element={<BlogDetails />} />
+          
+          <Route path="/blogs/:title" element={<BlogDetails />} />
           <Route path="/services/:title" element={<ServiceDetail />} />
           <Route path="/services/:title/:title" element={<ServiceSubMenu />} />
           <Route path="/products/:title" element={<ProductDetail />} />

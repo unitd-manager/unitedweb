@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
-
+// import { getSortedCategories } from "./BlogCategory";
 import api from "../../../constants/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import imageBase from "../../../constants/image.js"
 
+import { Helmet } from "react-helmet";
 
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
-  const [Category, setCategory] = useState([]);
+  //const [Category, setCategory] = useState([]);
+  // const [offset, setOffset] = useState(0);
+  //   const [currentPage, setCurrentPage] = useState(1);
+  //   const [currentData, setCurrentData] = useState([]);
+  //   const [sortedProducts, setSortedProducts] = useState([]);
+   const [filterSortType, setFilterSortType] = useState('');
+     const [filterSortValue, setFilterSortValue] = useState('');
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState("");
   const [sortValue, setSortValue] = useState("");
@@ -18,50 +25,52 @@ export default function Blog() {
 
   const location = useLocation();
   const navigate = useNavigate();
+  // const pageLimit = 15;
+  
 
   console.log("search", searchQuery);
   React.useEffect(() => {
     AOS.init();
     getBlogs();
-    getCategory();
+    //getCategory();
 
-    window.scrollTo(0, 0);
-    setTimeout(() => {}, 5000);
+    
   }, []);
 
-  // const getBlogs = () => {
-  //   api
-  //     .get("/getBlogImage")
-  //     .then((res) => {
-  //       setBlogs(res.data.data);
-  //       console(res.data);
-  //     })
-  //     .catch(() => {});
-  // };
   const getBlogs = () => {
    // var formated = title.split("-").join(" ");
     api
-      .post("/getBlogImage", )
+      .get("/getBlogImage", )
       .then((res) => {
         setBlogs(res.data.data);
+        //setCurrentData(res.data.data);
       })
       .catch(() => {});
   };
 
-  const getCategory = () => {
-    api
-      .get("/getCategory")
-      .then((res) => {
-        setCategory(res.data.data);
-        console(res.data);
-      })
-      .catch(() => {});
-  };
+ 
 
+const getFilterSortParams = (sortType, sortValue) => {
+    setFilterSortType(sortType);
+    setFilterSortValue(sortValue);
+}
 
+//useEffect(() => {
+//     const filter=async()=>{
+//     //let sortedProducts =await getSortedCategories(categories, sortType, sortValue)
+//     console.log('sortedProducts',sortedProducts)
+//     const filterSortedProducts = getSortedCategories(sortedProducts, filterSortType, filterSortValue);
+//     sortedProducts = filterSortedProducts;
+//     console.log('sorted',sortedProducts)
+//     setSortedProducts(sortedProducts);
+//     setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
+// }
+// filter();
+// }, [offset, categories, sortType, sortValue, filterSortType, filterSortValue ]);
   
  
   useEffect(() => {
+    
     //search filter
     const urlSearchParams = new URLSearchParams(location.search);
     const query = urlSearchParams.get("search");
@@ -80,6 +89,7 @@ export default function Blog() {
         .get("/getBlogImage")
         .then((res) => {
           setBlogs(res.data.data);
+          //setCurrentData(res.data.data);
         })
         .catch(() => {
           console.log("error");
@@ -115,12 +125,14 @@ const getFormatedText = (title) =>{
   var formatedd = title.toLowerCase()
   return formatedd.split(' ').join('-')
 }
+
+
   return (
     <>
+    
       <section
         class="page-title page-title-overlay bg-cover overflow-hidden"
-        data-background="assets/images/background/about.jpg"
-      >
+        data-background="assets/images/background/about.jpg">
         <div class="container">
           <div class="row">
             <div class="col-lg-7">
@@ -161,6 +173,12 @@ const getFormatedText = (title) =>{
                     <div class="col-sm-6 mb-4">
                       <div class="card border-0 rounded-lg">
                         <div className="px-3 mb-5">
+                        <Helmet>
+              <meta charSet='utf-8' />
+              <title>{data.title}</title>
+              <meta name="description" content="Digital Marketing"></meta>
+              <meta name="keyword" content=""></meta>
+            </Helmet>
                           <Link
                             to={getFormatedText(data.title)}
                             state={{ data: data }}
@@ -213,41 +231,9 @@ const getFormatedText = (title) =>{
         categories={categories}
         getSortParams={getSortParams}
       /> */}
-      
-      <div class="widget">
-                  <h4>Category</h4>
-                  <ul class="list-styled list-bordered">
-        {categories ? (
-          <ul>
-           
-            {categories.map((category, key) => {
-              return (
-                <li key={key}>
-                  <div className="list-styled list-bordered">
-                    <button
-                      onClick={e => {
-                        getSortParams("category", category.category_id);
-                        setActiveSorts(e);
-                       
-                      }}
-                    >
-                  
-                      <a
-                            class="text-color d-block py-3"
-                            href="/#/blogs"
-                          > {category.category_title}{" "}</a>
-                    </button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          "No categories found"
-        )}
-        </ul>
-      </div>
-
+{/*       
+     <BlogCategoryDetails categories={categories}
+     getSortParams={getSortParams}></BlogCategoryDetails> */}
                 {/* <div class="widget">
                   <h4>Category</h4>
                   <ul class="list-styled list-bordered">
@@ -325,12 +311,5 @@ const getFormatedText = (title) =>{
     
   );
 }
-export const setActiveSorts = e => {
-  const filterButtons = document.querySelectorAll(
-    ".sidebar-widget-list-left button, .sidebar-widget-tag button, .product-filter button"
-  );
-  filterButtons.forEach(item => {
-    item.classList.remove("active");
-  });
-  e.currentTarget.classList.add("active");
-};
+
+
