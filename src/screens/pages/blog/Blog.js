@@ -77,7 +77,7 @@ export default function Blog() {
         });
     } else {
       api
-        .get("/getBlogImage")
+        .post("/getBlogImage")
         .then((res) => {
           setBlogs(res.data.data);
         })

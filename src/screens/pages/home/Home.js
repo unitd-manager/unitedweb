@@ -202,7 +202,7 @@ const sendMail = () => {
     ]
   };
   const getBlogs = () =>{
-  api.get('/getBlogImage').then(res=>{
+  api.post('/getBlogImage').then(res=>{
       setBlogs(res.data.data)
     })
     api.post('/getContent',{recordType:'Testimonialpart'}).then(res=>{

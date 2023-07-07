@@ -15,7 +15,7 @@ export default function BlogDetails(props) {
     window.scrollTo(0, 0);
   }, []);
   const getBlogs = () => {
-    api.get("/getBlogImage").then((res) => {
+    api.post("/getBlogImage").then((res) => {
       setBlogs(res.data.data);
     });
   };
