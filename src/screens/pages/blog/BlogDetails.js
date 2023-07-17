@@ -9,11 +9,7 @@ import imageBase from "../../../constants/image.js";
 export default function BlogDetails(props) {
   const [blogs, setBlogs] = useState([]);
 
-  React.useEffect(() => {
-    AOS.init();
-    getBlogs();
-    window.scrollTo(0, 0);
-  }, []);
+  
   const getBlogs = () => {
     api.post("/getBlogImage").then((res) => {
       setBlogs(res.data.data);
@@ -29,6 +25,14 @@ export default function BlogDetails(props) {
   console.log(location, " useLocation Hook");
   const data = location.state?.data;
 
+
+  React.useEffect(() => {
+    AOS.init();
+    getBlogs();
+    //getCategory();
+
+    
+  }, []);
   return (
     <>
       <section
@@ -72,11 +76,11 @@ export default function BlogDetails(props) {
                 alt="post-thumb"
               />
               {/* <img src="assets/images/men/lg-img-1.jpg" class="rounded-sm img-fluid w-100 mb-5" alt="post-thumb"/> */}
-              <p class="text-color card-date position-relative d-inline-block">
+              {/* <p class="text-color card-date position-relative d-inline-block">
                 {moment(data.date.substring(0, 10), "YYYY-MM-DD").format(
                   "MMMM Do YYYY"
                 )}
-              </p>
+              </p> */}
               <h3 class="mb-3 text-dark">{data.title}</h3>
               <p></p>
               <p>{ReactHtmlParser(data.description)}</p>
@@ -108,40 +112,26 @@ export default function BlogDetails(props) {
             </div>
             <div class="col-lg-4">
               <div class="rounded-sm shadow bg-white pb-4">
-                <div class="widget">
-                  <h4>Latest Article</h4>
-                  <ul class="list-unstyled list-bordered">
-                    {blogs &&
-                      blogs.slice(0, 5).map((data) => (
-                        <li class="media border-bottom py-3">
-                          <img
-                            src={`${imageBase}${data.file_name}`}
-                            class="rounded-sm mr-3"
-                            alt="post-thumb"
-                          />
-                          {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
-                          <div class="media-body">
-                            <h6 class="mt-0">
-                              {" "}
-                              <Link
-                                to={'/'+'blogs'+'/'+getFormatedText(data.title)}
-                                state={{ data: data }}
-                                className="text-dark"
-                              >
-                                {data.title}
-                              </Link>
-                            </h6>
-                            <p class="mb-0 text-color">
-                              {moment(
-                                data.date.substring(0, 10),
-                                "YYYY-MM-DD"
-                              ).format("MMMM Do YYYY")}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
-                  </ul>
-                </div>
+              <div class="widget">
+     <h4>Latest Article</h4>
+      <ul class="list-unstyled list-bordered">
+      {blogs && blogs.slice(0, 3).map(data=>(
+          <li class="media border-bottom py-3">
+            <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" />
+          {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
+          <div class="media-body">
+           
+            <h6 class="mt-0"> <Link
+                            to={getFormatedText(data.title)}
+                            state={{ data: data }}
+                            className="text-dark">{data.title}</Link></h6>
+            
+          </div>
+          </li>
+
+      ))}
+      </ul>
+      </div>
               </div>
             </div>
           </div>
