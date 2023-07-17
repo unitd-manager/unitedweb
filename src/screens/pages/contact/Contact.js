@@ -11,6 +11,8 @@ export default function Contact() {
   const [companyname, setCompanyName] = useState();
   const [address, setAddress] = useState();
   const [contact, setContact] = useState();
+  const [mailId, setmailId] = useState('');
+
 
   React.useEffect(() => {
     AOS.init();
@@ -18,7 +20,7 @@ export default function Contact() {
     getCompanyName();
     getAddress();
     getMobile();
-    //getBlogs()
+    getEnquiryEmail();
     window.scrollTo(0,0)
    
   }, [])
@@ -49,6 +51,11 @@ export default function Contact() {
    const onFinishFailed = (errorInfo) => {
             console.log('Failed:', errorInfo);
           };
+          const getEnquiryEmail = () =>{
+            api.get('/getMailId').then(res=>{
+              setmailId(res.data.data[0])
+             })
+          }
     
 //Email
 const sendMail = () => {
@@ -56,12 +63,13 @@ const sendMail = () => {
     user.name  &&
     user.email &&
     user.message        ) {
+      const to = mailId.email;
       const dynamic_template_data= 
       {name:user.name,
       email:user.email,
       message:user.message};
   api
-    .post('/sendemail',{dynamic_template_data})
+    .post('/sendemail',{to,dynamic_template_data})
     .then(() => {
       alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
       setTimeout(() => {
