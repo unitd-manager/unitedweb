@@ -250,7 +250,7 @@ const getMobile = () =>{
                 <h6 class="text-dark">Email</h6>
                 <ul class="list-unstyled">
 
-                  <li><a class="text-dark" href="mailto:enquiry@usoftsolutions.com"> {email&&email.mailId}</a></li>
+                  <li><a class="text-dark" href="mailto:enquiry@usoftsolutions.com"> info@unitdtechnologies.com</a></li>
                 </ul>
               </div>
             </li>
