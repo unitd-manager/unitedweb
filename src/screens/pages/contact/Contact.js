@@ -258,12 +258,12 @@ const getMobile = () =>{
             </li>
             <li class="d-flex mb-4" data-aos="fade-up" data-aos-delay="300">
               <i class="fa fa-phone icon-primary"></i>
-              <div class="pl-3">
+              {/* <div class="pl-3">
                 <h6 class="text-dark">Phone</h6>
                 <ul class="list-unstyled">
                   <li><a className="text-dark" href="tel:+65 6396 7554">{contact&&contact.phone}</a></li>
                 </ul>
-              </div>
+              </div> */}
             </li>
           </ul>
           </div>
