@@ -238,9 +238,11 @@ const getMobile = () =>{
               <div class="pl-3">
                 <h6 class="text-dark">Address</h6>
                 <ul class="list-unstyled">
-               <li>{companyname&&companyname.companyname}{address&&address.address}</li>
-               <li>{address&&address.description}</li>
+               <li>{companyname&&companyname.companyname}</li>
                <li>{duaddress&&duaddress.description}</li>
+               <li>{address&&address.description}</li>
+               <li>{address&&address.address}</li>
+               
                 </ul>
               </div>
             </li>
