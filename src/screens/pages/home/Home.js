@@ -202,7 +202,7 @@ const sendMail = () => {
     ]
   };
   const getBlogs = () =>{
-  api.post('/getBlogImage').then(res=>{
+  api.get('/getBlogImage').then(res=>{
       setBlogs(res.data.data)
     })
     api.post('/getContent',{recordType:'Testimonialpart'}).then(res=>{
@@ -435,28 +435,24 @@ const sendMail = () => {
     </div>
   </div>
 
-
-<section  className="section1" >
+  <section style={{paddingTop:40}} className="section">
 <div className="container">
   <div className="row">
     <div className="col-12">
-      <p className="subtitle" >latest blogs</p>
+      <p className="subtitle">latest blogs</p>
       <h2 className="section-title">Blogs</h2>
     </div>
     <div className="col-12">
       <div className="blog-slider">
       <Slider {...settings2}>
-        {blogs && blogs.slice(0, 5).map(data=>(
+        {blogs && blogs.map(data=>(
           <div className="px-3 mb-5">
-         <Link to={'/'+'blogs'+'/'+getFormatedText(data.title)}
-                            state={{ data: data }}
-                            className="link"
-                          >
+          <Link to="/blogdetail" state={{ data: data }} className="link">
           <div className="card border-0 shadow rounded-xs">
-             <img src={`${imageBase}${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> 
+          <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />
             <div className="card-body">
-         {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
-              <h5><Link to={getFormatedText(data.title)} state={{ data: data }} className="text-dark">{data.title}</Link></h5>
+              {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
+              <h5><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h5>
               <br></br>
             </div>
           </div>
@@ -469,6 +465,7 @@ const sendMail = () => {
   </div>
 </div>
 </section>
+
 
 <section style={{paddingTop:10}} className="section">
   <div className="container">

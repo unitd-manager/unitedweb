@@ -70,6 +70,7 @@ export default function BlogDetails(props) {
           <div class="row">
             <div class="col-lg-8 rounded-sm pr-5">
               {/* {data ? data.title : "Go to Home"} */}
+              <h3 class="mb-3 text-dark">{data.title}</h3>
               <img
                 src={`${imageBase}${data.file_name}`}
                 className="irounded-sm img-fluid w-100 mb-5"
@@ -81,7 +82,7 @@ export default function BlogDetails(props) {
                   "MMMM Do YYYY"
                 )}
               </p> */}
-              <h3 class="mb-3 text-dark">{data.title}</h3>
+             
               <p></p>
               <p>{ReactHtmlParser(data.description)}</p>
               <div class="my-5">
