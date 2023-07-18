@@ -10,6 +10,7 @@ export default function Contact() {
   const [email, setEmail] = useState();
   const [companyname, setCompanyName] = useState();
   const [address, setAddress] = useState();
+  const [duaddress, setDAddress] = useState();
   const [contact, setContact] = useState();
   const [mailId, setmailId] = useState('');
 
@@ -19,6 +20,7 @@ export default function Contact() {
     getEmail();
     getCompanyName();
     getAddress();
+    getAddress1();
     getMobile();
     getEnquiryEmail();
     window.scrollTo(0,0)
@@ -97,6 +99,12 @@ const getCompanyName= () =>{
 const getAddress = () =>{
   api.get('/getAddress').then(res=>{
     setAddress(res.data.data[0])
+   })
+}
+
+const getAddress1 = () =>{
+  api.get('/getDubaiAddress').then(res=>{
+    setDAddress(res.data.data[0])
    })
 }
 
@@ -231,6 +239,8 @@ const getMobile = () =>{
                 <h6 class="text-dark">Address</h6>
                 <ul class="list-unstyled">
                <li>{companyname&&companyname.companyname}{address&&address.address}</li>
+               <li>{address&&address.description}</li>
+               <li>{duaddress&&duaddress.description}</li>
                 </ul>
               </div>
             </li>
