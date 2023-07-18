@@ -449,7 +449,7 @@ const sendMail = () => {
           <div className="px-3 mb-5">
           <Link to="/blogdetail" state={{ data: data }} className="link">
           <div className="card border-0 shadow rounded-xs">
-          <img src={`https://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />
+          <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />
             <div className="card-body">
               {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p> */}
               <h5><Link to="/blogdetail" state={{ data: data }} className="text-dark">{data.title}</Link></h5>

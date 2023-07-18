@@ -11,7 +11,7 @@ export default function BlogDetails(props) {
 
   
   const getBlogs = () => {
-    api.post("/getBlogImage").then((res) => {
+    api.get("/getBlogImage").then((res) => {
       setBlogs(res.data.data);
     });
   };

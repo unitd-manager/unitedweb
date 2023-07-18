@@ -86,7 +86,7 @@ const getFilterSortParams = (sortType, sortValue) => {
         });
     } else {
       api
-        .post("/getBlogImage")
+        .get("/getBlogImage")
         .then((res) => {
           setBlogs(res.data.data);
           //setCurrentData(res.data.data);
