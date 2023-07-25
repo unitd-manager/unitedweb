@@ -245,14 +245,15 @@ const sendMail = () => {
           <section className="hero-area hero-area-lg position-relative">
             <Helmet>
               <meta charSet='utf-8' />
-              <title>Cubosale</title>
+              <link rel="icon" type="image/x-icon" href="/public/assets/images/logo/favicon-32x32.png"/>
+              <title>United Technologies</title>
               <meta name="description" content="Digital Marketing"></meta>
             </Helmet>
   <div className="container">
     <div className="row align-items-center">
       <div className="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
         <h2 className="text-dark position-relative" >Build Your Business Together with United Technologies<span className="watermark">Build</span></h2>
-        <p className="text-dark mb-4">Our Mission - To create set of online products for growing industries, to minimize the work load, produce efficient results, margin revenues to high pitch.</p>
+        <p className="text-dark mb-4">Our mission - to develop a comprehensive set of online products tailored for burgeoning industries, streamlining workloads, delivering optimal outcomes, and maximizing revenue margins to unprecedented heights.</p>
         <ul className="list-inline">
           <li className="list-inline-item mx-1 my-2">
             <a href="#" className="btn btn-primary">
@@ -351,7 +352,7 @@ const sendMail = () => {
     <div className="row">
       <div className="col-md-6 align-self-center pr-lg-4 mb-4 mb-md-0">
         <p className="subtitle" data-aos="fade-up">Why choose us</p>
-        <h2 className="section-title" data-aos="fade-up" data-aos-delay="200">Get in touch and discover how we can help in problem solving, expertise methodology, agile deployment with innovation driven.</h2>
+        <h2 className="section-title" data-aos="fade-up" data-aos-delay="200">Discover how we can assist you in problem-solving, expert methodologies, and agile deployment with an innovation-driven approach. Get in touch with us today to explore the possibilities!</h2>
         {/* <p data-aos="fade-up" data-aos-delay="500">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium
           doloreque laudantum.</p> */}
       </div>

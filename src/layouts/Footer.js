@@ -104,7 +104,6 @@ export default function Footer() {
             <p className="text-light"> {companyname&&companyname.companyname}</p>
             <p className="text-light1">{address&&address.address}</p>
             <ul className="list-unstyled">
-              <li className="mb-3"><a className="text-light" href="tel:+65 6396 7554">{contact&&contact.phone}</a></li>
               <li className="mb-3"><a className="text-light" href="mailto:admin@unitdtechnologies.com">{email&&email.mailId}</a></li>
             </ul>
           </div>

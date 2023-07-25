@@ -15,8 +15,6 @@ import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import {Helmet} from "react-helmet";
 
-
-
 function App() {
   const [about, setAbout] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -51,6 +49,7 @@ function App() {
                 <div class="col-md-12 align-self-center pl-lg-4">
                    <Helmet>
               <meta charSet='utf-8' />
+           
               <title>{data.meta_title}</title>
               <meta name="description" content="Digital Marketing"></meta>
               <meta name="keyword" content="test"></meta>

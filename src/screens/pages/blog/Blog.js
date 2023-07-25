@@ -175,7 +175,8 @@ const getFormatedText = (title) =>{
                         <div className="px-3 mb-5">
                         <Helmet>
               <meta charSet='utf-8' />
-              <title>{data.title}</title>
+              {/* <title>{data.title}</title> */}
+              <title>United Technologies</title>
               <meta name="description" content="Digital Marketing"></meta>
               <meta name="keyword" content=""></meta>
             </Helmet>

@@ -178,9 +178,9 @@ export default function About() {
                   <p data-aos="fade-up" data-aos-delay="400">
                     {ReactHtmlParser(data.description)}
                   </p>
-                  <p data-aos="fade-up" data-aos-delay="400">
-                    {ReactHtmlParser(data.description1)}
-                  </p>
+                  {/* <p data-aos="fade-up" data-aos-delay="400">
+                    {ReactHtmlParser(data.description)}
+                  </p> */}
                 </div>
               );
             })}
@@ -188,66 +188,11 @@ export default function About() {
         </div>
       </section>
 
-      <section
+      {/* <section
         style={{ paddingTop: 0 }}
         class="section section-lg-bottom bg-light"
       >
-        <div class="container">
-          <div class="row">
-            <div class="col-12 text-center">
-              <p class="subtitle">CONTACT</p>
-              <h2 class="section-title">Contact Us</h2>
-            </div>
-            <div class="col-12 text-center">
-              <form action="#" class="row">
-                <div class="col-lg-12">
-                  <input
-                    type="text"
-                    class="form-control mb-4"
-                    placeholder="Your email*"
-                    name="email"
-                    value={aboutUs.email}
-                    onChange={(event) => handleChangeAbout(event)}
-                  />
-                </div>
-                <div class="col-lg-12">
-                  <input
-                    type="text"
-                    class="form-control mb-4"
-                    placeholder="Name*"
-                    name="name"
-                    value={aboutUs.name}
-                    onChange={(event) => handleChangeAbout(event)}
-                  />
-                </div>
-
-                <div class="col-12">
-                  <input
-                    type="textarea"
-                    class="form-control mb-4"
-                    placeholder="Message*"
-                    name="message"
-                    value={aboutUs.message}
-                    onChange={(event) => handleChangeAbout(event)}
-                  />
-                </div>
-                <div class="col-12">
-                  <button
-                    type="submit"
-                    onClick={() => {
-                      AboutUsSubmit();
-                      Mail();
-                    }}
-                    class="btn btn-primary"
-                  >
-                    Submit Now
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+           </section> */}
     </>
   );
 }
