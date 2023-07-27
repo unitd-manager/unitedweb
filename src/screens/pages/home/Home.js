@@ -112,8 +112,6 @@ const sendMail = () => {
     email:contact.email,
     message:contact.message,
     phone:contact.phone,
-    products:product.join(','),
-    services:service.join(',')
     };
   api
     .post('/sendenquiryemail',{dynamic_template_data})
