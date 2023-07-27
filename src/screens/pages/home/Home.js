@@ -120,7 +120,7 @@ const sendMail = () => {
     .then(() => {
       alert('Thanks for contacting us. We will respond to your enquiry as soon as possible'); 
     })
-   
+    window.location.reload();
   }
  else {
   applyChanges();
@@ -490,22 +490,7 @@ const sendMail = () => {
           <div className="col-lg-12">
             <textarea  onChange={updateContactFields} className="bg-light form-control mb-4" placeholder="Message*" name="message"></textarea>
           </div>
-          <div className="col-lg-6 text-left">
-            <h3>Products</h3>
-          <Checkbox color="primary" name="products" value="Hospital Management System" onChange={handleProductChange}>Hospital Management System</Checkbox><br></br>
-          <Checkbox color="primary" name="products" value="School Management System" onChange={handleProductChange}>School Management System</Checkbox><br></br>
-          <Checkbox color="primary" name="products" value="Trading Management System" onChange={handleProductChange}>Trading Management System</Checkbox><br></br>
-          <Checkbox color="primary" name="products" value="Customer Management System" onChange={handleProductChange}>Customer Management System</Checkbox><br></br>
-          <Checkbox color="primary" name="products" value="Learning Management System" onChange={handleProductChange}>Learning Management System</Checkbox><br></br>
-          <Checkbox color="primary" name="products" value="Payroll Management System" onChange={handleProductChange}>Payroll Management System</Checkbox><br></br>
-          </div>
-          <div className="col-lg-5 text-left">
-          <h3>Services</h3>
-          <Checkbox name="services" value="Web/ E commerce Development" onChange={handleServiceChange}>Web/ E commerce Development</Checkbox><br></br>
-          <Checkbox name="services" value="Mobile App Development" onChange={handleServiceChange}>Mobile App Development</Checkbox><br></br>
-          <Checkbox name="services" value="Digital Marketing" onChange={handleServiceChange}>Digital Marketing</Checkbox><br></br>
-          <Checkbox name="services" value="Cloud Hosting" onChange={handleServiceChange}>Cloud Hosting</Checkbox><br></br>
-          </div>
+                   
           <div className="col-12">
             <button onClick={()=>{
              
