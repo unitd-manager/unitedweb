@@ -5,7 +5,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ReactHtmlParser from "react-html-parser";
 
-
 const ScreenDetail = () => {
   const [products, setProducts] = useState([]);
   const { title } = useParams();
@@ -37,7 +36,6 @@ const ScreenDetail = () => {
         <div class="container">
           <div class="row">
             <div class="col-lg-7">
-             
               <h1 class="text-white position-relative">{title}</h1>
             </div>
             <div class="col-lg-3 ml-auto align-self-end">
@@ -50,45 +48,34 @@ const ScreenDetail = () => {
                 >
                   Home
                 </li>
-                <li
-                  class="breadcrumb-item text-white fw-bold"
-                  aria-current="page"
-                >
+                <li class="breadcrumb-item text-white fw-bold" aria-current="page">
                   Product Details
                 </li>
               </ol>
-              {/* </nav> */}
             </div>
           </div>
         </div>
       </section>
-
       <section class="section pb-0 features">
-        <div class="container">
-          <div class="row">
-            {products.map((data, index) => {
-              return (
-                <div
-                  class="col-lg-6 col-sm-6 mb-4 aos-init aos-animate"
-                  data-aos="fade-up"
-                >
-                  <div class="position-relative px-4 py-5 ">
-                    <h3 class="pt- pb-3 text-capitalize card-title">
-                    {/* <Helmet>
-                <title>{data.title}</title>
-                <meta name="description" content={data.title}></meta>
-              </Helmet> */}
-                      {data.title}
-                    </h3>
-                    {ReactHtmlParser(data.description)}  
-                     {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid" alt="feature-image" />   */}
-                  </div>
+      <div class="container">
+        <div class="row">
+          {products.map((data, index) => {
+            return (
+              <div
+                class={`col-lg-${index === 0 ? "12" : "6"} col-sm-6 mb-4 aos-init aos-animate`}
+                data-aos="fade-up"
+                style={index === 0 ? { textAlign: "center" } : null}
+              >
+                <div class="position-relative px-4 py-5 ">
+                  <h3 class="pt- pb-3 text-capitalize card-title">{data.title}</h3>
+                  {ReactHtmlParser(data.description)}
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </section>
     </>
   );
 };
