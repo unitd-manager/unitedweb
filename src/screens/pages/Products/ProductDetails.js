@@ -56,7 +56,7 @@ const ScreenDetail = () => {
           </div>
         </div>
       </section>
-      <section class="section pb-0 features">
+ <section class="section pb-0 features">
       <div class="container">
         <div class="row">
           {products.map((data, index) => {

@@ -270,52 +270,45 @@ const sendMail = () => {
   </div>
   <img src="assets/images/homepage-3/banner-shape.png" className="img-fluid bg-shape-4" alt="shape" />
 </section>
-<section style={{paddingTop:10}} className="section pb-0 features">
+<section style={{ paddingTop: 10 }} className="section pb-0 features">
   <div className="container">
-    
     <div className="row features-slider px-4" data-aos="fade-up">
-      
+
       <div className="col-12 text-center">
-        <div className="subtitle aos-init aos-animate" > 
-        <p className="subtitle aos-init aos-animate mt-5"  >Products </p>
-        <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Exclusive Products</h2>
+        <div className="subtitle aos-init aos-animate">
+          <p className="subtitle aos-init aos-animate mt-5">Products</p>
+          <h2 className="section-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">Exclusive Products</h2>
+        </div>
       </div>
-      </div>
-      {products.map((data,index)=>{
-        if(index%2 !== 0){
-          return ( 
-            
-           
-          <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up" style={{height:200}}>
-            
-             <Link to={data.external_link} className="link">
-          <div className="text-center position-relative px-4 py-5 rounded-lg shadow card-active" >
-            <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image"/>
-            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
-            { ReactHtmlParser(data.description) }
-            
-            <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
-          </div>
+
+      {/* Render the first product separately with increased width and height */}
+      {products.slice(0, 1).map((data, index) => (
+        <div className="col-12 mb-4 aos-init aos-animate" data-aos="fade-up" key={index}>
+          <Link to={data.external_link} className="link">
+            <div className="text-center position-relative px-8 py-12 rounded-lg shadow card-active" style={{ backgroundColor: '#your-theme-color', width: '100%', height: '400px' }}>
+              <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image" />
+              <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
+              {ReactHtmlParser(data.description)}
+              <Link to={data.external_link} className="btn btn-outline-primary">Read More</Link>
+            </div>
           </Link>
         </div>
-        )
-        }else{
-          return ( <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+      ))}
+
+      {/* Render the remaining products in pairs */}
+      {products.slice(1).map((data, index) => (
+        <div className={`col-lg-4 col-sm-6 mb-4 aos-init aos-animate${index % 2 !== 0 ? '' : ' pl-0 pr-4'}`} data-aos="fade-up" key={index}>
           <Link to={data.external_link} className="link">
-          <div className="text-center position-relative px-4 py-5 rounded-lg shadow">
-            <img src="assets/images/feature/feature-2.png" className="img-fluid" alt="feature-image"/>
-            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
-          
-            { ReactHtmlParser(data.description) }
-            <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
-          </div>
+            <div className="text-center position-relative px-4 py-5 rounded-lg shadow" style={{ backgroundColor: '#your-theme-color' }}>
+              <img src="assets/images/feature/feature-2.png" className="img-fluid" alt="feature-image" />
+              <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
+              {ReactHtmlParser(data.description)}
+              <Link to={data.external_link} className="btn btn-outline-primary">Read More</Link>
+            </div>
           </Link>
-        </div>)
-        }
-       
-      })}
-     
-      
+        </div>
+      ))}
+
     </div>
   </div>
 </section>
