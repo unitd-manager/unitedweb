@@ -209,23 +209,27 @@ export default function Offer() {
               </Form.Item>
 
               <Form.Item>
-  <Button
-    type="primary"
-    onClick={sendMail}
-    shape="round"
-    size="large"
-    htmlType="submit"
-    className="login-form-button"
-    style={{
-      width: '100%',
-      padding: '1px',
-      fontSize: '30px',
-      backgroundColor: 'blue',  // Set the background color to red
-      border: 'none',         // Remove border if necessary
-    }}
-  >
-    GET OFFER
-  </Button>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Button
+          type="primary"
+          onClick={sendMail}
+          shape="round"
+          size="large"
+          htmlType="submit"
+          className="login-form-button"
+          style={{
+            width: '100%',
+            padding: '0px',  // Adjust padding as needed
+            fontSize: '30px',
+            backgroundColor: 'red',
+            border: 'none',
+            lineHeight: '1',  // Adjust line-height to vertically center the text
+          }}
+        >
+          GET OFFER
+        </Button>
+    
+  </div>
               </Form.Item>
             </Form>
           </div>
