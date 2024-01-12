@@ -3,26 +3,18 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import api from "../../../constants/api";
 import Address1 from "../../../assets/images/attachments/digital.png";
-// import Address2 from "../../../assets/images/attachments/address2.png";
-// import Address3 from "../../../assets/images/attachments/address3.png";
+
 import { Button,  Form, Input, message } from "antd";
-// import * as Yup from 'yup';
 
 export default function Offer() {
-  // const [email, setEmail] = useState();
-  // const [companyname, setCompanyName] = useState();
-  // const [address, setAddress] = useState();
-  // const [address1, setAddress1] = useState();
-  // const [contact, setContact] = useState();
+
   const [mailId, setmailId] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false); // New state variable
+
 
   React.useEffect(() => {
     AOS.init();
-    // getEmail();
-    // getCompanyName();
-    // getAddress();
-    // getAddress1();
-    // getMobile();
+   
     getEnquiryEmail();
     window.scrollTo(0, 0);
   }, []);
@@ -41,22 +33,27 @@ export default function Offer() {
     value = e.target.value;
     setUser({ ...user, [name]: value });
     console.log({ [name]: value });
-    // lname = e.target.lname
-    // email = e.target.email
-    // message = e.target.message
   };
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
+    if (!formSubmitted) {
     api
       .post("/addContact", values)
       .then((res) => {
         console.log(res.data.data);
-        return message.error("Registered Successfully ");
+        setFormSubmitted(true); 
+        message.success({
+          content: "Thanks for giving your Email",
+          onClose: () => (window.location.href = "/"),
+        })
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+    }else {
+        message.warning("Form already submitted");
+      }
+}
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -76,45 +73,17 @@ export default function Offer() {
         message: user.message,
       };
       api.post("/sendemail", { to, dynamic_template_data }).then(() => {
-        alert(
-          "Thanks for contacting us. We will respond to your enquiry as soon as possible"
-        );
+        message.success("Thanks for contacting us. We will respond to your enquiry as soon as possible");
         setTimeout(() => {
-          window.location.reload();
+          window.location.reload();; // Navigate to the home page
         }, 1000);
+      
       });
     } else {
       applyChanges();
     }
   };
 
-  // const getEmail = () => {
-  //   api.get("/getEmail").then((res) => {
-  //     setEmail(res.data.data[0]);
-  //   });
-  // };
-
-  // const getCompanyName = () => {
-  //   api.get("/getCompanyName").then((res) => {
-  //     setCompanyName(res.data.data[0]);
-  //   });
-  // };
-
-  // const getAddress = () => {
-  //   api.get("/getAddress").then((res) => {
-  //     setAddress(res.data.data[0]);
-  //   });
-  // };
-  // const getAddress1 = () => {
-  //   api.get("/getAddress1").then((res) => {
-  //     setAddress1(res.data.data[0]);
-  //   });
-  // };
-  // const getMobile = () => {
-  //   api.get("/getContacts").then((res) => {
-  //     setContact(res.data.data[0]);
-  //   });
-  // };
 
   return (
     <>
@@ -225,6 +194,7 @@ export default function Offer() {
             border: 'none',
             lineHeight: '1',  // Adjust line-height to vertically center the text
           }}
+          
         >
           GET OFFER
         </Button>
