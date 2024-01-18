@@ -31,13 +31,13 @@ export default function Offer() {
       // Extract UTM parameters from the URL
       const urlSearchParams = new URLSearchParams(window.location.search);
       const utmSource = urlSearchParams.get("utm_source") || "unknown";
-      const utmCampaign = urlSearchParams.get("utm_campaign") || "unknown";
+      // const utmCampaign = urlSearchParams.get("utm_campaign") || "unknown";
 
       // Combine UTM parameters with form data
       const leadData = {
         ...values,
         source_of_lead: utmSource,
-        campaign: utmCampaign,
+        // campaign: utmCampaign,
       };
 
       apiInsertContact
