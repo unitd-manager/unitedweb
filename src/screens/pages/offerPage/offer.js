@@ -14,6 +14,7 @@ export default function Offer() {
   const [user, setUser] = useState({
     lead_title: "",
     email: "",
+    source_of_lead: ""
   });
 
   useEffect(() => {
@@ -28,18 +29,16 @@ export default function Offer() {
 
   const onFinish = (values) => {
     if (!formSubmitted) {
-      // Extract UTM parameters from the URL
       const urlSearchParams = new URLSearchParams(window.location.search);
-      const utmSource = urlSearchParams.get("utm_source") || "unknown";
-      // const utmCampaign = urlSearchParams.get("utm_campaign") || "unknown";
-
-      // Combine UTM parameters with form data
+      const utmSource = urlSearchParams.get("utm_source") ;
+      console.log("Extracted utmSource:", utmSource);
+  
       const leadData = {
         ...values,
         source_of_lead: utmSource,
-        // campaign: utmCampaign,
       };
-
+  
+  
       apiInsertContact
         .post("/lead/insertLeadCompany", leadData)
         .then((res) => {
@@ -58,7 +57,6 @@ export default function Offer() {
       message.warning("Form already submitted");
     }
   };
-
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
