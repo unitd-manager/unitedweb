@@ -30,7 +30,7 @@ export default function Offer() {
   const onFinish = (values) => {
     if (!formSubmitted) {
       const urlSearchParams = new URLSearchParams(window.location.search);
-      const utmSource = urlSearchParams.get("utm_source") ;
+      const utmSource = urlSearchParams.get("utm_source");
       console.log("Extracted utmSource:", utmSource);
   
       const leadData = {
@@ -38,11 +38,12 @@ export default function Offer() {
         source_of_lead: utmSource,
       };
   
+      console.log("Lead Data:", leadData);
   
       apiInsertContact
         .post("/lead/insertLeadCompany", leadData)
         .then((res) => {
-          console.log(res.data.data);
+          console.log("Response from API:", res.data);
           setFormSubmitted(true);
           message.success({
             content: "Thanks for giving your Email",
@@ -57,6 +58,7 @@ export default function Offer() {
       message.warning("Form already submitted");
     }
   };
+  
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
