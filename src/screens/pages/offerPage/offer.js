@@ -47,7 +47,7 @@ export default function Offer() {
           setFormSubmitted(true);
           message.success({
             content: "Thanks for giving your Email",
-            onClose: () => (window.location.href = "/"),
+            // onClose: () => (window.location.href = "/"),
           });
         })
         .catch((err) => {
