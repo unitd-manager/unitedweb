@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import AOS from "aos";
 import api from "../../../constants/api";
-import moment from "moment";
 import ReactHtmlParser from "react-html-parser";
 import imageBase from "../../../constants/image.js";
 
@@ -11,15 +10,17 @@ export default function BlogDetails(props) {
 
   
   const getBlogs = () => {
-    api.get("/getBlogImage").then((res) => {
+    api.get("/getBlogsImage").then((res) => {
       setBlogs(res.data.data);
     });
   };
+
   const getFormatedText = (title) =>{
     var formatedd = title.toLowerCase()
     return formatedd.split(' ').join('-')
   }
-
+  console.log(blogs);
+  console.log(getFormatedText);
   const location = useLocation();
   console.log(props, " props");
   console.log(location, " useLocation Hook");
@@ -89,29 +90,29 @@ export default function BlogDetails(props) {
                 <h5 class="d-inline-block mr-3">Share:</h5>
                 <ul class="list-inline d-inline-block">
                   <li class="list-inline-item">
-                    <a href="#" class="text-color">
+                    <a href="index.html" class="text-color">
                       <i class="fa fa-facebook"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="text-color">
+                    <a href="index.html" class="text-color">
                       <i class="fa fa-twitter"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="text-color">
+                    <a href="index.html" class="text-color">
                       <i class="fa fa-linkedin"></i>
                     </a>
                   </li>
                   <li class="list-inline-item">
-                    <a href="#" class="text-color">
+                    <a href="index.html" class="text-color">
                       <i class="fa fa-google-plus"></i>
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="col-lg-4">
+            {/* <div class="col-lg-4">
               <div class="rounded-sm shadow bg-white pb-4">
               <div class="widget">
      <h4>Latest Article</h4>
@@ -119,7 +120,7 @@ export default function BlogDetails(props) {
       {blogs && blogs.slice(0, 3).map(data=>(
           <li class="media border-bottom py-3">
             <img src={`${imageBase}${data.file_name}`} class="rounded-sm mr-3" alt="post-thumb" />
-          {/* <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> */}
+           <img src="assets/images/men/sm-img-1.jpg" class="rounded-sm mr-3" alt="post-thumb"/> 
           <div class="media-body">
            
             <h6 class="mt-0"> <Link
@@ -134,7 +135,8 @@ export default function BlogDetails(props) {
       </ul>
       </div>
               </div>
-            </div>
+            </div> */}
+          
           </div>
         </div>
       </section>

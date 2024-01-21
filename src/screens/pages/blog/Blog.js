@@ -5,7 +5,6 @@ import api from "../../../constants/api";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import imageBase from "../../../constants/image.js"
-
 import { Helmet } from "react-helmet";
 
 
@@ -191,7 +190,7 @@ const getFormatedText = (title) =>{
                                 className="img-fluid card-img-top"
                                 alt="post-thumb"
                               />
-                              {/* <img src={`http://localhost:3003/uitedwebapi/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" /> */}
+                               {/* <img src={`http://43.228.126.245/unitd-api/storage/uploads/${data.file_name}`} className="img-fluid card-img-top" alt="post-thumb" />  */}
                               <div className="card-body">
                                 {/* <p className="card-date">{moment(data.date.substring(0,10), 'YYYY-MM-DD').format('MMMM Do YYYY')}</p>  */}
                                 <h5>{data.title}</h5>
