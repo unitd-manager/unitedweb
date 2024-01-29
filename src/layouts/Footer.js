@@ -77,10 +77,10 @@ export default function Footer() {
             <img style={{width:200,height:100}} src="assets/images/logo/logo.svg" className="mb-4" alt="agico"/>
             <p className="text-light mb-4"></p>
             <ul className="list-inline social-icons">
-              <li className="list-inline-item"><a href="#" target="_blank"><i className="fa fa-facebook"></i></a></li>
-              <li className="list-inline-item"><a href="#" target="_blank"><i className="fa fa-twitter"></i></a></li>
-              <li className="list-inline-item"><a href="#" target="_blank"><i className="fa fa-youtube"></i></a></li>
-              <li className="list-inline-item"><a href="#" target="_blank"><i className="fa fa-github"></i></a></li>
+              <li className="list-inline-item"><a href="https://www.facebook.com/UnitdTech" target="_blank"><i className="fa fa-facebook"></i></a></li>
+              <li className="list-inline-item"><a href="https://www.instagram.com/unitedtech30" target="_blank"><i className="fa fa-instagram"></i></a></li>
+              <li className="list-inline-item"><a href="https://www.linkedin.com/in/syedmagthum/" target="_blank"><i className="fa fa-linkedin"></i></a></li>
+              
             </ul>
           </div>
           <div className="col-md-3 col-sm-6">

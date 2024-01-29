@@ -3,7 +3,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
 import { Button, Form, Input, message } from "antd";
-import Address1 from "../../../assets/images/attachments/digital.png";
+// import Address1 from "../../../assets/images/attachments/digital.png";
+import Address1 from "../../../assets/images/attachments/Digital2.jpg";
 
 const apiInsertContact = axios.create({
   baseURL: 'http://43.228.126.245:3007',
@@ -27,26 +28,28 @@ export default function Offer() {
     setUser({ ...user, [name]: value });
   };
 
-  const onFinish = (values) => {
+  const onFinish = (value) => {
     if (!formSubmitted) {
       const urlSearchParams = new URLSearchParams(window.location.search);
-      const utmSource = urlSearchParams.get("utm_source");
-      console.log("Extracted utmSource:", utmSource);
+const utmSource = urlSearchParams.get("utm_source");
+console.log("Full URL:", window.location.href);
+console.log("Extracted utmSource:", utmSource);
   
       const leadData = {
-        ...values,
+        ...value,
         source_of_lead: utmSource,
       };
+      
   
       console.log("Lead Data:", leadData);
   
       apiInsertContact
-        .post("/lead/insertLeadCompany", leadData)
-        .then((res) => {
-          console.log("Response from API:", res.data);
-          setFormSubmitted(true);
-          message.success({
-            content: "Thanks for giving your Email",
+      .post("/lead/insertLeadCompany", leadData)
+      .then((res) => {
+        console.log("Response from API:", res.data);
+        setFormSubmitted(true);
+        message.success({
+          content: "Thanks for giving your Email",
             // onClose: () => (window.location.href = "/"),
           });
         })
@@ -71,7 +74,7 @@ export default function Offer() {
             <div className="col-lg-12 text-center">
               <div className="container center" style={{ width: "200%", height: '100vh', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <div className="pl-3" style={{ textAlign: 'left', marginBottom: '20px' }}>
-                  <img src={Address1} alt="Address" width="100%" height="auto" />
+                  <img src={Address1} alt="Address" width="90%" height="90%" />
                 </div>
                 <div style={{ maxWidth: "600px", width: '100%', border: "3px solid #007bff", borderRadius: "5px", padding: "20px" }}>
                   <Form
