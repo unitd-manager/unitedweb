@@ -1,2 +1,2 @@
-const imageBase = 'http://43.228.126.245/unitd-api/storage/uploads/'
+const imageBase = 'https://unitdweb.unitdtechnologies.com/storage/uploads/'
 export default imageBase
