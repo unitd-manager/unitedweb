@@ -101,9 +101,7 @@ export default function Footer() {
           </div>
           <div className="col-lg-3 col-md-4 col-sm-6">
             <h4 className="text-white mb-4">Contact Info</h4>
-            <p className="text-light"> {companyname&&companyname.companyname}</p>
-            <p className="text-light1">{address&&address.address}</p>
-            <ul className="list-unstyled">
+           <ul className="list-unstyled">
               <li className="mb-3"><a className="text-light" href="mailto:admin@unitdtechnologies.com">{email&&email.mailId}</a></li>
             </ul>
           </div>
