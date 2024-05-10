@@ -54,8 +54,8 @@ function App() {
               <meta charSet='utf-8' />
            
               <title>{data.meta_title}</title>
-              <meta name="description" content="Digital Marketing"></meta>
-              <meta name="keyword" content="test"></meta>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
             </Helmet>
             </div>
               )})}

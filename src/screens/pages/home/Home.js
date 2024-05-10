@@ -240,36 +240,39 @@ const sendMail = () => {
   return (
     <>
     
-          <section className="hero-area hero-area-lg position-relative">
-            <Helmet>
-              <meta charSet='utf-8' />
-              <link rel="icon" type="image/x-icon" href="/public/assets/images/logo/favicon-32x32.png"/>
-              <title>United Technologies</title>
-              <meta name="description" content="Digital Marketing"></meta>
-            </Helmet>
+    <section className="hero-area hero-area-lg position-relative">
+  <Helmet>
+    <meta charSet='utf-8' />
+    <link rel="icon" type="image/x-icon" href="/public/assets/images/logo/favicon-32x32.png"/>
+    <title>United Technologies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+  </Helmet>
   <div className="container">
     <div className="row align-items-center">
       <div className="col-lg-6 text-center text-lg-left mb-4 mb-lg-0">
-        <h2 className="text-dark position-relative" >Build Your Business Together with United Technologies<span className="watermark">Build</span></h2>
-        <p className="text-dark mb-4">Our mission - to develop a comprehensive set of online products tailored for burgeoning industries, streamlining workloads, delivering optimal outcomes, and maximizing revenue margins to unprecedented heights.</p>
-        <ul className="list-inline">
-          <li className="list-inline-item mx-1 my-2">
-            <a href="#" className="btn btn-primary">
-              <img src="assets/images/icon/google-play-white.png" className="img-fluid mr-2 rounded" alt="play-store"/> Google Play</a>
-          </li>
-          <li className="list-inline-item mx-1 my-2">
-            <a href="#" className="btn btn-outline-primary"><i className="fa fa-apple text-secondary mr-3 transition"></i>App
-              Store</a>
-          </li>
-        </ul>
+        <div className="content">
+          <h2 className="text-dark position-relative" >Build Your Business Together with United Technologies<span className="watermark">Build</span></h2>
+          <p className="text-dark mb-4">Our mission - to develop a comprehensive set of online products tailored for burgeoning industries, streamlining workloads, delivering optimal outcomes, and maximizing revenue margins to unprecedented heights.</p>
+          <ul className="list-inline">
+            <li className="list-inline-item mx-1 my-2">
+              <a href="#" className="btn btn-primary">
+                <img src="assets/images/icon/google-play-white.png" className="img-fluid mr-2 rounded" alt="play-store"/> Google Play</a>
+            </li>
+            <li className="list-inline-item mx-1 my-2">
+              <a href="#" className="btn btn-outline-primary"><i className="fa fa-apple text-secondary mr-3 transition"></i>App
+                Store</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="col-lg-6">
-        <img src="assets/images/banner/banner-3.png" className="img-fluid w-100 shadow rounded-lg" alt="app-interface" data-aos="fade-left" data-aos-delay="1000" />
+        <img src="assets/images/banner/banner-3.png" className="img-fluid w-100 shadow rounded-lg banner-image" alt="app-interface" data-aos="fade-left" data-aos-delay="1000" />
       </div>
     </div>
   </div>
-  <img src="assets/images/homepage-3/banner-shape.png" className="img-fluid bg-shape-4" alt="shape" />
+  <img src="assets/images/homepage-3/banner-shape.png" className="img-fluid bg-shape-4 banner-shape" alt="shape" />
 </section>
+
 <section style={{paddingTop:10}} className="section pb-0 features">
   <div className="container">
     
@@ -282,46 +285,29 @@ const sendMail = () => {
       </div>
       </div>
       {products.slice(0, 1).map((data, index) => (
-        <div className="col-12 mb-4 aos-init aos-animate" data-aos="fade-up" key={index}>
-          <Link to={data.external_link} className="link">
-            <div className="text-center position-relative px-8 py-12 rounded-lg shadow card-active" style={{ backgroundColor: '#your-theme-color', width: '100%', height: '400px' }}>
-              <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image" />
-              <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
-              {ReactHtmlParser(data.description)}
-              <Link to={data.external_link} className="btn btn-outline-primary">Read More</Link>
-            </div>
-          </Link>
-        </div>
-      ))}
-{products.slice(1).map((data, index) => {
-  if (index % 2 !== 0) {
-    return (
-      <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up" style={{ height: 200 }}>
-        <Link to={data.external_link} className="link">
-          <div className="text-center position-relative px-4 py-5 rounded-lg shadow card-active">
-            <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image" />
-            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
-            {ReactHtmlParser(data.description)}
-            <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
-          </div>
-        </Link>
+  <div className="col-12 mb-4 aos-init aos-animate" data-aos="fade-up" key={index}>
+    <Link to={data.external_link} className="link">
+      <div className="text-center position-relative px-8 py-12 rounded-lg shadow card-active" style={{ backgroundColor: '#0437F2', width: '100%', height: '780px', color: '#ffffff' }}>
+        <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image" />
+        <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
+        <p style={{ color: '#ffffff' }}>{ReactHtmlParser(`<span style="color: #ffffff;">${data.description}</span>`)}</p>
+        <Link to={data.external_link} className="btn btn-outline-primary" style={{ color: '#ffffff' }}>Read More</Link>
       </div>
-    );
-  } else {
-    return (
-      <div className="col-lg-4 col-sm-6 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-        <Link to={data.external_link} className="link">
-          <div className="text-center position-relative px-4 py-5 rounded-lg shadow">
-            <img src="assets/images/feature/feature-2.png" className="img-fluid" alt="feature-image" />
-            <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
-            {ReactHtmlParser(data.description)}
-            <Link to={data.external_link} className="btn btn-outline-primary">read more</Link>
-          </div>
-        </Link>
+    </Link>
+  </div>
+))}
+{products.slice(1).map((data, index) => (
+  <div key={index} className={`col-lg-4 col-md-6 mb-4 aos-init aos-animate ${index % 2 !== 0 ? 'card-active' : ''}`} data-aos="fade-up">
+    <Link to={data.external_link} className="link">
+      <div className="text-center position-relative px-4 py-5 rounded-lg shadow" style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '', color: index % 2 === 0 ? '' : '#ffffff' }}>
+        <img src={`assets/images/feature/feature-${index % 2 === 0 ? 1 : 2}.png`} className="img-fluid" alt="feature-image" />
+        <h5 className="pt-5 pb-3 text-capitalize card-title" style={{ color: index % 2 === 0 ? '' : '#ffffff' }}>{data.title}</h5>
+        {ReactHtmlParser(data.description)}
+        <Link to={data.external_link} className="btn btn-outline-primary" style={{ color: index % 2 === 0 ? '' : '#ffffff', borderColor: index % 2 === 0 ? '' : '#ffffff' }}>read more</Link>
       </div>
-    );
-  }
-})}
+    </Link>
+  </div>
+))}
     </div>
   </div>
 </section>
