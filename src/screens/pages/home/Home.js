@@ -287,7 +287,7 @@ const sendMail = () => {
       {products.slice(0, 1).map((data, index) => (
   <div className="col-12 mb-4 aos-init aos-animate" data-aos="fade-up" key={index}>
     <Link to={data.external_link} className="link">
-      <div className="text-center position-relative px-8 py-12 rounded-lg shadow card-active" style={{ backgroundColor: '#0437F2', width: '100%', height: '780px', color: '#ffffff' }}>
+      <div className="text-center position-relative px-8 py-12 rounded-lg shadow card-active" style={{ backgroundColor: '#0437F2', width: '100%', height: '780px', color: '#ffffff', padding: '0 18px' }}>
         <img src="assets/images/feature/feature-1.png" className="img-fluid" alt="feature-image" />
         <h5 className="pt-5 pb-3 text-capitalize card-title">{data.title}</h5>
         <p style={{ color: '#ffffff' }}>{ReactHtmlParser(`<span style="color: #ffffff;">${data.description}</span>`)}</p>
@@ -299,7 +299,7 @@ const sendMail = () => {
 {products.slice(1).map((data, index) => (
   <div key={index} className={`col-lg-4 col-md-6 mb-4 aos-init aos-animate ${index % 2 !== 0 ? 'card-active' : ''}`} data-aos="fade-up">
     <Link to={data.external_link} className="link">
-      <div className="text-center position-relative px-4 py-5 rounded-lg shadow" style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '', color: index % 2 === 0 ? '' : '#ffffff' }}>
+      <div className="text-center position-relative rounded-lg shadow" style={{ backgroundColor: index % 2 === 0 ? '#ffffff' : '', color: index % 2 === 0 ? '' : '#ffffff', padding: '15px', maxWidth: '100%' }}>
         <img src={`assets/images/feature/feature-${index % 2 === 0 ? 1 : 2}.png`} className="img-fluid" alt="feature-image" />
         <h5 className="pt-5 pb-3 text-capitalize card-title" style={{ color: index % 2 === 0 ? '' : '#ffffff' }}>{data.title}</h5>
         {ReactHtmlParser(data.description)}

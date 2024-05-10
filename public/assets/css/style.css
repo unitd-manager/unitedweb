@@ -1909,4 +1909,8 @@ strong {
     position: relative;
     z-index: 1;
   }
+  .text-center.position-relative.rounded-lg.shadow {
+  
+    padding-left: 15px;
+  }
 }
