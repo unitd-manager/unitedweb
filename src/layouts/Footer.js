@@ -122,8 +122,8 @@ export default function Footer() {
           </div>
           <div className="col-md-6 text-md-right text-center">
             <ul className="list-inline">
-              <li className="list-inline-item"><a href="#" className="text-light">Terms of Service</a></li>
-              <li className="list-inline-item">| &nbsp;<a href="#" className="text-light">Privacy Policy</a></li>
+              <li className="list-inline-item"><a href="#/terms" className="text-light">Terms of Service</a></li>
+              <li className="list-inline-item">| &nbsp;<a href="#/privacyPolicy" className="text-light">Privacy Policy</a></li>
             </ul>
           </div>
         </div>

@@ -14,6 +14,8 @@ import Error from "./screens/pages/Error";
 import ProductDetail from "./screens/pages/Products/ProductDetails";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
+import PrivacyPolicy from "../src/screens/pages/about/PrivacyPolicy";
+import Terms from '../src/screens/pages/about/Terms';
 import {Helmet} from "react-helmet";
 import Offer from "./screens/pages/offerPage/offer";
 
@@ -76,6 +78,8 @@ function App() {
           <Route path="/services/:title" element={<ServiceDetail />} />
           <Route path="/services/:title/:title" element={<ServiceSubMenu />} />
           <Route path="/products/:title" element={<ProductDetail />} />
+          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
