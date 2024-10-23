@@ -17,7 +17,7 @@ export default function Contact() {
   const [contact, setContact] = useState();
   const [mailId, setmailId] = useState("");
   const [captchaValue, setCaptchaValue] = useState(null); // Add state for captcha
-
+console.log("erwe",email,contact)
   React.useEffect(() => {
     AOS.init();
     getEmail();
@@ -238,7 +238,7 @@ export default function Contact() {
         {/* Add reCAPTCHA here */}
         <Form.Item wrapperCol={{ span: 16, offset: 8 }}>
                     <ReCAPTCHA
-                      sitekey="6Lcc5mkqAAAAAASkwKjsHCYxZNIDq20Yp545f9yw" // Replace with your reCAPTCHA site key
+                      sitekey="6LcG8mkqAAAAAAMtU5DZKoOIzzVbStlV4DpfEryp" // Replace with your reCAPTCHA site key
                       onChange={onCaptchaChange}
                     />
                   </Form.Item>
