@@ -6,6 +6,7 @@ import Address1 from "../../../assets/images/attachments/Address11.png";
 import Address2 from "../../../assets/images/attachments/address2.png";
 import Address3 from "../../../assets/images/attachments/address3.png";
 import { Button, Col, Form, Input, Row, message } from "antd";
+import ReCAPTCHA from "react-google-recaptcha";
 // import * as Yup from 'yup';
 
 export default function Contact() {
@@ -15,6 +16,7 @@ export default function Contact() {
   const [address1, setAddress1] = useState();
   const [contact, setContact] = useState();
   const [mailId, setmailId] = useState("");
+  const [captchaValue, setCaptchaValue] = useState(null); // Add state for captcha
 
   React.useEffect(() => {
     AOS.init();
@@ -46,6 +48,9 @@ export default function Contact() {
     // message = e.target.message
   };
   const onFinish = (values) => {
+    if (!captchaValue) {
+      return message.error("Please complete the CAPTCHA!");
+    }
     console.log("Received values of form: ", values);
     api
       .post("/addContact", values)
@@ -115,7 +120,9 @@ export default function Contact() {
       setContact(res.data.data[0]);
     });
   };
-
+  const onCaptchaChange = (value) => {
+    setCaptchaValue(value); // Set the captcha value when user completes it
+  };
   return (
     <>
       <section
@@ -228,6 +235,14 @@ export default function Contact() {
           style={{ width: "200%" }} // Increase input field size
         />
       </Form.Item>
+        {/* Add reCAPTCHA here */}
+        <Form.Item wrapperCol={{ span: 16, offset: 8 }}>
+                    <ReCAPTCHA
+                      sitekey="6Lcc5mkqAAAAAASkwKjsHCYxZNIDq20Yp545f9yw" // Replace with your reCAPTCHA site key
+                      onChange={onCaptchaChange}
+                    />
+                  </Form.Item>
+
       <Form.Item>
       <Button
   type="primary"
