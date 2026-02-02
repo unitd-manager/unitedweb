@@ -271,6 +271,7 @@ console.log("erwe",email,contact)
 </Col>
 </Row>
             <Row>
+             <div class="col-lg-2"></div>
             <div class="col-lg-4" >
               <div class="p-5 rounded-xs shadow">
                 <ul class="list-unstyled">
@@ -318,7 +319,7 @@ console.log("erwe",email,contact)
                 </ul>
               </div>
             </div>
-            <div class="col-lg-4">
+            {/* <div class="col-lg-4">
               <div class="p-5 rounded-xs shadow">
                 <ul class="list-unstyled">
                   <li
@@ -341,7 +342,7 @@ console.log("erwe",email,contact)
    
                 </ul>
               </div>
-            </div>
+            </div> */}
             </Row>
           </div>
         
